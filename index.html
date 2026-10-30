@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA VOYAGES — Bespoke 3D Parallax Travel Packages & Luxury Stays</title>
+  <meta name="description" content="Experience high-altitude 3D parallax luxury travel. Book bespoke packages across majestic mountains, golden sand dunes, emerald rainforests, and pristine turquoise seas.">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            aura: {
+              gold: '#f59e0b',
+              'gold-light': '#fbbf24',
+              'gold-dark': '#d97706',
+              cyan: '#38bdf8',
+              emerald: '#10b981',
+              dark: '#070b14',
+              surface: '#0d1527',
+              card: 'rgba(15, 23, 42, 0.75)'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+            display: ['Space Grotesk', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
+</head>
+<body class="bg-[#070b14] text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- ========================================================
+       TOP LUXURY NAVIGATION
+       ======================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-xl bg-[#070b14]/75 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-slate-950 font-black shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+          </svg>
+        </div>
+        <div>
+          <span class="font-serif text-xl sm:text-2xl font-bold tracking-wider text-white group-hover:text-amber-400 transition-colors">AURA</span>
+          <span class="text-xs uppercase tracking-widest text-amber-400 block -mt-1 font-semibold">Voyages & Retreats</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#hero-stage" class="hover:text-amber-400 transition-colors">Home</a>
+        <a href="#biome-mountains" class="hover:text-amber-400 transition-colors">Mountains</a>
+        <a href="#biome-sand" class="hover:text-amber-400 transition-colors">Desert Dunes</a>
+        <a href="#biome-sea" class="hover:text-amber-400 transition-colors">Azure Sea</a>
+        <a href="#biome-forest" class="hover:text-amber-400 transition-colors">Rainforest</a>
+        <a href="#packages-section" class="hover:text-amber-400 transition-colors font-semibold text-white flex items-center gap-1.5">
+          <span>Packages</span>
+          <span class="px-2 py-0.5 text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-full font-mono">Special Offers</span>
+        </a>
+      </nav>
+
+      <!-- Right Utility Actions -->
+      <div class="flex items-center gap-3">
+        
+        <!-- Ambient Soundscape Generator Toggle -->
+        <button id="soundscape-toggle" title="Toggle flight ambient soundscape" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 transition">
+          <svg id="soundscape-icon" class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+          </svg>
+          <span id="soundscape-text">Audio: Off</span>
+        </button>
+
+        <!-- Currency Selector -->
+        <div class="relative">
+          <select class="currency-select bg-slate-900/90 text-xs font-semibold text-slate-200 border border-white/15 rounded-xl px-3 py-1.5 focus:outline-none focus:border-amber-400 cursor-pointer">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="INR">INR (₹)</option>
+            <option value="AED">AED (د.إ)</option>
+          </select>
+        </div>
+
+        <!-- Quick Book Button -->
+        <button onclick="openBookingModal()" class="btn-luxury px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2">
+          <span>Book Journey</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 text-slate-300 hover:text-white" aria-label="Open navigation menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-slate-950/95 border-b border-white/10 px-6 py-4 space-y-3">
+      <a href="#hero-stage" class="block py-2 text-slate-300 hover:text-amber-400">Home</a>
+      <a href="#biome-mountains" class="block py-2 text-slate-300 hover:text-amber-400">Mountains</a>
+      <a href="#biome-sand" class="block py-2 text-slate-300 hover:text-amber-400">Desert Dunes</a>
+      <a href="#biome-sea" class="block py-2 text-slate-300 hover:text-amber-400">Azure Sea</a>
+      <a href="#biome-forest" class="block py-2 text-slate-300 hover:text-amber-400">Rainforest</a>
+      <a href="#packages-section" class="block py-2 text-amber-400 font-bold">Explore All Packages</a>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       HERO: 3D MULTI-LAYER PARALLAX SKY, MOUNTAINS & AIRPLANE
+       ======================================================== -->
+  <section id="hero-stage" class="parallax-stage flex items-center justify-center pt-20">
+    
+    <!-- Layer 1: Sky & Atmospheric Dusk Horizon -->
+    <div class="parallax-layer hero-bg-sky"></div>
+
+    <!-- Layer 2: Snow-Capped Mountain Range -->
+    <div class="parallax-layer hero-layer-mountains"></div>
+
+    <!-- Layer 3: Atmospheric Fluffy Clouds (Behind Airplane) -->
+    <div class="parallax-layer hero-clouds-back"></div>
+
+    <!-- Layer 4: 3D High-Altitude Jet Airplane with Banking & Jetstream -->
+    <div class="hero-airplane-container animate-plane-float">
+      <!-- Jet Contrail Vapor Trails -->
+      <div class="jet-contrail"></div>
+      
+      <!-- Photorealistic Jetliner Vector Graphics -->
+      <svg viewBox="0 0 540 260" class="w-full h-full drop-shadow-[0_25px_35px_rgba(0,0,0,0.85)] filter brightness-105">
+        <defs>
+          <linearGradient id="fuselageGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="45%" stop-color="#e2e8f0" />
+            <stop offset="85%" stop-color="#94a3b8" />
+            <stop offset="100%" stop-color="#475569" />
+          </linearGradient>
+          <linearGradient id="wingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f8fafc" />
+            <stop offset="70%" stop-color="#cbd5e1" />
+            <stop offset="100%" stop-color="#64748b" />
+          </linearGradient>
+          <linearGradient id="goldTrim" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#f59e0b" />
+            <stop offset="100%" stop-color="#fbbf24" />
+          </linearGradient>
+          <linearGradient id="windowGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#38bdf8" />
+            <stop offset="100%" stop-color="#0284c7" />
+          </linearGradient>
+        </defs>
+
+        <!-- Left Far Wing -->
+        <polygon points="170,110 260,35 295,42 215,115" fill="url(#wingGrad)" opacity="0.8" />
+        
+        <!-- Left Wing Engine -->
+        <rect x="220" y="55" width="40" height="14" rx="7" fill="#334155" />
+        <ellipse cx="260" cy="62" rx="4" ry="7" fill="#0284c7" />
+
+        <!-- Main Aircraft Fuselage -->
+        <path d="M480,135 C460,110 320,105 140,115 C90,118 45,130 30,140 C45,150 90,158 140,155 C320,150 460,145 480,135 Z" fill="url(#fuselageGrad)" />
+        
+        <!-- Luxury Gold Livery Ribbon -->
+        <path d="M120,138 Q280,133 465,136 Q280,140 120,142 Z" fill="url(#goldTrim)" />
+
+        <!-- Cockpit Glass Windows -->
+        <polygon points="440,126 465,131 462,136 438,133" fill="url(#windowGlass)" />
+
+        <!-- Passenger Cabin Windows -->
+        <g fill="#0f172a" opacity="0.85">
+          <circle cx="160" cy="133" r="3" />
+          <circle cx="180" cy="133" r="3" />
+          <circle cx="200" cy="133" r="3" />
+          <circle cx="220" cy="133" r="3" />
+          <circle cx="240" cy="133" r="3" />
+          <circle cx="260" cy="133" r="3" />
+          <circle cx="280" cy="133" r="3" />
+          <circle cx="300" cy="133" r="3" />
+          <circle cx="320" cy="133" r="3" />
+          <circle cx="340" cy="133" r="3" />
+          <circle cx="360" cy="133" r="3" />
+          <circle cx="380" cy="133" r="3" />
+          <circle cx="400" cy="133" r="3" />
+          <circle cx="420" cy="133" r="3" />
+        </g>
+
+        <!-- Vertical Tail Fin -->
+        <polygon points="65,135 15,65 55,60 110,132" fill="url(#wingGrad)" />
+        <polygon points="25,72 50,68 95,126 70,130" fill="url(#goldTrim)" />
+
+        <!-- Right Near Wing (Swept forward in 3D perspective) -->
+        <polygon points="205,145 310,230 350,225 260,140" fill="url(#wingGrad)" />
+        
+        <!-- Right Wing Engine -->
+        <rect x="250" y="180" width="55" height="22" rx="10" fill="#1e293b" />
+        <ellipse cx="305" cy="191" rx="6" ry="10" fill="#38bdf8" />
+        <ellipse cx="250" cy="191" rx="5" ry="9" fill="#0f172a" />
+        
+        <!-- Navigation Wingtip Light (Glowing Cyan/Green) -->
+        <circle cx="348" cy="225" r="4" fill="#38bdf8" class="animate-ping" opacity="0.75" />
+        <circle cx="348" cy="225" r="3" fill="#ffffff" />
+      </svg>
+    </div>
+
+    <!-- Layer 5: Foreground Fluffy Clouds Passing Over Plane -->
+    <div class="parallax-layer hero-clouds-front"></div>
+
+    <!-- Layer 6: Dynamic Floating Dust & Atmosphere Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Layer 7: Ground Transition Gradient -->
+    <div class="parallax-layer hero-foreground-gradient"></div>
+
+    <!-- Hero Content (Text & Luxury Search Bar) -->
+    <div class="hero-content max-w-5xl mx-auto px-4 sm:px-6 text-center pt-8">
+      
+      <!-- Floating Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-semibold mb-6 tracking-widest uppercase shadow-xl animate-bounce">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+        <span>Ultra-Luxury 3D Travel Expeditions & Stays</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold font-serif text-white tracking-tight leading-[1.1] mb-6 drop-shadow-2xl">
+        Beyond Horizons.<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600">
+          Unveil The Extraordinary.
+        </span>
+      </h1>
+
+      <p class="text-base sm:text-lg md:text-xl text-slate-200/90 max-w-2xl mx-auto mb-10 leading-relaxed font-light drop-shadow">
+        Immerse yourself in cinematic 3D parallax landscapes. We curate bespoke global travel packages combining private chartered flights, 5★ architectural sanctuaries, and private expeditions.
+      </p>
+
+      <!-- Glassmorphic Search & Booking Bar -->
+      <div class="glass-panel p-4 sm:p-5 rounded-3xl max-w-4xl mx-auto text-left border border-white/20 shadow-2xl backdrop-blur-2xl">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- Realm Selection -->
+          <div class="space-y-1">
+            <label class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Realm Destination</label>
+            <select id="hero-realm-select" class="w-full bg-slate-900/80 text-white text-xs sm:text-sm rounded-xl px-3 py-2.5 border border-white/10 focus:border-amber-400 focus:outline-none">
+              <option value="all">All Realms & Sanctuaries</option>
+              <option value="mountains">🏔️ Alpine Mountain Summits</option>
+              <option value="sand">🏜️ Sahara & Arabian Sand Dunes</option>
+              <option value="sea">🌊 Azure Sea & Overwater Atolls</option>
+              <option value="forest">🌲 Emerald Mist & Rainforests</option>
+            </select>
+          </div>
+
+          <!-- Departure Date -->
+          <div class="space-y-1">
+            <label class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Departure Window</label>
+            <input type="date" id="hero-date-select" class="w-full bg-slate-900/80 text-white text-xs sm:text-sm rounded-xl px-3 py-2.5 border border-white/10 focus:border-amber-400 focus:outline-none" />
+          </div>
+
+          <!-- Travel Style -->
+          <div class="space-y-1">
+            <label class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Travel Experience</label>
+            <select class="w-full bg-slate-900/80 text-white text-xs sm:text-sm rounded-xl px-3 py-2.5 border border-white/10 focus:border-amber-400 focus:outline-none">
+              <option>Private Luxury Stay + Flights</option>
+              <option>Adventure & Guided Trek</option>
+              <option>Honeymoon & Romantic Retreat</option>
+              <option>Wellness, Onsen & Spa</option>
+            </select>
+          </div>
+
+          <!-- Search CTA Button -->
+          <div class="flex items-end">
+            <button onclick="scrollToPackages()" class="btn-luxury w-full py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <span>Explore Packages</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Trust Indicators -->
+      <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 mt-8 text-xs text-slate-400 font-medium">
+        <span class="flex items-center gap-1.5"><span class="text-amber-400">★ 4.98/5</span> Traveler Satisfaction</span>
+        <span class="flex items-center gap-1.5"><span class="text-cyan-400">✈️</span> Flight + Stay All-Inclusive</span>
+        <span class="flex items-center gap-1.5"><span class="text-emerald-400">🛡️</span> IATA Certified & 100% Protected</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       FLOATING 3D FLIGHT WAYPOINT TRACKER (STATUS RADAR)
+       ======================================================== -->
+  <aside class="sticky top-24 z-40 max-w-7xl mx-auto px-4 sm:px-6 pointer-events-none mb-6">
+    <div class="flight-tracker-pill pointer-events-auto inline-flex items-center gap-3 px-4 py-2 rounded-full text-xs font-semibold text-slate-200">
+      <span id="current-waypoint-icon" class="text-base animate-pulse">✈️</span>
+      <span class="text-slate-400 hidden sm:inline">Flight Waypoint:</span>
+      <span id="current-waypoint-name" class="text-amber-400 font-bold">Takeoff: Cloud Flight</span>
+      <div class="w-24 sm:w-32 bg-slate-800 h-1.5 rounded-full overflow-hidden ml-2 border border-white/10">
+        <div id="flight-progress-bar" class="h-full bg-gradient-to-r from-cyan-400 via-amber-400 to-amber-500 w-0 transition-all duration-300"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================
+       SECTION 1: MAJESTIC MOUNTAIN REALM (PARALLAX BIOME)
+       ======================================================== -->
+  <section id="biome-mountains" class="biome-section">
+    <div class="biome-bg" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=80');"></div>
+    <div class="biome-overlay"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="tag-badge bg-blue-500/20 text-blue-300 border border-blue-500/30 mb-4">
+            Realm I — Alpine Summits
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+            Above the World.<br>
+            <span class="text-amber-400">Glaciers & Ski Chalets.</span>
+          </h2>
+          <p class="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+            Breathe crisp crystalline mountain air at 3,800 meters. Stay in secluded cedar chalets with heated cantilever infinity pools overlooking towering glacial peaks. Our Alpine packages include private helicopter transfers and certified mountain guides.
+          </p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+            <div class="glass-panel p-4 rounded-2xl border border-white/10">
+              <span class="text-2xl font-bold text-amber-400 font-display">3,883m</span>
+              <p class="text-xs text-slate-400 mt-1">Highest Peak Access</p>
+            </div>
+            <div class="glass-panel p-4 rounded-2xl border border-white/10">
+              <span class="text-2xl font-bold text-cyan-400 font-display">5-Star</span>
+              <p class="text-xs text-slate-400 mt-1">Chalet & Spa Stay</p>
+            </div>
+            <div class="glass-panel p-4 rounded-2xl border border-white/10">
+              <span class="text-2xl font-bold text-emerald-400 font-display">100%</span>
+              <p class="text-xs text-slate-400 mt-1">Helicopter Transfers</p>
+            </div>
+          </div>
+
+          <button onclick="filterByRealm('mountains')" class="btn-luxury px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-2">
+            <span>View Mountain Packages</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </button>
+        </div>
+
+        <!-- Visual Feature Card -->
+        <div class="glass-panel p-4 sm:p-6 rounded-3xl border border-white/15 relative overflow-hidden group">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80" alt="Mountain Chalet" class="w-full h-80 object-cover rounded-2xl transition duration-700 group-hover:scale-105" />
+          <div class="absolute bottom-8 left-8 right-8 glass-panel p-4 rounded-xl border border-white/20">
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="text-white font-bold text-sm">Zermatt & Matterhorn Peak</h4>
+                <p class="text-xs text-slate-300">Ski-in ski-out luxury sanctuary</p>
+              </div>
+              <span class="text-amber-400 font-bold text-sm">From $2,890</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 2: GOLDEN DUNES & DESERT REALM (PARALLAX BIOME)
+       ======================================================== -->
+  <section id="biome-sand" class="biome-section">
+    <div class="biome-bg" style="background-image: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=2000&q=80');"></div>
+    <div class="biome-overlay"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Visual Feature Card Left -->
+        <div class="order-2 lg:order-1 glass-panel p-4 sm:p-6 rounded-3xl border border-white/15 relative overflow-hidden group">
+          <img src="https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=1200&q=80" alt="Desert Dunes" class="w-full h-80 object-cover rounded-2xl transition duration-700 group-hover:scale-105" />
+          <div class="absolute bottom-8 left-8 right-8 glass-panel p-4 rounded-xl border border-white/20">
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="text-white font-bold text-sm">Sahara Mirage & Royal Oasis</h4>
+                <p class="text-xs text-slate-300">Stargazing geodesic domes & dune safari</p>
+              </div>
+              <span class="text-amber-400 font-bold text-sm">From $2,150</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text Right -->
+        <div class="order-1 lg:order-2">
+          <span class="tag-badge bg-orange-500/20 text-orange-300 border border-orange-500/30 mb-4">
+            Realm II — Golden Sands & Dunes
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+            Infinite Silence.<br>
+            <span class="text-amber-400">Golden Dunes & Celestial Skies.</span>
+          </h2>
+          <p class="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+            Experience the mesmerizing undulating sand ripples of the Sahara and the Arabian desert. Dine beneath an unpolluted canopy of millions of stars with your private astronomer, and unwind in climate-controlled royal Bedouin pavilions.
+          </p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+            <div class="glass-panel p-4 rounded-2xl border border-white/10">
+              <span class="text-2xl font-bold text-amber-400 font-display">Bortle 1</span>
+              <p class="text-xs text-slate-400 mt-1">Dark Sky Stargazing</p>
+            </div>
+            <div class="glass-panel p-4 rounded-2xl border border-white/10">
+              <span class="text-2xl font-bold text-orange-400 font-display">Private</span>
+              <p class="text-xs text-slate-400 mt-1">4x4 Dune Expeditions</p>
+            </div>
+            <div class="glass-panel p-4 rounded-2xl border border-white/10">
+              <span class="text-2xl font-bold text-cyan-400 font-display">Emirates</span>
+              <p class="text-xs text-slate-400 mt-1">Direct Flights Included</p>
+            </div>
+          </div>
+
+          <button onclick="filterByRealm('sand')" class="btn-luxury px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-2">
+            <span>View Desert Packages</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 3: AZURE SEA & ATOLLS REALM (PARALLAX BIOME)
+       ======================================================== -->
+  <section id="biome-sea" class="biome-section">
+    <div class="biome-bg" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80');"></div>
+    <div class="biome-overlay"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="tag-badge bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 mb-4">
+            Realm III — Turquoise Seas & Atolls
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+            Endless Azure.<br>
+            <span class="text-cyan-400">Overwater Villas & Coral Reefs.</span>
+          </h2>
+          <p class="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+            Glide down into shimmering lagoons on private twin-otter seaplanes. Wake up above coral gardens, dip straight into bath-warm turquoise waters from your private deck, and dine 5 meters below the surface surrounded by marine life.
+          </p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+            <div class="glass-panel p-4 rounded-2xl border border-white/10">
+              <span class="text-2xl font-bold text-cyan-400 font-display">Seaplane</span>
+              <p class="text-xs text-slate-400 mt-1">Island VIP Transfers</p>
+            </div>
+            <div class="glass-panel p-4 rounded-2xl border border-white/10">
+              <span class="text-2xl font-bold text-amber-400 font-display">Overwater</span>
+              <p class="text-xs text-slate-400 mt-1">Glass-Floor Villas</p>
+            </div>
+            <div class="glass-panel p-4 rounded-2xl border border-white/10">
+              <span class="text-2xl font-bold text-emerald-400 font-display">UNESCO</span>
+              <p class="text-xs text-slate-400 mt-1">Marine Biosphere Reserve</p>
+            </div>
+          </div>
+
+          <button onclick="filterByRealm('sea')" class="btn-luxury px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-2">
+            <span>View Ocean Packages</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </button>
+        </div>
+
+        <!-- Visual Feature Card -->
+        <div class="glass-panel p-4 sm:p-6 rounded-3xl border border-white/15 relative overflow-hidden group">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80" alt="Overwater Villa Maldives" class="w-full h-80 object-cover rounded-2xl transition duration-700 group-hover:scale-105" />
+          <div class="absolute bottom-8 left-8 right-8 glass-panel p-4 rounded-xl border border-white/20">
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="text-white font-bold text-sm">Maldives Overwater Haven</h4>
+                <p class="text-xs text-slate-300">Bespoke seaplane & underwater dinner</p>
+              </div>
+              <span class="text-cyan-400 font-bold text-sm">From $3,450</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 4: EMERALD FOREST & CANOPY REALM (PARALLAX BIOME)
+       ======================================================== -->
+  <section id="biome-forest" class="biome-section">
+    <div class="biome-bg" style="background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2000&q=80');"></div>
+    <div class="biome-overlay"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Visual Feature Card Left -->
+        <div class="order-2 lg:order-1 glass-panel p-4 sm:p-6 rounded-3xl border border-white/15 relative overflow-hidden group">
+          <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=80" alt="Kyoto Bamboo Forest" class="w-full h-80 object-cover rounded-2xl transition duration-700 group-hover:scale-105" />
+          <div class="absolute bottom-8 left-8 right-8 glass-panel p-4 rounded-xl border border-white/20">
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="text-white font-bold text-sm">Kyoto & Costa Rica Canopies</h4>
+                <p class="text-xs text-slate-300">Whispering bamboo & private cedar onsens</p>
+              </div>
+              <span class="text-emerald-400 font-bold text-sm">From $1,980</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text Right -->
+        <div class="order-1 lg:order-2">
+          <span class="tag-badge bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 mb-4">
+            Realm IV — Ancient Forests & Canopy
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+            Sacred Verdure.<br>
+            <span class="text-emerald-400">Treehouses & Healing Hot Springs.</span>
+          </h2>
+          <p class="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+            Recharge amidst ancient moss-draped canopies and whispering bamboo groves. Stay in architectural bamboo eco-villas suspended over rivers, soak in volcanic hot springs, and experience deep holistic rejuvenation.
+          </p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+            <div class="glass-panel p-4 rounded-2xl border border-white/10">
+              <span class="text-2xl font-bold text-emerald-400 font-display">100%</span>
+              <p class="text-xs text-slate-400 mt-1">Eco-Luxe Certified</p>
+            </div>
+            <div class="glass-panel p-4 rounded-2xl border border-white/10">
+              <span class="text-2xl font-bold text-amber-400 font-display">Natural</span>
+              <p class="text-xs text-slate-400 mt-1">Geothermal Onsen Spas</p>
+            </div>
+            <div class="glass-panel p-4 rounded-2xl border border-white/10">
+              <span class="text-2xl font-bold text-purple-400 font-display">Private</span>
+              <p class="text-xs text-slate-400 mt-1">Canopy Suspension Walks</p>
+            </div>
+          </div>
+
+          <button onclick="filterByRealm('forest')" class="btn-luxury px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-2">
+            <span>View Rainforest Packages</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 5: CURATED TRAVEL & STAY PACKAGES (BOOKABLE)
+       ======================================================== -->
+  <section id="packages-section" class="py-24 relative bg-[#070b14]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Title & Subhead -->
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="tag-badge bg-amber-500/20 text-amber-300 border border-amber-500/30 mb-3">All-Inclusive Travel Packages</span>
+        <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-4">
+          Curated Expeditions & Luxury Stays
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base">
+          Every package is tailored to perfection — featuring hand-selected 5-star properties, scheduled commercial or chartered flights, and private white-glove concierge.
+        </p>
+      </div>
+
+      <!-- Filter Controls & Search Bar -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 pb-6 border-b border-white/10">
+        
+        <!-- Category Filter Tabs -->
+        <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
+          <button class="filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-amber-500 text-slate-950 transition whitespace-nowrap" data-category="all">
+            All Packages
+          </button>
+          <button class="filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/5 text-slate-300 hover:text-white transition whitespace-nowrap" data-category="mountains">
+            🏔️ Mountains
+          </button>
+          <button class="filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/5 text-slate-300 hover:text-white transition whitespace-nowrap" data-category="sand">
+            🏜️ Desert Dunes
+          </button>
+          <button class="filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/5 text-slate-300 hover:text-white transition whitespace-nowrap" data-category="sea">
+            🌊 Azure Sea
+          </button>
+          <button class="filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/5 text-slate-300 hover:text-white transition whitespace-nowrap" data-category="forest">
+            🌲 Rainforests
+          </button>
+        </div>
+
+        <!-- Search Keyword Input -->
+        <div class="relative w-full md:w-72">
+          <input type="text" id="search-packages" placeholder="Search destination, villa..." class="w-full bg-slate-900/90 text-xs sm:text-sm text-white rounded-xl pl-10 pr-4 py-2.5 border border-white/15 focus:outline-none focus:border-amber-400 placeholder:text-slate-500" />
+          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+      </div>
+
+      <!-- Packages Grid Container (Populated via main.js) -->
+      <div id="packages-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 6: WHY CHOOSE AURA VOYAGES
+       ======================================================== -->
+  <section class="py-20 bg-slate-950/70 border-t border-b border-white/10 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-3xl font-serif font-bold text-white mb-4">The Standard of Distinction</h2>
+        <p class="text-slate-400 text-sm">How we elevate every step of your travel experience from takeoff to homecoming.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-amber-500/40 transition">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-5 border border-amber-500/30">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2 font-serif">Seamless Aviation</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Integrated flights with premium airline partners, express airport fast-track, and scenic chartered transfers.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-amber-500/40 transition">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center mb-5 border border-cyan-500/30">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2 font-serif">Handpicked 5★ Stays</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Every chalet, overwater villa, and desert pavilion is personally audited for architectural beauty and service perfection.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-amber-500/40 transition">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-5 border border-emerald-500/30">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2 font-serif">24/7 Dedicated Butler</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">A personal travel concierge is on call before, during, and after your journey for dinner reservations, itinerary pivots, and requests.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-amber-500/40 transition">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center mb-5 border border-purple-500/30">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2 font-serif">100% Guaranteed Protection</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Comprehensive flight coverage, flexible cancellation terms, and verified IATA accreditation for total peace of mind.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 7: TRAVELER TESTIMONIALS & REVIEWS
+       ======================================================== -->
+  <section class="py-24 bg-[#070b14] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="tag-badge bg-amber-500/20 text-amber-300 border border-amber-500/30 mb-3">Client Reviews</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mb-4">Stories From The Skies</h2>
+        <p class="text-slate-400 text-sm">Reflections from globetrotters who embarked on our bespoke expeditions.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="glass-card p-8 rounded-3xl border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex text-amber-400 text-sm mb-4">★★★★★</div>
+            <p class="text-slate-300 text-sm italic mb-6 leading-relaxed">
+              "The Matterhorn chalet exceeded every fantasy. Watching sunrise illuminate the peak from the private heated pool after our helicopter tour was pure magic. Aura handled every detail with flawless precision."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-400 to-amber-600 flex items-center justify-center font-bold text-slate-900 text-xs">ER</div>
+            <div>
+              <h4 class="text-white text-sm font-bold">Eleanor & Richard Vance</h4>
+              <p class="text-slate-400 text-xs">Swiss Alps Chalet Expedition</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card p-8 rounded-3xl border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex text-amber-400 text-sm mb-4">★★★★★</div>
+            <p class="text-slate-300 text-sm italic mb-6 leading-relaxed">
+              "The seaplane flight into the Maldives atoll was jaw-dropping. Seeing the colors of the ocean from the sky and then landing directly by our overwater villa was surreal. Best anniversary trip of our lives."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center font-bold text-slate-900 text-xs">MK</div>
+            <div>
+              <h4 class="text-white text-sm font-bold">Marcus & Kenna Sterling</h4>
+              <p class="text-slate-400 text-xs">Maldives Overwater Sanctuary</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card p-8 rounded-3xl border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex text-amber-400 text-sm mb-4">★★★★★</div>
+            <p class="text-slate-300 text-sm italic mb-6 leading-relaxed">
+              "Sleeping in the Sahara dome under the infinite starfield with a private astronomer was an emotional journey. The 4x4 dune expedition was thrilling yet we returned each night to royal luxury."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-orange-400 to-amber-600 flex items-center justify-center font-bold text-slate-900 text-xs">SL</div>
+            <div>
+              <h4 class="text-white text-sm font-bold">Dr. Sophia Laurent</h4>
+              <p class="text-slate-400 text-xs">Sahara Mirage Expedition</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       MODAL: INTERACTIVE PACKAGE BOOKING ENGINE
+       ======================================================== -->
+  <div id="booking-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 modal-hidden">
+    <!-- Backdrop Blur Overlay -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-slate-950/80 backdrop-blur-xl transition-opacity"></div>
+
+    <!-- Modal Card Box -->
+    <div class="modal-content relative z-10 w-full max-w-4xl bg-[#0b1220] border border-amber-500/30 rounded-3xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-5 border-b border-white/10 flex items-center justify-between bg-slate-900/60">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-serif font-bold text-white">Book Your Bespoke Package</h3>
+            <p class="text-xs text-slate-400">All-Inclusive Travel & Stay Reservation</p>
+          </div>
+        </div>
+        
+        <button id="close-booking-modal" class="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition" aria-label="Close modal">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Modal Body (Dynamic Form / Confirmation Pass) -->
+      <div id="booking-modal-body" class="p-6 overflow-y-auto flex-1">
+        
+        <form id="booking-form" class="space-y-6">
+          
+          <!-- Package Preview Banner -->
+          <div class="glass-panel p-4 rounded-2xl flex flex-col sm:flex-row items-center gap-4 border border-white/10">
+            <img id="modal-pkg-img" src="" alt="Selected Package" class="w-full sm:w-28 h-20 object-cover rounded-xl" />
+            <div class="flex-1 text-center sm:text-left">
+              <span class="text-[10px] text-amber-400 uppercase tracking-widest font-semibold block">Active Selection</span>
+              <h4 id="modal-pkg-title" class="text-base font-bold text-white font-serif"></h4>
+              <p id="modal-pkg-location" class="text-xs text-slate-300"></p>
+              <p id="modal-pkg-flight" class="text-xs text-cyan-300 mt-1 font-mono"></p>
+            </div>
+            
+            <div class="w-full sm:w-auto">
+              <label class="text-[10px] text-slate-400 uppercase tracking-widest block mb-1">Switch Package:</label>
+              <select id="modal-package-select" class="w-full sm:w-48 bg-slate-900 text-xs text-white rounded-xl px-2.5 py-1.5 border border-white/20 focus:outline-none focus:border-amber-400 cursor-pointer">
+              </select>
+            </div>
+          </div>
+
+          <!-- Step 1: Travel Dates & Travelers -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <label class="text-xs font-bold text-slate-300 block mb-1.5">Departure Date</label>
+              <input type="date" id="book-depart-date" required class="luxury-input text-xs" />
+            </div>
+
+            <div>
+              <label class="text-xs font-bold text-slate-300 block mb-1.5">Return Date</label>
+              <input type="date" id="book-return-date" required class="luxury-input text-xs" />
+            </div>
+
+            <div>
+              <label class="text-xs font-bold text-slate-300 block mb-1.5">Adult Guests (12+)</label>
+              <select id="book-adults" class="luxury-input text-xs">
+                <option value="1">1 Adult (Solo Explorer)</option>
+                <option value="2" selected>2 Adults (Couple)</option>
+                <option value="3">3 Adults</option>
+                <option value="4">4 Adults (Private Group)</option>
+                <option value="6">6 Adults</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="text-xs font-bold text-slate-300 block mb-1.5">Children (0-11)</label>
+              <select id="book-children" class="luxury-input text-xs">
+                <option value="0" selected>0 Children</option>
+                <option value="1">1 Child (-25% Fare)</option>
+                <option value="2">2 Children (-25% Fare)</option>
+                <option value="3">3 Children</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Step 2: Aviation Cabin Class -->
+          <div class="glass-panel p-4 rounded-2xl border border-white/10">
+            <label class="text-xs font-bold text-slate-200 uppercase tracking-wider block mb-2">Flight Seating Class</label>
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+              <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-900/60 border border-white/10 cursor-pointer hover:border-amber-400/50">
+                <input type="radio" name="flight-class" value="economy" checked id="book-flight-class" class="text-amber-500 focus:ring-0" />
+                <div>
+                  <span class="text-xs font-bold text-white block">Standard</span>
+                  <span class="text-[10px] text-slate-400">Included in package</span>
+                </div>
+              </label>
+
+              <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-900/60 border border-white/10 cursor-pointer hover:border-amber-400/50">
+                <input type="radio" name="flight-class" value="premium" class="text-amber-500 focus:ring-0" />
+                <div>
+                  <span class="text-xs font-bold text-white block">Premium Econ</span>
+                  <span class="text-[10px] text-amber-400">+ $350 / person</span>
+                </div>
+              </label>
+
+              <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-900/60 border border-white/10 cursor-pointer hover:border-amber-400/50">
+                <input type="radio" name="flight-class" value="business" class="text-amber-500 focus:ring-0" />
+                <div>
+                  <span class="text-xs font-bold text-white block">Business Class</span>
+                  <span class="text-[10px] text-cyan-400">+ $950 / person</span>
+                </div>
+              </label>
+
+              <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-900/60 border border-white/10 cursor-pointer hover:border-amber-400/50">
+                <input type="radio" name="flight-class" value="first" class="text-amber-500 focus:ring-0" />
+                <div>
+                  <span class="text-xs font-bold text-white block">First Class Suite</span>
+                  <span class="text-[10px] text-emerald-400">+ $1,850 / person</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Step 3: VIP Concierge Add-ons -->
+          <div class="glass-panel p-4 rounded-2xl border border-white/10">
+            <label class="text-xs font-bold text-slate-200 uppercase tracking-wider block mb-2">Optional VIP Add-ons</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <label class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-900/60 border border-white/10 cursor-pointer hover:border-amber-400/50">
+                <input type="checkbox" id="addon-chauffeur" class="rounded text-amber-500 focus:ring-0" />
+                <div class="flex-1">
+                  <span class="font-bold text-white">Private Airport Chauffeur (Mercedes S-Class)</span>
+                  <span class="text-[11px] text-slate-400 block">Roundtrip door-to-door luxury transfer</span>
+                </div>
+                <span class="text-amber-400 font-semibold">+$180</span>
+              </label>
+
+              <label class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-900/60 border border-white/10 cursor-pointer hover:border-amber-400/50">
+                <input type="checkbox" id="addon-champagne" class="rounded text-amber-500 focus:ring-0" />
+                <div class="flex-1">
+                  <span class="font-bold text-white">Dom Pérignon & Caviar on Arrival</span>
+                  <span class="text-[11px] text-slate-400 block">Chilled in your villa suite</span>
+                </div>
+                <span class="text-amber-400 font-semibold">+$120</span>
+              </label>
+
+              <label class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-900/60 border border-white/10 cursor-pointer hover:border-amber-400/50">
+                <input type="checkbox" id="addon-spa" class="rounded text-amber-500 focus:ring-0" />
+                <div class="flex-1">
+                  <span class="font-bold text-white">Unlimited Thermal & Spa Pass</span>
+                  <span class="text-[11px] text-slate-400 block">Daily massage & private onsen bath</span>
+                </div>
+                <span class="text-amber-400 font-semibold">+$250/p</span>
+              </label>
+
+              <label class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-900/60 border border-white/10 cursor-pointer hover:border-amber-400/50">
+                <input type="checkbox" id="addon-drone" class="rounded text-amber-500 focus:ring-0" />
+                <div class="flex-1">
+                  <span class="font-bold text-white">Personal Drone Videographer</span>
+                  <span class="text-[11px] text-slate-400 block">4K cinematic movie of your expedition</span>
+                </div>
+                <span class="text-amber-400 font-semibold">+$390</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Step 4: Traveler Contact Info -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="text-xs font-bold text-slate-300 block mb-1.5">Primary Guest Name</label>
+              <input type="text" id="book-name" required placeholder="Lord/Lady Alexander Wright" class="luxury-input text-xs" />
+            </div>
+
+            <div>
+              <label class="text-xs font-bold text-slate-300 block mb-1.5">Email Address</label>
+              <input type="email" id="book-email" required placeholder="alexander@domain.com" class="luxury-input text-xs" />
+            </div>
+
+            <div>
+              <label class="text-xs font-bold text-slate-300 block mb-1.5">Phone (with country code)</label>
+              <input type="tel" id="book-phone" required placeholder="+1 (555) 019-2834" class="luxury-input text-xs" />
+            </div>
+          </div>
+
+          <!-- Live Pricing Summary & Action -->
+          <div class="glass-panel p-5 rounded-2xl border border-amber-500/30 bg-slate-900/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="w-full sm:w-auto">
+              <span class="text-xs text-slate-400 block">Total Package Investment:</span>
+              <div class="flex items-baseline gap-2">
+                <span id="modal-total-price" class="text-3xl font-extrabold text-amber-400 font-display">$5,780</span>
+                <span class="text-xs text-slate-400">(All inclusive of flight, stays & taxes)</span>
+              </div>
+              <div id="modal-price-breakdown" class="mt-2 text-[11px] text-slate-400 space-y-0.5"></div>
+            </div>
+
+            <button type="submit" class="btn-luxury w-full sm:w-auto px-8 py-3.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Confirm & Lock In Package</span>
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       FOOTER & NEWSLETTER
+       ======================================================== -->
+  <footer class="bg-[#05080e] border-t border-white/10 pt-16 pb-12 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+        
+        <!-- Brand Info -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center text-slate-950 font-black">
+              ✈️
+            </div>
+            <span class="font-serif text-xl font-bold tracking-wider text-white">AURA VOYAGES</span>
+          </div>
+          <p class="text-slate-400 text-xs max-w-sm leading-relaxed">
+            Pioneering luxury travel since 2012. Curators of bespoke 3D journeys, private charter aviation, and architectural stays across Earth's most breathtaking landscapes.
+          </p>
+          <div class="flex items-center gap-4 text-white">
+            <span class="hover:text-amber-400 cursor-pointer">Instagram</span>
+            <span>•</span>
+            <span class="hover:text-amber-400 cursor-pointer">Vogue Travel</span>
+            <span>•</span>
+            <span class="hover:text-amber-400 cursor-pointer">Virtuoso Member</span>
+          </div>
+        </div>
+
+        <!-- Quick Destinations -->
+        <div>
+          <h4 class="text-white font-bold text-sm mb-4">Elemental Realms</h4>
+          <ul class="space-y-2">
+            <li><a href="#biome-mountains" class="hover:text-amber-400">Swiss Alps & Zermatt</a></li>
+            <li><a href="#biome-mountains" class="hover:text-amber-400">Patagonia Glaciers</a></li>
+            <li><a href="#biome-sand" class="hover:text-amber-400">Sahara Desert Glamping</a></li>
+            <li><a href="#biome-sea" class="hover:text-amber-400">Maldives Overwater Villas</a></li>
+            <li><a href="#biome-forest" class="hover:text-amber-400">Kyoto Bamboo & Ryokan</a></li>
+          </ul>
+        </div>
+
+        <!-- Agency Info -->
+        <div>
+          <h4 class="text-white font-bold text-sm mb-4">Concierge Offices</h4>
+          <ul class="space-y-2">
+            <li>Geneva: Rue du Rhône 42</li>
+            <li>New York: 5th Avenue, Suite 800</li>
+            <li>Dubai: DIFC Gate Precinct 4</li>
+            <li>Singapore: Marina Bay Financial</li>
+            <li class="pt-2 text-amber-400 font-semibold">24/7 Hotline: +1 (800) 428-AURA</li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div>
+          <h4 class="text-white font-bold text-sm mb-4">Private Jet Dispatches</h4>
+          <p class="text-slate-400 text-xs mb-3">Subscribe for exclusive unlisted private villa releases and seasonal packages.</p>
+          <form onsubmit="event.preventDefault(); alert('Thank you! You are now subscribed to the Aura Private Travel Dispatch.');" class="space-y-2">
+            <input type="email" required placeholder="your.name@luxury.com" class="w-full bg-slate-900 text-white text-xs rounded-xl px-3 py-2 border border-white/15 focus:outline-none focus:border-amber-400" />
+            <button type="submit" class="btn-luxury w-full py-2 rounded-xl text-xs font-bold">Subscribe</button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500">
+        <p>© 2026 Aura Voyages & Expeditions Inc. All rights reserved. IATA Accredited Agent #91-2-4820.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-slate-300">Privacy Notice</a>
+          <a href="#" class="hover:text-slate-300">Terms of Bespoke Carriage</a>
+          <a href="#" class="hover:text-slate-300">Sustainability & Carbon Neutrality</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Helper Scripts for Realm Jumps -->
+  <script>
+    function scrollToPackages() {
+      const section = document.getElementById('packages-section');
+      if (section) section.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function filterByRealm(realm) {
+      const section = document.getElementById('packages-section');
+      if (section) section.scrollIntoView({ behavior: 'smooth' });
+      
+      const targetTab = document.querySelector(`.filter-tab[data-category="${realm}"]`);
+      if (targetTab) {
+        targetTab.click();
+      }
+    }
+
+    // Connect Hero Realm Select to Filter
+    document.getElementById('hero-realm-select')?.addEventListener('change', (e) => {
+      filterByRealm(e.target.value);
+    });
+  </script>
+
+  <!-- Interactive JavaScript Engine -->
+  <script src="main.js"></script>
+</body>
+</html>

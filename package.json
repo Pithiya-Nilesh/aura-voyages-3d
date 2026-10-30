@@ -1,0 +1,17 @@
+{
+  "name": "aura-voyages-3d-parallax-travel",
+  "version": "1.0.0",
+  "description": "Luxury 3D Parallax Scrolling Website for Travel Agency with Packages & Booking Engine",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "python3 -m http.server 3000"
+  },
+  "keywords": ["travel", "parallax", "3d", "tourism", "packages", "booking"],
+  "author": "Aura Voyages",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.4.10"
+  }
+}
