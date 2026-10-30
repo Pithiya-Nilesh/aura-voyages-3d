@@ -1,10 +1,83 @@
 /**
  * AURA VOYAGES - ADVANCED 3D PARALLAX LUXURY TRAVEL ENGINE
- * Bulletproof Calculations, Full-Page Biome Parallax, Soundscape & Print Boarding Pass
+ * Vibrant Color Engine, Dynamic Boat/Paraglider/Camel/Gondola Entities, Type-Safe Booking
  */
 
-// --- 1. DATA: ALL-INCLUSIVE CURATED PACKAGES ---
+// --- 1. DATA: ALL-INCLUSIVE CURATED LUXURY PACKAGES ---
 const PACKAGES_DATA = [
+  {
+    id: 'maldives-overwater-haven',
+    title: 'Azure Lagoon & Overwater Sanctuary',
+    location: 'Baa Atoll, Maldives',
+    category: 'sea',
+    duration: '8 Days / 7 Nights',
+    rating: 5.0,
+    reviewsCount: 216,
+    basePriceUSD: 3450,
+    badge: 'Overwater Villa',
+    tagColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=85',
+    hotelName: 'Soneva Overwater Sanctuary & Marine Biosphere',
+    flightPartner: 'Qatar Airways (QR-672) + Twin-Otter Seaplane',
+    flightRoute: 'Direct Airport ➔ Scenic Lagoon Seaplane Landing',
+    overview: 'Hover above crystalline turquoise lagoons with direct marine ladder access, private plunge pool, and underwater 5-course dining.',
+    highlights: ['VIP Seaplane lagoon landing', 'Manta ray & coral reef snorkeling safari', 'Underwater restaurant 5-course dinner', 'Sunset catamaran cruise with sommelier'],
+    flightIncluded: 'Qatar Airways + Seaplane Island Transfer'
+  },
+  {
+    id: 'bora-bora-pearl',
+    title: 'Bora Bora Coral Lagoon & Otemanu Villa',
+    location: 'French Polynesia, South Pacific',
+    category: 'sea',
+    duration: '9 Days / 8 Nights',
+    rating: 4.97,
+    reviewsCount: 164,
+    badge: 'Pacific Haven',
+    tagColor: 'bg-sky-500/20 text-sky-300 border-sky-400/40',
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85',
+    hotelName: 'The St. Regis Bora Bora Overwater Suite',
+    flightPartner: 'Air Tahiti Nui + Catamaran Yacht',
+    flightRoute: 'Papeete ➔ Bora Bora Private Motu Dock',
+    overview: 'Unobstructed Mount Otemanu vistas from your overwater villa, private sun deck, glass floor viewing portals, and outrigger canoe breakfast.',
+    highlights: ['Outrigger canoe gourmet breakfast', 'Lagoon ray & sea turtle feeding excursion', 'Polynesian deep tissue massage', 'Private sunset yacht with live music'],
+    flightIncluded: 'Air Tahiti Nui + Catamaran Transfer'
+  },
+  {
+    id: 'sahara-royal-dunes',
+    title: 'Sahara Mirage & Royal Bedouin Oasis',
+    location: 'Merzouga & Dubai Desert Reserve',
+    category: 'sand',
+    duration: '6 Days / 5 Nights',
+    rating: 4.95,
+    reviewsCount: 98,
+    badge: 'Royal Glamping',
+    tagColor: 'bg-amber-500/20 text-amber-300 border-amber-400/40',
+    image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1600&q=85',
+    hotelName: 'Al Maha Royal Desert Pavilion & Stargazing Dome',
+    flightPartner: 'Emirates Airlines (Flight EK-204)',
+    flightRoute: 'Direct Airport ➔ Private 4x4 Dune Chauffeur',
+    overview: 'Traverse golden dunes in luxury 4x4s, gaze into unpolluted galaxies in private celestial domes, and experience royal Arabian hospitality.',
+    highlights: ['Private celestial dome with high-power telescope', 'Sunset royal camel caravan with champagne', 'Desert falconry & Arabian thoroughbred horses', 'Private gourmet banquet in golden dunes'],
+    flightIncluded: 'Emirates Direct Flight (Included)'
+  },
+  {
+    id: 'arabian-empty-quarter',
+    title: 'Liwa Dunes & Palace Mirage',
+    location: 'Abu Dhabi Rub al Khali, UAE',
+    category: 'sand',
+    duration: '5 Days / 4 Nights',
+    rating: 4.93,
+    reviewsCount: 76,
+    badge: 'Desert Palace',
+    tagColor: 'bg-orange-500/20 text-orange-300 border-orange-400/40',
+    image: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=1600&q=85',
+    hotelName: 'Qasr Al Sarab Desert Palace by Anantara',
+    flightPartner: 'Etihad Airways Luxury Apartment',
+    flightRoute: 'Abu Dhabi ➔ Private Dune Helicopter Arrival',
+    overview: 'Palatial villas overlooking colossal golden sand ridges with private plunge pool, sunrise hot air ballooning, and date-seed spa treatments.',
+    highlights: ['Sunrise hot air balloon over orange dunes', 'Hammam scrub & desert date seed spa rituals', 'Dune sandboarding & private rally course', 'Bedouin fireside storytelling & live oud'],
+    flightIncluded: 'Etihad Airways + Helicopter Arrival'
+  },
   {
     id: 'alpine-matterhorn',
     title: 'Alpine Majesty & Glacier Chalet',
@@ -15,7 +88,7 @@ const PACKAGES_DATA = [
     reviewsCount: 142,
     basePriceUSD: 2890,
     badge: 'Swiss Chalet',
-    tagColor: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+    tagColor: 'bg-blue-500/20 text-blue-300 border-blue-400/40',
     image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=85',
     hotelName: 'The Omnia 5★ Mountain Lodge & Private Spa',
     flightPartner: 'Swiss International Air (Flight LX-18)',
@@ -33,86 +106,14 @@ const PACKAGES_DATA = [
     rating: 4.96,
     reviewsCount: 89,
     badge: 'Glacier Expedition',
-    tagColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
+    tagColor: 'bg-indigo-500/20 text-indigo-300 border-indigo-400/40',
     image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=85',
     hotelName: 'Explora Patagonia Geodesic Luxury Domes',
-    flightPartner: 'LATAM Airlines + Scenic Regional Floatplane',
+    flightPartner: 'LATAM Airlines + Scenic Floatplane',
     flightRoute: 'Santiago ➔ Punta Arenas ➔ Grey Glacier',
-    overview: 'Marvel at granite towers, dramatic icebergs, and glacial fjords from ultra-luxury geodesic eco-domes with Chilean wine pairing.',
+    overview: 'Granite peaks, electric-blue icebergs, and glacial fjords explored from ultra-luxury geodesic eco-domes with Chilean reserve wine pairings.',
     highlights: ['Grey Glacier navigation & iceberg boat safari', 'Puma tracking with private wildlife biologist', 'Private Andean horseback expedition', 'Sommelier-guided Chilean reserve wine tastings'],
     flightIncluded: 'LATAM Airlines + Scenic Floatplane'
-  },
-  {
-    id: 'sahara-royal-dunes',
-    title: 'Sahara Mirage & Royal Bedouin Oasis',
-    location: 'Merzouga & Dubai Desert Reserve',
-    category: 'sand',
-    duration: '6 Days / 5 Nights',
-    rating: 4.95,
-    reviewsCount: 98,
-    badge: 'Royal Desert',
-    tagColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
-    image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1600&q=85',
-    hotelName: 'Al Maha Royal Desert Resort & Stargazing Pavilion',
-    flightPartner: 'Emirates Airlines (Flight EK-204)',
-    flightRoute: 'Direct Flight ➔ Private 4x4 Dune Chauffeur',
-    overview: 'Glide over golden dunes in luxury 4x4s, sleep beneath infinite galaxies in private stargazing domes, and experience royal Arabian hospitality.',
-    highlights: ['Private celestial dome with high-power telescope', 'Sunset royal camel caravan with champagne', 'Desert falconry & Arabian thoroughbred horses', 'Private gourmet banquet deep in the dunes'],
-    flightIncluded: 'Emirates Direct Flight (Included)'
-  },
-  {
-    id: 'arabian-empty-quarter',
-    title: 'Liwa Dunes & Palace Mirage',
-    location: 'Abu Dhabi Rub al Khali, UAE',
-    category: 'sand',
-    duration: '5 Days / 4 Nights',
-    rating: 4.93,
-    reviewsCount: 76,
-    badge: 'Oasis Sanctuary',
-    tagColor: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
-    image: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=1600&q=85',
-    hotelName: 'Qasr Al Sarab Desert Palace by Anantara',
-    flightPartner: 'Etihad Airways Luxury Apartment',
-    flightRoute: 'Abu Dhabi ➔ Private Dune Helicopter Transfer',
-    overview: 'Perched on the edge of the world’s largest continuous sand desert, offering palace villas with private plunge pools overlooking soaring orange dunes.',
-    highlights: ['Sunrise hot air balloon over towering dunes', 'Hammam scrub & desert date seed spa rituals', 'Dune sandboarding & private rally course', 'Bedouin fireside storytelling with oud music'],
-    flightIncluded: 'Etihad Airways + Helicopter Arrival'
-  },
-  {
-    id: 'maldives-overwater-haven',
-    title: 'Azure Lagoon & Overwater Sanctuary',
-    location: 'Baa Atoll, Maldives',
-    category: 'sea',
-    duration: '8 Days / 7 Nights',
-    rating: 5.0,
-    reviewsCount: 216,
-    badge: 'Ultra Luxury',
-    tagColor: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=85',
-    hotelName: 'Soneva Fushi / Jumeirah Olhahali Overwater Villa',
-    flightPartner: 'Qatar Airways (Flight QR-672)',
-    flightRoute: 'Malé International ➔ VIP Twin-Otter Seaplane',
-    overview: 'Hover above pristine turquoise crystal waters in a 5-star overwater villa with glass floor viewing, infinity plunge pool, and marine sanctuary.',
-    highlights: ['VIP Seaplane scenic island transfer', 'Manta ray & sea turtle snorkeling with marine biologist', 'Underwater restaurant 5-course wine dinner', 'Private sunset yacht charter with champagne'],
-    flightIncluded: 'Qatar Airways + Island Seaplane'
-  },
-  {
-    id: 'bora-bora-pearl',
-    title: 'Bora Bora Coral Lagoon & Otemanu Villa',
-    location: 'French Polynesia, South Pacific',
-    category: 'sea',
-    duration: '9 Days / 8 Nights',
-    rating: 4.97,
-    reviewsCount: 164,
-    badge: 'Pacific Haven',
-    tagColor: 'bg-teal-500/20 text-teal-300 border-teal-500/30',
-    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85',
-    hotelName: 'The St. Regis Bora Bora Overwater Suite',
-    flightPartner: 'Air Tahiti Nui + Catamaran Yacht',
-    flightRoute: 'Papeete ➔ Bora Bora Motu Private Dock',
-    overview: 'Unrivaled views of Mount Otemanu from your spacious overwater bungalow with direct lagoon ladder, glass viewing portals, and Polynesian outrigger breakfast.',
-    highlights: ['Canoe-delivered gourmet breakfast to your sundeck', 'Lagoon ray and harmless reef shark feeding safari', 'Polynesian deep tissue monoi oil massage', 'Private sunset sailing catamaran with live music'],
-    flightIncluded: 'Air Tahiti Nui + Private Water Taxi'
   },
   {
     id: 'costa-rica-canopy',
@@ -123,7 +124,7 @@ const PACKAGES_DATA = [
     rating: 4.92,
     reviewsCount: 114,
     badge: 'Eco Adventure',
-    tagColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+    tagColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/40',
     image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=85',
     hotelName: 'Nayara Tented Camp & Arenal Hot Springs',
     flightPartner: 'United Airlines / Avianca',
@@ -141,7 +142,7 @@ const PACKAGES_DATA = [
     rating: 4.99,
     reviewsCount: 178,
     badge: 'Cultural Zen',
-    tagColor: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+    tagColor: 'bg-purple-500/20 text-purple-300 border-purple-400/40',
     image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=85',
     hotelName: 'Hoshinoya Kyoto & Suiran Luxury Collection',
     flightPartner: 'Japan Airlines (JAL Sky Suite)',
@@ -168,7 +169,7 @@ let selectedPackage = PACKAGES_DATA[0];
 
 // Safe Currency Formatter
 function formatPrice(usdAmount) {
-  const safeUSD = (typeof usdAmount === 'number' && !isNaN(usdAmount)) ? usdAmount : 2500;
+  const safeUSD = (typeof usdAmount === 'number' && !isNaN(usdAmount)) ? usdAmount : 2890;
   const curr = CURRENCIES[currentCurrency] || CURRENCIES.USD;
   const converted = Math.round(safeUSD * curr.rate);
   return `${curr.symbol}${converted.toLocaleString()}`;
@@ -177,7 +178,7 @@ function formatPrice(usdAmount) {
 // --- 2. INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
   initHeroParallax();
-  initFullpageBiomeParallax();
+  initBiomeEntitiesParallax();
   initFlightWaypointTracker();
   renderPackages();
   initBookingModal();
@@ -189,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
 });
 
-// --- 3. HERO 3D MULTI-LAYER PARALLAX ---
+// --- 3. HERO 3D MULTI-LAYER PARALLAX (AIRPLANE & CLOUDS) ---
 function initHeroParallax() {
   const heroStage = document.getElementById('hero-stage');
   const skyLayer = document.querySelector('.hero-bg-sky');
@@ -228,14 +229,14 @@ function initHeroParallax() {
         cloudsBack.style.transform = `translate3d(${mouseX * -45}px, ${scrollY * 0.22}px, 0)`;
       }
       if (airplaneContainer) {
-        const planeX = mouseX * 70 + (scrollY * 0.45);
-        const planeY = (scrollY * 0.5) + (mouseY * 35);
-        const bankAngle = (mouseX * 14) - (scrollY * 0.025);
-        const pitchAngle = (mouseY * 10) - (scrollY * 0.02);
+        const planeX = mouseX * 80 + (scrollY * 0.5);
+        const planeY = (scrollY * 0.52) + (mouseY * 40);
+        const bankAngle = (mouseX * 16) - (scrollY * 0.025);
+        const pitchAngle = (mouseY * 12) - (scrollY * 0.02);
         airplaneContainer.style.transform = `translate(-50%, -50%) translate3d(${planeX}px, ${planeY}px, 80px) rotate(${bankAngle}deg) rotateX(${pitchAngle}deg)`;
       }
       if (cloudsFront) {
-        cloudsFront.style.transform = `translate3d(${mouseX * 55}px, ${scrollY * 0.65}px, 0) scale(1.35)`;
+        cloudsFront.style.transform = `translate3d(${mouseX * 60}px, ${scrollY * 0.68}px, 0) scale(1.35)`;
       }
       if (heroContent) {
         const opacity = Math.max(0, 1 - (scrollY / 520));
@@ -250,22 +251,24 @@ function initHeroParallax() {
   requestAnimationFrame(updateHeroParallax);
 }
 
-// --- 4. FULL-PAGE BIOME PARALLAX ENGINE ---
-function initFullpageBiomeParallax() {
+// --- 4. DYNAMIC BIOME PARALLAX ENTITIES (BOAT, PARAGLIDER, CAMEL, GONDOLA) ---
+function initBiomeEntitiesParallax() {
   const biomes = document.querySelectorAll('.fullpage-biome');
+  const boat = document.querySelector('.parallax-boat-container');
+  const paraglider = document.querySelector('.parallax-paraglider-container');
+  const camel = document.querySelector('.parallax-camel-container');
+  const gondola = document.querySelector('.parallax-gondola-container');
 
   window.addEventListener('scroll', () => {
     const windowH = window.innerHeight;
 
+    // 1. General Biome Section Parallax (Background & Content)
     biomes.forEach(biome => {
       const rect = biome.getBoundingClientRect();
-      // If biome is within visible viewport range
       if (rect.top <= windowH && rect.bottom >= 0) {
         const bgLayer = biome.querySelector('.biome-bg-layer');
         const contentWrap = biome.querySelector('.biome-content-wrap');
-        const floatingCard = biome.querySelector('.biome-floating-card');
 
-        // Normalise progress from 0 (entering) to 1 (leaving)
         const progress = (windowH - rect.top) / (windowH + rect.height);
         const yDelta = (progress - 0.5) * 160;
 
@@ -273,13 +276,63 @@ function initFullpageBiomeParallax() {
           bgLayer.style.transform = `translate3d(0, ${yDelta * -0.6}px, 0) scale(1.18)`;
         }
         if (contentWrap) {
-          contentWrap.style.transform = `translate3d(0, ${yDelta * 0.2}px, 0)`;
-        }
-        if (floatingCard) {
-          floatingCard.style.transform = `translate3d(0, ${yDelta * -0.25}px, 0)`;
+          contentWrap.style.transform = `translate3d(0, ${yDelta * 0.18}px, 0)`;
         }
       }
     });
+
+    // 2. SEA SECTION: Boat sailing & Paraglider soaring on scroll
+    const seaSection = document.getElementById('biome-sea');
+    if (seaSection) {
+      const seaRect = seaSection.getBoundingClientRect();
+      if (seaRect.top <= windowH && seaRect.bottom >= 0) {
+        // Progress from 0 (entering) to 1 (leaving)
+        const seaProgress = (windowH - seaRect.top) / (windowH + seaRect.height);
+        
+        // Boat moves smoothly across the turquoise water from left to right
+        if (boat) {
+          const boatX = (seaProgress - 0.2) * 320; // 320px travel
+          const boatY = Math.sin(seaProgress * Math.PI * 4) * 8; // gentle wave dip
+          boat.style.transform = `translate3d(${boatX}px, ${boatY}px, 40px)`;
+        }
+
+        // Paraglider glides across the azure sky in opposite direction
+        if (paraglider) {
+          const gliderX = (0.8 - seaProgress) * 220;
+          const gliderY = (seaProgress - 0.5) * 100;
+          paraglider.style.transform = `translate3d(${gliderX}px, ${gliderY}px, 60px) rotate(${(seaProgress - 0.5) * 10}deg)`;
+        }
+      }
+    }
+
+    // 3. DESERT SECTION: Camel caravan walking across the dune ridge
+    const desertSection = document.getElementById('biome-sand');
+    if (desertSection) {
+      const desertRect = desertSection.getBoundingClientRect();
+      if (desertRect.top <= windowH && desertRect.bottom >= 0) {
+        const desertProgress = (windowH - desertRect.top) / (windowH + desertRect.height);
+        if (camel) {
+          // Camel caravan traverses across the ridge
+          const camelX = (desertProgress - 0.15) * 280;
+          const camelY = Math.sin(desertProgress * Math.PI * 3) * 10; // follows undulating dune curve
+          camel.style.transform = `translate3d(${camelX}px, ${camelY}px, 40px)`;
+        }
+      }
+    }
+
+    // 4. MOUNTAINS SECTION: Alpine Cable Car (Gondola) gliding along cable
+    const mountainSection = document.getElementById('biome-mountains');
+    if (mountainSection) {
+      const mountainRect = mountainSection.getBoundingClientRect();
+      if (mountainRect.top <= windowH && mountainRect.bottom >= 0) {
+        const mountainProgress = (windowH - mountainRect.top) / (windowH + mountainRect.height);
+        if (gondola) {
+          const gondolaX = (mountainProgress - 0.3) * -240;
+          const gondolaY = (mountainProgress - 0.3) * 60;
+          gondola.style.transform = `translate3d(${gondolaX}px, ${gondolaY}px, 50px)`;
+        }
+      }
+    }
   }, { passive: true });
 }
 
@@ -287,9 +340,9 @@ function initFullpageBiomeParallax() {
 function initFlightWaypointTracker() {
   const waypoints = [
     { id: 'hero-stage', name: 'Takeoff: High Stratosphere', icon: '✈️' },
-    { id: 'biome-mountains', name: 'Waypoint 1: Alpine Summits', icon: '🏔️' },
-    { id: 'biome-sand', name: 'Waypoint 2: Sahara Dunes', icon: '🏜️' },
-    { id: 'biome-sea', name: 'Waypoint 3: Azure Atolls', icon: '🌊' },
+    { id: 'biome-sea', name: 'Waypoint 1: Turquoise Azure Sea', icon: '🌊' },
+    { id: 'biome-sand', name: 'Waypoint 2: Sahara Golden Dunes', icon: '🏜️' },
+    { id: 'biome-mountains', name: 'Waypoint 3: Alpine Mountain Summits', icon: '🏔️' },
     { id: 'biome-forest', name: 'Waypoint 4: Emerald Canopy', icon: '🌲' },
     { id: 'packages-section', name: 'Final Touchdown: All Packages', icon: '📍' }
   ];
@@ -318,7 +371,7 @@ function initFlightWaypointTracker() {
   }, { passive: true });
 }
 
-// --- 6. RENDER PACKAGES (NO NAN BUG) ---
+// --- 6. RENDER PACKAGES ---
 function renderPackages() {
   const container = document.getElementById('packages-grid');
   if (!container) return;
@@ -333,13 +386,13 @@ function renderPackages() {
 
   if (filtered.length === 0) {
     container.innerHTML = `
-      <div class="col-span-full py-16 text-center text-slate-400 glass-panel rounded-3xl p-10">
+      <div class="col-span-full py-16 text-center text-slate-400 glass-panel-vibrant rounded-3xl p-10">
         <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
         </div>
         <h3 class="text-2xl font-bold text-white mb-2 font-serif">No Expeditions Match Your Filter</h3>
         <p class="text-sm max-w-md mx-auto">Try selecting another realm above or clearing your search keywords to view all our journeys.</p>
-        <button onclick="resetFilters()" class="btn-luxury mt-5 px-6 py-2.5 rounded-xl text-sm font-bold">Show All Available Packages</button>
+        <button onclick="resetFilters()" class="btn-luxury-vibrant mt-5 px-6 py-2.5 rounded-xl text-sm font-bold">Show All Available Packages</button>
       </div>
     `;
     return;
@@ -350,7 +403,7 @@ function renderPackages() {
     const priceFormatted = formatPrice(safePrice);
 
     return `
-      <div class="glass-card rounded-3xl overflow-hidden flex flex-col group tilt-interactive" data-package-id="${pkg.id}">
+      <div class="glass-card-vibrant rounded-3xl overflow-hidden flex flex-col group tilt-interactive" data-package-id="${pkg.id}">
         <!-- Image Header with Hover Zoom -->
         <div class="relative h-64 overflow-hidden">
           <img src="${pkg.image}" alt="${pkg.title}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" loading="lazy" />
@@ -358,21 +411,21 @@ function renderPackages() {
           
           <!-- Badges -->
           <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-            <span class="tag-badge ${pkg.tagColor} border">${pkg.badge}</span>
-            <span class="tag-badge bg-slate-900/80 text-cyan-300 border border-cyan-500/20">
+            <span class="tag-badge-vibrant ${pkg.tagColor} border">${pkg.badge}</span>
+            <span class="tag-badge-vibrant bg-slate-900/80 text-cyan-300 border border-cyan-500/30">
               <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               ${pkg.duration}
             </span>
           </div>
 
           <!-- Location Badge -->
-          <div class="absolute bottom-4 left-4 flex items-center text-xs font-medium text-slate-200 bg-slate-900/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+          <div class="absolute bottom-4 left-4 flex items-center text-xs font-semibold text-slate-100 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
             <svg class="w-3.5 h-3.5 text-amber-400 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             ${pkg.location}
           </div>
 
           <!-- Rating -->
-          <div class="absolute top-4 right-4 bg-slate-950/85 backdrop-blur-md border border-white/15 px-3 py-1 rounded-full flex items-center text-xs font-bold text-amber-400">
+          <div class="absolute top-4 right-4 bg-slate-950/85 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full flex items-center text-xs font-bold text-amber-400">
             ★ ${pkg.rating} <span class="text-slate-400 font-normal ml-1">(${pkg.reviewsCount})</span>
           </div>
         </div>
@@ -383,7 +436,7 @@ function renderPackages() {
             <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors font-serif">
               ${pkg.title}
             </h3>
-            <p class="text-slate-300 text-xs sm:text-sm mb-4 line-clamp-2 leading-relaxed">
+            <p class="text-slate-300 text-xs sm:text-sm mb-4 line-clamp-2 leading-relaxed font-light">
               ${pkg.overview}
             </p>
 
@@ -398,7 +451,7 @@ function renderPackages() {
             </div>
 
             <!-- Flight Included Banner -->
-            <div class="flex items-center text-xs text-cyan-300 bg-cyan-950/40 border border-cyan-500/25 rounded-xl px-3 py-2.5 mb-5">
+            <div class="flex items-center text-xs text-cyan-300 bg-cyan-950/50 border border-cyan-500/30 rounded-xl px-3 py-2.5 mb-5 font-medium">
               <svg class="w-4 h-4 mr-2 text-cyan-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               <span class="truncate">${pkg.flightPartner}</span>
             </div>
@@ -414,7 +467,7 @@ function renderPackages() {
               </div>
             </div>
 
-            <button onclick="openBookingModal('${pkg.id}')" class="btn-luxury px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 shadow-lg group-hover:shadow-amber-500/30">
+            <button onclick="openBookingModal('${pkg.id}')" class="btn-luxury-vibrant px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 shadow-lg group-hover:shadow-amber-500/40">
               <span>Book Package</span>
               <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
@@ -503,7 +556,7 @@ function initBookingModal() {
     });
   }
 
-  // Prepopulate dates: +14 days and +21 days
+  // Prepopulate dates
   const today = new Date();
   const departDate = new Date(today);
   departDate.setDate(today.getDate() + 14);
@@ -522,7 +575,6 @@ function initBookingModal() {
   if (closeBtn) closeBtn.addEventListener('click', closeBookingModal);
   if (overlay) overlay.addEventListener('click', closeBookingModal);
 
-  // Recalculation triggers
   ['book-adults', 'book-children'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('change', recalculateBookingPrice);
@@ -592,7 +644,7 @@ function updateModalPreview() {
   if (previewFlight) previewFlight.textContent = `Included Flight: ${selectedPackage.flightPartner}`;
 }
 
-// BULLETPROOF RECALCULATE (NEVER $NaN)
+// SAFE RECALCULATION
 function recalculateBookingPrice() {
   if (!selectedPackage) selectedPackage = PACKAGES_DATA[0];
 
@@ -677,9 +729,8 @@ function handleBookingSubmission() {
   if (modalBody) {
     modalBody.innerHTML = `
       <div class="py-4 px-2">
-        
-        <!-- Action Buttons Bar (Hidden during print) -->
-        <div class="no-print flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30">
+        <!-- Action Buttons Bar -->
+        <div class="no-print flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 p-4 rounded-2xl bg-amber-500/15 border border-amber-500/35">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xl">
               ✓
@@ -691,7 +742,7 @@ function handleBookingSubmission() {
           </div>
 
           <div class="flex items-center gap-3 w-full sm:w-auto">
-            <button onclick="window.print()" class="btn-luxury px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg w-full sm:w-auto">
+            <button onclick="window.print()" class="btn-luxury-vibrant px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg w-full sm:w-auto">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
               <span>Print Official Voucher</span>
             </button>
@@ -701,14 +752,9 @@ function handleBookingSubmission() {
           </div>
         </div>
 
-        <!-- AUTHENTIC PRINTABLE BOARDING PASS & OFFICIAL VOUCHER -->
+        <!-- AUTHENTIC PRINTABLE BOARDING PASS -->
         <div id="printable-voucher" class="boarding-pass-card max-w-2xl mx-auto p-8 border border-slate-200">
           
-          <!-- Notches for Airline Boarding Pass styling -->
-          <div class="boarding-pass-notch-left no-print"></div>
-          <div class="boarding-pass-notch-right no-print"></div>
-
-          <!-- Official Header -->
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-slate-900 pb-5 mb-6">
             <div>
               <div class="flex items-center gap-2 mb-1">
@@ -725,7 +771,6 @@ function handleBookingSubmission() {
             </div>
           </div>
 
-          <!-- Route & Airline Banner -->
           <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 mb-6">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div>
@@ -741,7 +786,6 @@ function handleBookingSubmission() {
             </div>
           </div>
 
-          <!-- Key Passenger & Reservation Grid -->
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 py-4 border-t border-b border-slate-200 text-xs mb-6">
             <div>
               <span class="text-[10px] uppercase text-slate-400 font-bold block">Lead Guest</span>
@@ -768,7 +812,6 @@ function handleBookingSubmission() {
             </div>
           </div>
 
-          <!-- Hotel & Inclusions Section -->
           <div class="mb-6">
             <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500 block mb-2">5-Star Accommodation & Inclusions</span>
             <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 text-xs space-y-1.5">
@@ -779,8 +822,7 @@ function handleBookingSubmission() {
             </div>
           </div>
 
-          <!-- Financial Total & Signature -->
-          <div class="boarding-pass-divider pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div class="border-t-2 border-dashed border-slate-300 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div>
               <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 block">Payment Status</span>
               <div class="flex items-center gap-2">
@@ -790,7 +832,6 @@ function handleBookingSubmission() {
               <p class="text-[10px] text-slate-400 mt-1">All taxes, resort surcharges & air carriage fees included.</p>
             </div>
 
-            <!-- Simulated Luxury Barcode & Agency Stamp -->
             <div class="flex items-center gap-4">
               <div class="text-right hidden sm:block">
                 <span class="text-[9px] uppercase tracking-widest text-slate-400 block font-mono">IATA AGENT #91-2-4820</span>
@@ -901,7 +942,6 @@ let ambientNodes = [];
 function initAudioSynthesizer() {
   const soundToggleBtn = document.getElementById('soundscape-toggle');
   const soundText = document.getElementById('soundscape-text');
-  const eqBars = document.getElementById('soundscape-equalizer');
 
   if (!soundToggleBtn) return;
 
@@ -917,14 +957,12 @@ function initAudioSynthesizer() {
     if (!isAudioPlaying) {
       startAmbientSoundscape();
       isAudioPlaying = true;
-      if (soundText) soundText.textContent = 'Cabin Breeze: On';
-      if (eqBars) eqBars.classList.remove('hidden');
+      if (soundText) soundText.textContent = 'Audio: On';
       soundToggleBtn.classList.add('border-amber-400', 'text-amber-400');
     } else {
       stopAmbientSoundscape();
       isAudioPlaying = false;
       if (soundText) soundText.textContent = 'Audio: Off';
-      if (eqBars) eqBars.classList.add('hidden');
       soundToggleBtn.classList.remove('border-amber-400', 'text-amber-400');
     }
   });
@@ -960,7 +998,7 @@ function startAmbientSoundscape() {
 
   const gainNode = audioCtx.createGain();
   gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime);
-  gainNode.gain.exponentialRampToValueAtTime(0.32, audioCtx.currentTime + 1.5);
+  gainNode.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime + 1.5);
 
   whiteNoise.connect(filter);
   filter.connect(gainNode);
@@ -1007,7 +1045,7 @@ function initInteractive3DTilt() {
   });
 }
 
-// --- 14. MOBILE MENU DRAWER ---
+// --- 14. BULLETPROOF RESPONSIVE MOBILE MENU ---
 function initMobileMenu() {
   const toggleBtn = document.getElementById('mobile-menu-btn');
   const closeBtn = document.getElementById('mobile-menu-close');
@@ -1015,13 +1053,19 @@ function initMobileMenu() {
   const overlay = document.getElementById('mobile-menu-overlay');
 
   function openMenu() {
-    if (menu) menu.classList.remove('translate-x-full');
+    if (menu) {
+      menu.classList.remove('translate-x-full');
+      menu.classList.add('translate-x-0');
+    }
     if (overlay) overlay.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
   }
 
   function closeMenu() {
-    if (menu) menu.classList.add('translate-x-full');
+    if (menu) {
+      menu.classList.remove('translate-x-0');
+      menu.classList.add('translate-x-full');
+    }
     if (overlay) overlay.classList.add('hidden');
     document.body.style.overflow = '';
   }
