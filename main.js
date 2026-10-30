@@ -1,6 +1,7 @@
 /**
- * AURA VOYAGES - ADVANCED 3D PARALLAX LUXURY TRAVEL ENGINE
- * GSAP ScrollTrigger Pinned Animations for Real Entities (Airplane, Boat, Paraglider, Camel, Heli)
+ * AURA VOYAGES — AWARD-WINNING 3D PARALLAX LUXURY TRAVEL ENGINE
+ * Lenis Kinetic Smooth Scroll + GSAP ScrollTrigger Pinned 3D Depth
+ * Real Speedboat, Paraglider, Camel Caravan & Helicopter Animations
  */
 
 // --- 1. DATA: ALL-INCLUSIVE CURATED LUXURY PACKAGES ---
@@ -15,7 +16,7 @@ const PACKAGES_DATA = [
     reviewsCount: 216,
     basePriceUSD: 3450,
     badge: 'Overwater Villa',
-    tagColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40',
+    tagColor: 'bg-cyan-500/25 text-cyan-300 border-cyan-400/40',
     image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=85',
     hotelName: 'Soneva Overwater Sanctuary & Marine Biosphere',
     flightPartner: 'Qatar Airways (QR-672) + Twin-Otter Seaplane',
@@ -33,7 +34,7 @@ const PACKAGES_DATA = [
     rating: 4.97,
     reviewsCount: 164,
     badge: 'Pacific Haven',
-    tagColor: 'bg-sky-500/20 text-sky-300 border-sky-400/40',
+    tagColor: 'bg-sky-500/25 text-sky-300 border-sky-400/40',
     image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85',
     hotelName: 'The St. Regis Bora Bora Overwater Suite',
     flightPartner: 'Air Tahiti Nui + Catamaran Yacht',
@@ -51,7 +52,7 @@ const PACKAGES_DATA = [
     rating: 4.95,
     reviewsCount: 98,
     badge: 'Royal Glamping',
-    tagColor: 'bg-amber-500/20 text-amber-300 border-amber-400/40',
+    tagColor: 'bg-amber-500/25 text-amber-300 border-amber-400/40',
     image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1600&q=85',
     hotelName: 'Al Maha Royal Desert Pavilion & Stargazing Dome',
     flightPartner: 'Emirates Airlines (Flight EK-204)',
@@ -69,7 +70,7 @@ const PACKAGES_DATA = [
     rating: 4.93,
     reviewsCount: 76,
     badge: 'Desert Palace',
-    tagColor: 'bg-orange-500/20 text-orange-300 border-orange-400/40',
+    tagColor: 'bg-orange-500/25 text-orange-300 border-orange-400/40',
     image: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=1600&q=85',
     hotelName: 'Qasr Al Sarab Desert Palace by Anantara',
     flightPartner: 'Etihad Airways Luxury Apartment',
@@ -88,7 +89,7 @@ const PACKAGES_DATA = [
     reviewsCount: 142,
     basePriceUSD: 2890,
     badge: 'Swiss Chalet',
-    tagColor: 'bg-blue-500/20 text-blue-300 border-blue-400/40',
+    tagColor: 'bg-blue-500/25 text-blue-300 border-blue-400/40',
     image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=85',
     hotelName: 'The Omnia 5★ Mountain Lodge & Private Spa',
     flightPartner: 'Swiss International Air (Flight LX-18)',
@@ -106,7 +107,7 @@ const PACKAGES_DATA = [
     rating: 4.96,
     reviewsCount: 89,
     badge: 'Glacier Expedition',
-    tagColor: 'bg-indigo-500/20 text-indigo-300 border-indigo-400/40',
+    tagColor: 'bg-indigo-500/25 text-indigo-300 border-indigo-400/40',
     image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=85',
     hotelName: 'Explora Patagonia Geodesic Luxury Domes',
     flightPartner: 'LATAM Airlines + Scenic Floatplane',
@@ -124,7 +125,7 @@ const PACKAGES_DATA = [
     rating: 4.92,
     reviewsCount: 114,
     badge: 'Eco Adventure',
-    tagColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/40',
+    tagColor: 'bg-emerald-500/25 text-emerald-300 border-emerald-400/40',
     image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=85',
     hotelName: 'Nayara Tented Camp & Arenal Hot Springs',
     flightPartner: 'United Airlines / Avianca',
@@ -142,7 +143,7 @@ const PACKAGES_DATA = [
     rating: 4.99,
     reviewsCount: 178,
     badge: 'Cultural Zen',
-    tagColor: 'bg-purple-500/20 text-purple-300 border-purple-400/40',
+    tagColor: 'bg-purple-500/25 text-purple-300 border-purple-400/40',
     image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=85',
     hotelName: 'Hoshinoya Kyoto & Suiran Luxury Collection',
     flightPartner: 'Japan Airlines (JAL Sky Suite)',
@@ -173,15 +174,10 @@ function formatPrice(usdAmount) {
   return `${curr.symbol}${converted.toLocaleString()}`;
 }
 
-// --- 2. DOM INITIALIZATION ---
+// --- 2. INITIALIZATION ON DOM READY ---
 document.addEventListener('DOMContentLoaded', () => {
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-    initGSAPPinnedParallax();
-  } else {
-    initFallbackParallax();
-  }
-
+  initLenisSmoothScroll();
+  initGSAPPinnedParallax();
   initMouseGyro3D();
   initFlightWaypointTracker();
   renderPackages();
@@ -194,27 +190,59 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
 });
 
-// --- 3. GSAP PINNED 3D SCROLL SEQUENCES ---
+// --- 3. LENIS MOMENTUM SMOOTH SCROLL (AWWWARDS STANDARD) ---
+let lenis = null;
+
+function initLenisSmoothScroll() {
+  if (typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1.0
+    });
+
+    if (typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+  }
+}
+
+// --- 4. GSAP PINNED 3D SCROLL SEQUENCES ---
 function initGSAPPinnedParallax() {
-  
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
   // 1. HERO AIRPLANE FLIGHT SEQUENCE
-  const planeContainer = document.querySelector('.hero-airplane-container');
-  if (planeContainer) {
-    gsap.to(planeContainer, {
+  const planeWrap = document.querySelector('.hero-plane-wrap');
+  if (planeWrap) {
+    gsap.to(planeWrap, {
       scrollTrigger: {
         trigger: '#hero-stage',
         start: 'top top',
         end: 'bottom top',
         scrub: 1
       },
-      y: 220,
-      x: 180,
-      scale: 1.25,
+      y: '30vh',
+      x: '15vw',
+      scale: 1.35,
       rotation: 6,
-      ease: 'none'
+      ease: 'power1.out'
     });
 
-    gsap.to('.hero-layer-mountains', {
+    gsap.to('.hero-mountains-backdrop', {
       scrollTrigger: {
         trigger: '#hero-stage',
         start: 'top top',
@@ -232,113 +260,113 @@ function initGSAPPinnedParallax() {
         end: 'bottom top',
         scrub: 1
       },
-      x: 200,
-      scale: 1.4,
+      x: 180,
+      scale: 1.45,
       ease: 'none'
     });
   }
 
-  // 2. SEA SECTION: PINNED STAGE WITH BOAT SAILING & PARAGLIDER SOARING
+  // 2. SEA SECTION: PINNED STAGE WITH SPEEDBOAT & PARAGLIDER
   const seaSection = document.querySelector('#biome-sea');
-  const boat = document.querySelector('.parallax-boat-container');
-  const paraglider = document.querySelector('.parallax-paraglider-container');
-  const seaCard = document.querySelector('#biome-sea .glass-panel-vibrant');
+  const boat = document.querySelector('.pinned-boat-container');
+  const paraglider = document.querySelector('.pinned-paraglider-container');
+  const seaHUD = document.querySelector('#biome-sea .glass-hud');
 
   if (seaSection && boat) {
     const seaTL = gsap.timeline({
       scrollTrigger: {
         trigger: '#biome-sea',
         start: 'top top',
-        end: '+=150%',
+        end: '+=160%',
         pin: true,
         scrub: 1,
         anticipatePin: 1
       }
     });
 
-    // Boat sails smoothly across the water from left to right
+    // Speedboat cruises smoothly across turquoise ocean from left to right
     seaTL.fromTo(boat, 
-      { x: '-20vw', y: 0, rotation: 0 },
-      { x: '75vw', y: -15, rotation: -2, ease: 'power1.inOut' }, 
+      { x: '-25vw', y: 0, rotation: 0 },
+      { x: '70vw', y: -20, rotation: -2, ease: 'power1.inOut' }, 
       0
     );
 
     // Paraglider swoops overhead in the sky
     if (paraglider) {
       seaTL.fromTo(paraglider,
-        { x: '10vw', y: '-10vh', scale: 0.85, rotation: -6 },
-        { x: '-60vw', y: '20vh', scale: 1.2, rotation: 6, ease: 'power1.inOut' },
+        { x: '15vw', y: '-10vh', scale: 0.85, rotation: -6 },
+        { x: '-65vw', y: '25vh', scale: 1.25, rotation: 6, ease: 'power1.inOut' },
         0
       );
     }
 
-    // Background water layer subtle zoom
-    seaTL.to('#biome-sea .biome-bg-layer', {
-      scale: 1.2,
-      y: 40,
+    // Background water scales slightly
+    seaTL.to('#biome-sea .stage-bg', {
+      scale: 1.18,
+      y: 45,
       ease: 'none'
     }, 0);
 
-    // Floating card depth animation
-    if (seaCard) {
-      seaTL.fromTo(seaCard,
-        { opacity: 0.6, scale: 0.95 },
+    // Glass HUD floats in smoothly
+    if (seaHUD) {
+      seaTL.fromTo(seaHUD,
+        { opacity: 0.7, scale: 0.95 },
         { opacity: 1, scale: 1, ease: 'none' },
         0.2
       );
     }
   }
 
-  // 3. DESERT SECTION: PINNED STAGE WITH CAMEL CARAVAN TRAVERSING DUNES
+  // 3. DESERT SECTION: PINNED STAGE WITH CAMEL CARAVAN
   const desertSection = document.querySelector('#biome-sand');
-  const camel = document.querySelector('.parallax-camel-container');
-  const desertCard = document.querySelector('#biome-sand .glass-panel-vibrant');
+  const camel = document.querySelector('.pinned-camel-container');
+  const desertHUD = document.querySelector('#biome-sand .glass-hud');
 
   if (desertSection && camel) {
     const desertTL = gsap.timeline({
       scrollTrigger: {
         trigger: '#biome-sand',
         start: 'top top',
-        end: '+=150%',
+        end: '+=160%',
         pin: true,
         scrub: 1,
         anticipatePin: 1
       }
     });
 
-    // Camel caravan walks across the dune ridge from left to right
+    // Camel caravan walks across the dune ridge
     desertTL.fromTo(camel,
-      { x: '-15vw', y: 15 },
-      { x: '65vw', y: -20, ease: 'power1.inOut' },
+      { x: '-20vw', y: 15 },
+      { x: '65vw', y: -25, ease: 'power1.inOut' },
       0
     );
 
-    desertTL.to('#biome-sand .biome-bg-layer', {
-      scale: 1.22,
+    desertTL.to('#biome-sand .stage-bg', {
+      scale: 1.2,
       y: 50,
       ease: 'none'
     }, 0);
 
-    if (desertCard) {
-      desertTL.fromTo(desertCard,
-        { opacity: 0.6, scale: 0.95 },
+    if (desertHUD) {
+      desertTL.fromTo(desertHUD,
+        { opacity: 0.7, scale: 0.95 },
         { opacity: 1, scale: 1, ease: 'none' },
         0.2
       );
     }
   }
 
-  // 4. MOUNTAINS SECTION: PINNED STAGE WITH CHARTER HELICOPTER SOARING
+  // 4. MOUNTAINS SECTION: PINNED STAGE WITH ALPINE HELICOPTER
   const mountainSection = document.querySelector('#biome-mountains');
-  const heli = document.querySelector('.parallax-heli-container');
-  const mountainCard = document.querySelector('#biome-mountains .glass-panel-vibrant');
+  const heli = document.querySelector('.pinned-heli-container');
+  const mountainHUD = document.querySelector('#biome-mountains .glass-hud');
 
   if (mountainSection && heli) {
     const mountainTL = gsap.timeline({
       scrollTrigger: {
         trigger: '#biome-mountains',
         start: 'top top',
-        end: '+=150%',
+        end: '+=160%',
         pin: true,
         scrub: 1,
         anticipatePin: 1
@@ -347,58 +375,61 @@ function initGSAPPinnedParallax() {
 
     // Helicopter cuts through the mountain pass from right to left
     mountainTL.fromTo(heli,
-      { x: '20vw', y: '-5vh', scale: 0.85, rotation: 4 },
-      { x: '-65vw', y: '25vh', scale: 1.25, rotation: -6, ease: 'power1.inOut' },
+      { x: '20vw', y: '-5vh', scale: 0.85, rotation: 5 },
+      { x: '-70vw', y: '25vh', scale: 1.3, rotation: -6, ease: 'power1.inOut' },
       0
     );
 
-    mountainTL.to('#biome-mountains .biome-bg-layer', {
+    mountainTL.to('#biome-mountains .stage-bg', {
       scale: 1.2,
       y: 60,
       ease: 'none'
     }, 0);
 
-    if (mountainCard) {
-      mountainTL.fromTo(mountainCard,
-        { opacity: 0.6, scale: 0.95 },
+    if (mountainHUD) {
+      mountainTL.fromTo(mountainHUD,
+        { opacity: 0.7, scale: 0.95 },
         { opacity: 1, scale: 1, ease: 'none' },
         0.2
       );
     }
   }
 
-  // 5. RAINFOREST SECTION: PARALLAX MIST
+  // 5. RAINFOREST SECTION: PINNED CANOPY STAGE
   const forestSection = document.querySelector('#biome-forest');
+  const forestHUD = document.querySelector('#biome-forest .glass-hud');
   if (forestSection) {
-    gsap.to('#biome-forest .biome-bg-layer', {
+    const forestTL = gsap.timeline({
       scrollTrigger: {
         trigger: '#biome-forest',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1
-      },
-      y: 100,
-      scale: 1.2,
-      ease: 'none'
+        start: 'top top',
+        end: '+=150%',
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1
+      }
     });
+
+    forestTL.to('#biome-forest .stage-bg', {
+      scale: 1.25,
+      y: 50,
+      ease: 'none'
+    }, 0);
+
+    if (forestHUD) {
+      forestTL.fromTo(forestHUD,
+        { opacity: 0.7, scale: 0.95 },
+        { opacity: 1, scale: 1, ease: 'none' },
+        0.2
+      );
+    }
   }
 }
 
-// Fallback in case GSAP CDN is blocked
-function initFallbackParallax() {
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const boat = document.querySelector('.parallax-boat-container');
-    const camel = document.querySelector('.parallax-camel-container');
-    if (boat) boat.style.transform = `translateX(${scrollY * 0.4}px)`;
-    if (camel) camel.style.transform = `translateX(${scrollY * 0.35}px)`;
-  });
-}
-
-// --- 4. MOUSE 3D GYRO PERSPECTIVE ON AIRPLANE ---
+// --- 5. MOUSE 3D GYRO PERSPECTIVE ON AIRPLANE ---
 function initMouseGyro3D() {
-  const airplaneContainer = document.querySelector('.hero-airplane-container');
-  if (!airplaneContainer) return;
+  const plane = document.getElementById('hero-plane-photo');
+  if (!plane) return;
 
   let mouseX = 0, mouseY = 0;
   let targetX = 0, targetY = 0;
@@ -415,17 +446,14 @@ function initMouseGyro3D() {
     mouseY += (targetY - mouseY) * 0.08;
 
     if (window.scrollY < window.innerHeight) {
-      const plane = document.getElementById('hero-airplane-img');
-      if (plane) {
-        plane.style.transform = `perspective(1000px) rotateY(${mouseX * 15}deg) rotateX(${-mouseY * 12}deg) rotateZ(${mouseX * 8}deg)`;
-      }
+      plane.style.transform = `perspective(1000px) rotateY(${mouseX * 15}deg) rotateX(${-mouseY * 12}deg) rotateZ(${mouseX * 8}deg)`;
     }
     requestAnimationFrame(gyroLoop);
   }
   gyroLoop();
 }
 
-// --- 5. FLIGHT ROUTE TRACKER (RADAR WAYPOINTS) ---
+// --- 6. FLIGHT ROUTE TRACKER (RADAR WAYPOINTS) ---
 function initFlightWaypointTracker() {
   const waypoints = [
     { id: 'hero-stage', name: 'Takeoff: High Stratosphere', icon: '✈️' },
@@ -460,7 +488,7 @@ function initFlightWaypointTracker() {
   }, { passive: true });
 }
 
-// --- 6. RENDER PACKAGES ---
+// --- 7. RENDER PACKAGES ---
 function renderPackages() {
   const container = document.getElementById('packages-grid');
   if (!container) return;
@@ -475,7 +503,7 @@ function renderPackages() {
 
   if (filtered.length === 0) {
     container.innerHTML = `
-      <div class="col-span-full py-16 text-center text-slate-400 glass-panel-vibrant rounded-3xl p-10">
+      <div class="col-span-full py-16 text-center text-slate-400 glass-hud rounded-3xl p-10">
         <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
         </div>
@@ -618,7 +646,7 @@ function initCurrencySelector() {
   });
 }
 
-// --- 7. BOOKING MODAL & ENGINE ---
+// --- 8. BOOKING MODAL & ENGINE ---
 function initBookingModal() {
   const modal = document.getElementById('booking-modal');
   const closeBtn = document.getElementById('close-booking-modal');
@@ -790,7 +818,7 @@ function recalculateBookingPrice() {
   }
 }
 
-// --- 8. OFFICIAL BOARDING PASS & PRINT RECEIPT ---
+// --- 9. OFFICIAL BOARDING PASS & PRINT RECEIPT ---
 function handleBookingSubmission() {
   const name = document.getElementById('book-name')?.value || 'Valued Traveler';
   const email = document.getElementById('book-email')?.value || 'traveler@luxury.com';
@@ -957,7 +985,7 @@ function handleBookingSubmission() {
   }
 }
 
-// --- 9. CANVAS PARTICLES ---
+// --- 10. CANVAS PARTICLES ---
 function initParticleCanvas() {
   const canvas = document.getElementById('particles-canvas');
   if (!canvas) return;
@@ -1011,7 +1039,7 @@ function initParticleCanvas() {
   renderParticles();
 }
 
-// --- 10. WEB AUDIO API SOUNDSCAPE ---
+// --- 11. WEB AUDIO API SOUNDSCAPE ---
 let audioCtx = null;
 let isAudioPlaying = false;
 let ambientNodes = [];
@@ -1097,7 +1125,7 @@ function stopAmbientSoundscape() {
   }
 }
 
-// --- 11. 3D CARD TILT ON MOUSE HOVER ---
+// --- 12. 3D CARD TILT ON MOUSE HOVER ---
 function initInteractive3DTilt() {
   document.addEventListener('mousemove', (e) => {
     const cards = document.querySelectorAll('.tilt-interactive');
@@ -1122,7 +1150,7 @@ function initInteractive3DTilt() {
   });
 }
 
-// --- 12. MOBILE MENU ---
+// --- 13. MOBILE MENU ---
 function initMobileMenu() {
   const toggleBtn = document.getElementById('mobile-menu-btn');
   const closeBtn = document.getElementById('mobile-menu-close');

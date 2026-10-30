@@ -1,6 +1,7 @@
 /* ========================================================
-   AURA VOYAGES - ULTRA-REALISTIC 3D PARALLAX TRAVEL STYLING
-   Real Photographic Cutout Entities & GSAP Pinned Parallax
+   AURA VOYAGES — AWARD-WINNING 3D PARALLAX LUXURY TRAVEL
+   Kinetic Lenis Momentum Scroll + GSAP Pinned 3D Depth
+   Inspired by Henrietta, Blunt Umbrellas & Awwwards
    ======================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,600&family=Cinzel:wght@700;800;900&family=Space+Grotesk:wght@600;700&display=swap');
@@ -25,11 +26,31 @@
 }
 
 html {
-  scroll-behavior: smooth;
   font-family: var(--font-sans);
   background-color: #030712;
   color: #f8fafc;
   overflow-x: hidden;
+}
+
+/* Lenis Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 body {
@@ -39,9 +60,9 @@ body {
   position: relative;
 }
 
-/* Custom Vibrant Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 9px;
 }
 ::-webkit-scrollbar-track {
   background: #020617;
@@ -49,10 +70,6 @@ body {
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #38bdf8 0%, #f59e0b 50%, #10b981 100%);
   border-radius: 9999px;
-  border: 2px solid #020617;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #7dd3fc 0%, #fbbf24 50%, #34d399 100%);
 }
 
 .font-serif { font-family: var(--font-serif); }
@@ -61,47 +78,54 @@ body {
 .font-display { font-family: var(--font-display); }
 
 /* ========================================================
-   VIBRANT FLOATING CAPSULE NAVBAR
+   FLOATING CAPSULE NAVBAR
    ======================================================== */
-.nav-pill-container {
-  background: rgba(10, 18, 38, 0.85);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.2);
+.nav-capsule {
+  background: rgba(8, 14, 28, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.15);
 }
 
-.glass-panel-vibrant {
-  background: rgba(10, 18, 38, 0.78);
+.glass-hud {
+  background: rgba(10, 18, 38, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
 
-.glass-card-vibrant {
-  background: rgba(12, 22, 45, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+.glass-panel-vibrant, .glass-card-vibrant {
+  background: rgba(10, 18, 38, 0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.16);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card-vibrant:hover {
-  background: rgba(18, 32, 64, 0.9);
-  border-color: rgba(245, 158, 11, 0.55);
-  transform: translateY(-8px);
-  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.65), 0 0 35px rgba(245, 158, 11, 0.25);
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 158, 11, 0.2);
+}
+
+.flight-tracker-pill {
+  background: rgba(8, 14, 28, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(245, 158, 11, 0.2);
 }
 
 /* ========================================================
-   FULL-PAGE 100VH 3D PARALLAX STAGES
+   FULL-PAGE PINNED 3D PARALLAX STAGES
    ======================================================== */
-.fullpage-stage {
+.pin-stage {
   position: relative;
-  height: 100vh;
-  min-height: 800px;
   width: 100%;
+  height: 100vh;
+  min-height: 750px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -109,129 +133,8 @@ body {
   transform-style: preserve-3d;
 }
 
-.parallax-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  will-change: transform;
-  pointer-events: none;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-/* HERO SKY LAYERS */
-.hero-bg-sky {
-  z-index: 1;
-  background: radial-gradient(circle at 50% 25%, #1d4ed8 0%, #0369a1 35%, #0f172a 75%, #020617 100%);
-}
-
-.hero-sun-glow {
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 650px;
-  height: 650px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(254, 240, 138, 0.4) 0%, rgba(245, 158, 11, 0.2) 45%, transparent 70%);
-  pointer-events: none;
-  filter: blur(45px);
-}
-
-.hero-layer-mountains {
-  z-index: 2;
-  background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2560&q=85');
-  background-position: center bottom;
-  filter: brightness(0.9) contrast(1.15) saturate(1.2);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 55%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 55%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%);
-}
-
-.hero-clouds-back {
-  z-index: 3;
-  opacity: 0.75;
-  background-image: url('https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=2560&q=85');
-  mix-blend-mode: screen;
-  filter: blur(1px) contrast(1.2) brightness(1.1);
-}
-
-/* REAL PHOTOGRAPHIC AIRPLANE CONTAINER */
-.hero-airplane-container {
-  z-index: 4;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  width: 520px;
-  transform: translate(-50%, -50%);
-  will-change: transform;
-  pointer-events: none;
-  transition: transform 0.1s ease-out;
-}
-
-#hero-airplane-img {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.85)) brightness(1.05);
-  transform: rotate(-3deg);
-}
-
-.jet-contrail {
-  position: absolute;
-  right: 86%;
-  top: 55%;
-  width: 450px;
-  height: 6px;
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(186, 230, 253, 0.5) 75%, rgba(255, 255, 255, 0.95) 100%);
-  filter: blur(3px);
-  border-radius: 9999px;
-  opacity: 0.95;
-  animation: pulseContrail 2s ease-in-out infinite alternate;
-}
-
-@keyframes pulseContrail {
-  0% { opacity: 0.7; transform: scaleX(0.9); }
-  100% { opacity: 1; transform: scaleX(1.15); }
-}
-
-.hero-clouds-front {
-  z-index: 5;
-  opacity: 0.65;
-  background-image: url('https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=2560&q=85');
-  mix-blend-mode: screen;
-  filter: contrast(1.25) brightness(1.15);
-  transform: scale(1.35);
-}
-
-.hero-foreground-gradient {
-  z-index: 6;
-  background: linear-gradient(180deg, rgba(3, 7, 18, 0) 65%, rgba(3, 7, 18, 0.9) 90%, #030712 100%);
-}
-
-.hero-content {
-  z-index: 10;
-  position: relative;
-  pointer-events: auto;
-}
-
-/* ========================================================
-   FULL-PAGE PINNED BIOME REALMS (SEA, DESERT, MOUNTAINS)
-   ======================================================== */
-.fullpage-biome {
-  position: relative;
-  height: 100vh;
-  min-height: 820px;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.biome-bg-layer {
+/* BACKGROUND LAYERS */
+.stage-bg {
   position: absolute;
   top: -15%;
   left: 0;
@@ -243,126 +146,251 @@ body {
   filter: brightness(0.9) contrast(1.15) saturate(1.2);
 }
 
-.sea-ambient-gradient {
+/* VIBRANT ATMOSPHERIC GRADIENTS (LUMINOUS, NOT MUDDY) */
+.sea-vibrant-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(6, 182, 212, 0.28) 0%, rgba(2, 132, 199, 0.35) 50%, rgba(2, 6, 23, 0.7) 100%);
+  background: radial-gradient(circle at 50% 30%, rgba(6, 182, 212, 0.3) 0%, rgba(2, 132, 199, 0.35) 50%, rgba(2, 6, 23, 0.65) 100%);
   pointer-events: none;
 }
 
-.desert-ambient-gradient {
+.desert-vibrant-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 60% 30%, rgba(249, 115, 22, 0.35) 0%, rgba(245, 158, 11, 0.28) 50%, rgba(2, 6, 23, 0.7) 100%);
+  background: radial-gradient(circle at 60% 30%, rgba(249, 115, 22, 0.35) 0%, rgba(245, 158, 11, 0.3) 50%, rgba(2, 6, 23, 0.65) 100%);
   pointer-events: none;
 }
 
-.mountain-ambient-gradient {
+.mountain-vibrant-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.28) 0%, rgba(37, 99, 235, 0.28) 50%, rgba(2, 6, 23, 0.7) 100%);
+  background: radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.3) 0%, rgba(37, 99, 235, 0.3) 50%, rgba(2, 6, 23, 0.65) 100%);
   pointer-events: none;
 }
 
-.forest-ambient-gradient {
+.forest-vibrant-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.3) 0%, rgba(5, 150, 105, 0.28) 50%, rgba(2, 6, 23, 0.7) 100%);
+  background: radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.32) 0%, rgba(5, 150, 105, 0.28) 50%, rgba(2, 6, 23, 0.65) 100%);
   pointer-events: none;
 }
 
 /* ========================================================
-   REAL PHOTOGRAPHIC PARALLAX ENTITIES
+   HERO: HIGH-ALTITUDE FLIGHT STAGE
    ======================================================== */
-
-/* 1. REAL SPEEDBOAT ON TURQUOISE WATER */
-.parallax-boat-container {
+.hero-sky-bg {
   position: absolute;
-  bottom: 12%;
-  left: -20%;
-  width: 440px;
+  inset: 0;
+  background: radial-gradient(circle at 50% 20%, #1e40af 0%, #0284c7 35%, #0f172a 75%, #020617 100%);
+}
+
+.hero-sunburst {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(254, 240, 138, 0.45) 0%, rgba(245, 158, 11, 0.25) 45%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.hero-mountains-backdrop {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2560&q=85');
+  background-position: center bottom;
+  background-size: cover;
+  filter: brightness(0.9) contrast(1.15) saturate(1.2);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0.85) 75%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0.85) 75%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero-clouds-back {
+  position: absolute;
+  inset: 0;
+  opacity: 0.75;
+  background-image: url('https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=2560&q=85');
+  background-size: cover;
+  mix-blend-mode: screen;
+  filter: blur(1px) contrast(1.2) brightness(1.1);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* REAL AIRPLANE CONTAINER */
+.hero-plane-wrap {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 580px;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+  will-change: transform;
+}
+
+#hero-plane-photo {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 35px 45px rgba(0, 0, 0, 0.85)) brightness(1.06);
+  transform-origin: center center;
+}
+
+.jet-vapor {
+  position: absolute;
+  right: 85%;
+  top: 55%;
+  width: 480px;
+  height: 8px;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(186, 230, 253, 0.6) 75%, rgba(255, 255, 255, 0.95) 100%);
+  filter: blur(3px);
+  border-radius: 9999px;
+  opacity: 0.95;
+  animation: vaporPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes vaporPulse {
+  0% { opacity: 0.7; transform: scaleX(0.9); }
+  100% { opacity: 1; transform: scaleX(1.15); }
+}
+
+.hero-clouds-front {
+  position: absolute;
+  inset: 0;
+  opacity: 0.65;
+  background-image: url('https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=2560&q=85');
+  background-size: cover;
+  mix-blend-mode: screen;
+  filter: contrast(1.25) brightness(1.15);
+  transform: scale(1.35);
+  pointer-events: none;
   z-index: 12;
   will-change: transform;
+}
+
+/* ========================================================
+   PINNED SCROLL ENTITIES (BOAT, PARAGLIDER, CAMEL, HELI)
+   ======================================================== */
+
+/* 1. SPEEDBOAT ON TURQUOISE WATER */
+.pinned-boat-container {
+  position: absolute;
+  bottom: 14%;
+  left: 0;
+  width: 460px;
+  z-index: 15;
   pointer-events: none;
+  will-change: transform;
 }
 
 #sea-boat-img {
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 25px 30px rgba(0, 0, 0, 0.85)) drop-shadow(0 5px 15px rgba(2, 132, 199, 0.5));
+  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.85)) drop-shadow(0 8px 20px rgba(6, 182, 212, 0.5));
 }
 
-.boat-water-wake {
+.boat-water-spray {
   position: absolute;
-  bottom: -5px;
-  right: 70%;
-  width: 320px;
-  height: 25px;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.85) 0%, rgba(56, 189, 248, 0.5) 60%, transparent 100%);
+  bottom: -4px;
+  right: 68%;
+  width: 340px;
+  height: 28px;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.9) 0%, rgba(56, 189, 248, 0.55) 60%, transparent 100%);
   filter: blur(4px);
   border-radius: 50%;
-  animation: wakePulse 1.8s ease-out infinite;
+  animation: sprayPulse 1.6s ease-out infinite;
 }
 
-@keyframes wakePulse {
-  0% { transform: scaleX(0.8); opacity: 0.85; }
-  100% { transform: scaleX(1.3); opacity: 0.3; }
+@keyframes sprayPulse {
+  0% { transform: scaleX(0.8); opacity: 0.9; }
+  100% { transform: scaleX(1.35); opacity: 0.35; }
 }
 
-/* 2. REAL PARAGLIDER IN SEA SKY */
-.parallax-paraglider-container {
+/* 2. PARAGLIDER IN SKY */
+.pinned-paraglider-container {
   position: absolute;
   top: 10%;
-  right: -15%;
-  width: 220px;
-  z-index: 11;
-  will-change: transform;
+  right: 5%;
+  width: 240px;
+  z-index: 14;
   pointer-events: none;
+  will-change: transform;
 }
 
-#sea-paraglider-img {
+#sea-paraglider-svg {
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 30px 35px rgba(0, 0, 0, 0.75));
+  filter: drop-shadow(0 25px 30px rgba(0, 0, 0, 0.7));
 }
 
-/* 3. REAL CAMEL CARAVAN IN DESERT */
-.parallax-camel-container {
+/* 3. CAMEL CARAVAN IN DESERT */
+.pinned-camel-container {
   position: absolute;
-  bottom: 14%;
-  left: -15%;
-  width: 280px;
-  z-index: 12;
-  will-change: transform;
+  bottom: 12%;
+  left: 0;
+  width: 320px;
+  z-index: 15;
   pointer-events: none;
+  will-change: transform;
 }
 
 #desert-camel-img {
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 25px 30px rgba(0, 0, 0, 0.9)) brightness(0.95);
+  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.9)) brightness(0.92);
 }
 
-/* 4. REAL ALPINE HELICOPTER */
-.parallax-heli-container {
+/* 4. ALPINE CHARTER HELICOPTER */
+.pinned-heli-container {
   position: absolute;
-  top: 14%;
-  right: -20%;
-  width: 380px;
-  z-index: 12;
-  will-change: transform;
+  top: 15%;
+  right: 0;
+  width: 420px;
+  z-index: 15;
   pointer-events: none;
+  will-change: transform;
 }
 
 #mountain-heli-img {
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.85));
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.9));
 }
 
 /* ========================================================
-   VIBRANT LUXURY BUTTONS & BADGES
+   MASSIVE EDITORIAL TYPOGRAPHY & HUD
    ======================================================== */
+.massive-title {
+  font-family: var(--font-cinzel);
+  font-size: clamp(2.5rem, 6.5vw, 6rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.tag-badge-vibrant {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-radius: 9999px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
 .btn-luxury-vibrant {
   background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
   color: #030712;
@@ -381,7 +409,7 @@ body {
 .btn-cyan-vibrant {
   background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
   color: #ffffff;
-  font-weight: 700;
+  font-weight: 800;
   box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.5);
   transition: all 0.3s ease;
 }
@@ -390,19 +418,6 @@ body {
   background: linear-gradient(135deg, #22d3ee 0%, #0369a1 100%);
   transform: translateY(-2px);
   box-shadow: 0 16px 35px -5px rgba(6, 182, 212, 0.7);
-}
-
-.tag-badge-vibrant {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.35rem 0.9rem;
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  border-radius: 9999px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
 }
 
 /* Modals */
@@ -440,19 +455,19 @@ body {
 }
 
 @media (max-width: 1024px) {
-  .hero-airplane-container {
-    width: 380px;
-    top: 45%;
+  .hero-plane-wrap {
+    width: 400px;
+    top: 48%;
   }
-  .parallax-boat-container {
+  .pinned-boat-container {
     width: 320px;
     bottom: 8%;
   }
-  .parallax-camel-container {
+  .pinned-camel-container {
     width: 220px;
     bottom: 8%;
   }
-  .parallax-heli-container {
+  .pinned-heli-container {
     width: 280px;
     top: 10%;
   }

@@ -44,7 +44,7 @@
        TOP FLOATING CAPSULE NAVBAR (100% RESPONSIVE)
        ======================================================== -->
   <header class="fixed top-3 sm:top-5 left-0 right-0 z-50 px-3 sm:px-6">
-    <div class="max-w-7xl mx-auto nav-pill-container rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto nav-capsule rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between">
       
       <!-- Logo -->
       <a href="#" class="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
@@ -182,35 +182,32 @@
   <!-- ========================================================
        HERO: 100VH 3D PARALLAX AIRPLANE, CLOUDS & SKY
        ======================================================== -->
-  <section id="hero-stage" class="fullpage-stage pt-20">
+  <section id="hero-stage" class="pin-stage">
     
-    <!-- Parallax Layer 1: Sky Horizon & Sun Glow -->
-    <div class="parallax-layer hero-bg-sky"></div>
-    <div class="hero-sun-glow"></div>
+    <!-- Sky Horizon & Sunburst Glow -->
+    <div class="hero-sky-bg"></div>
+    <div class="hero-sunburst"></div>
 
-    <!-- Parallax Layer 2: Snow Mountains Backdrop -->
-    <div class="parallax-layer hero-layer-mountains"></div>
+    <!-- Snow Mountains Backdrop -->
+    <div class="hero-mountains-backdrop"></div>
 
-    <!-- Parallax Layer 3: Fluffy Clouds Behind Plane -->
-    <div class="parallax-layer hero-clouds-back"></div>
+    <!-- Clouds Behind Plane -->
+    <div class="hero-clouds-back"></div>
 
-    <!-- Parallax Layer 4: REAL HIGH-RESOLUTION COMMERCIAL AIRLINER WITH CONTRAIL -->
-    <div class="hero-airplane-container animate-plane-float">
-      <div class="jet-contrail"></div>
-      <img id="hero-airplane-img" src="assets/airplane.png" alt="Aura Luxury Commercial Airliner in Flight" />
+    <!-- REAL HIGH-RESOLUTION COMMERCIAL AIRLINER WITH CONTRAIL -->
+    <div class="hero-plane-wrap">
+      <div class="jet-vapor"></div>
+      <img id="hero-plane-photo" src="assets/airplane.png" alt="Aura Luxury Commercial Airliner in Flight" />
     </div>
 
-    <!-- Parallax Layer 5: Foreground Clouds Passing in Front of Plane -->
-    <div class="parallax-layer hero-clouds-front"></div>
+    <!-- Foreground Clouds Passing in Front of Plane -->
+    <div class="hero-clouds-front"></div>
 
     <!-- Canvas Particles -->
-    <canvas id="particles-canvas"></canvas>
-
-    <!-- Parallax Layer 6: Ground Fade -->
-    <div class="parallax-layer hero-foreground-gradient"></div>
+    <canvas id="particles-canvas" class="absolute inset-0 pointer-events-none z-10"></canvas>
 
     <!-- Hero Content HUD -->
-    <div class="hero-content max-w-5xl mx-auto px-4 sm:px-6 text-center">
+    <div class="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 text-center pt-24 pb-12">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel-vibrant border border-amber-400/40 text-amber-300 text-xs sm:text-sm font-bold mb-6 tracking-widest uppercase shadow-2xl">
         <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
         <span>Ultra-Luxury 3D Parallax Travel Packages</span>
@@ -282,335 +279,225 @@
   </aside>
 
   <!-- ========================================================
-       FULL PAGE 1: TURQUOISE AZURE SEA (PINNED GSAP PARALLAX)
-       REAL SPEEDBOAT SAILING & REAL PARAGLIDER IN SKY
+       REALM 1: PINNED TURQUOISE AZURE SEA (GSAP PINNED PARALLAX)
+       REAL SPEEDBOAT SAILING & PARAGLIDER IN SKY
        ======================================================== -->
-  <section id="biome-sea" class="fullpage-biome">
-    <div class="biome-bg-layer" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2560&q=85');"></div>
-    <div class="sea-ambient-gradient"></div>
+  <section id="biome-sea" class="pin-stage">
+    <div class="stage-bg" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2560&q=85');"></div>
+    <div class="sea-vibrant-glow"></div>
 
-    <!-- 1. REAL PARAGLIDER SOARING IN SKY -->
-    <div class="parallax-paraglider-container">
-      <img id="sea-paraglider-img" src="assets/paraglider.png" alt="Colorful Paraglider in Sky" />
+    <!-- 1. PARAGLIDER SOARING IN SKY -->
+    <div class="pinned-paraglider-container">
+      <img id="sea-paraglider-svg" src="assets/paraglider.svg" alt="Colorful Paraglider in Sky" />
     </div>
 
-    <!-- 2. REAL SPEEDBOAT SAILING ON WATER WITH FOAMING WAKE -->
-    <div class="parallax-boat-container">
-      <div class="boat-water-wake"></div>
+    <!-- 2. SPEEDBOAT SAILING ON WATER WITH WATER SPRAY -->
+    <div class="pinned-boat-container">
+      <div class="boat-water-spray"></div>
       <img id="sea-boat-img" src="assets/speedboat.png" alt="Luxury White Speedboat on Turquoise Water" />
     </div>
 
-    <!-- Section Content & Floating HUD -->
-    <div class="biome-content-wrap">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        
-        <div class="lg:col-span-7">
+    <!-- Editorial Glass HUD -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 glass-hud p-6 sm:p-10 rounded-3xl border border-cyan-400/35">
           <span class="tag-badge-vibrant bg-cyan-500/25 text-cyan-300 border border-cyan-400/40 mb-4">
-            Realm I — Turquoise Seas & Atolls
+            Realm 01 — Turquoise Azure Sea & Reefs
           </span>
-          <h2 class="text-3xl sm:text-6xl font-serif font-black text-white mb-6 leading-tight drop-shadow-lg">
-            Endless Azure.<br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-cyan-400 to-blue-400">
-              Overwater Villas & Reefs.
+          <h2 class="massive-title text-white mb-4">
+            Endless<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-cyan-400 to-blue-400">
+              Azure Waters.
             </span>
           </h2>
-          <p class="text-slate-100 text-sm sm:text-lg mb-8 leading-relaxed max-w-xl font-light drop-shadow">
-            Arrive via private twin-otter seaplane. Step from your king suite straight into warm crystal turquoise waters, enjoy breakfast delivered by outrigger canoes, and dine 5 meters beneath the surface.
+          <p class="text-slate-100 text-sm sm:text-base mb-6 leading-relaxed font-light drop-shadow">
+            Private twin-otter seaplane transfers directly into turquoise lagoons. Overwater glass-floor villas, private coral reef diving, and breakfast delivered by outrigger canoes.
           </p>
-
-          <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-8 max-w-lg">
-            <div class="glass-panel-vibrant p-3.5 sm:p-4 rounded-2xl border border-cyan-400/30 text-center">
-              <span class="text-2xl sm:text-3xl font-bold text-cyan-400 font-display">28°C</span>
-              <p class="text-[10px] sm:text-[11px] text-slate-300 mt-1 uppercase font-bold">Turquoise Sea</p>
+          <div class="grid grid-cols-3 gap-3 mb-6">
+            <div class="glass-panel-vibrant p-3 rounded-2xl border border-cyan-400/30 text-center">
+              <span class="text-2xl font-bold text-cyan-400 font-display">28°C</span>
+              <p class="text-[10px] text-slate-300 mt-1 uppercase font-bold">Turquoise Lagoon</p>
             </div>
-            <div class="glass-panel-vibrant p-3.5 sm:p-4 rounded-2xl border border-cyan-400/30 text-center">
-              <span class="text-2xl sm:text-3xl font-bold text-amber-400 font-display">Overwater</span>
-              <p class="text-[10px] sm:text-[11px] text-slate-300 mt-1 uppercase font-bold">Glass Floors</p>
+            <div class="glass-panel-vibrant p-3 rounded-2xl border border-cyan-400/30 text-center">
+              <span class="text-2xl font-bold text-amber-400 font-display">5★</span>
+              <p class="text-[10px] text-slate-300 mt-1 uppercase font-bold">Overwater Villa</p>
             </div>
-            <div class="glass-panel-vibrant p-3.5 sm:p-4 rounded-2xl border border-cyan-400/30 text-center">
-              <span class="text-2xl sm:text-3xl font-bold text-emerald-400 font-display">Seaplane</span>
-              <p class="text-[10px] sm:text-[11px] text-slate-300 mt-1 uppercase font-bold">VIP Transfer</p>
+            <div class="glass-panel-vibrant p-3 rounded-2xl border border-cyan-400/30 text-center">
+              <span class="text-2xl font-bold text-emerald-400 font-display">VIP</span>
+              <p class="text-[10px] text-slate-300 mt-1 uppercase font-bold">Seaplane Transfer</p>
             </div>
           </div>
-
           <div class="flex flex-wrap items-center gap-3">
             <button onclick="filterByRealm('sea')" class="btn-cyan-vibrant px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2">
               <span>View Ocean Packages</span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </button>
             <button onclick="openBookingModal('maldives-overwater-haven')" class="px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold bg-white/10 hover:bg-white/20 border border-white/25 text-white transition">
-              Book Maldives Villa
+              Book Maldives Haven
             </button>
           </div>
         </div>
-
-        <!-- 3D Card Right -->
-        <div class="lg:col-span-5">
-          <div class="glass-panel-vibrant p-5 rounded-3xl border border-cyan-400/30 shadow-2xl relative overflow-hidden group tilt-interactive">
-            <div class="relative h-80 rounded-2xl overflow-hidden mb-4">
-              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85" alt="Maldives Overwater Sanctuary" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-              <span class="absolute top-4 left-4 tag-badge-vibrant bg-cyan-500/80 text-white font-mono">Flight Included</span>
-              <span class="absolute bottom-4 left-4 text-xs font-bold text-white bg-slate-900/80 px-3 py-1.5 rounded-full border border-white/20">Baa Atoll & Bora Bora</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div>
-                <h4 class="text-lg font-serif font-bold text-white">Soneva Overwater Haven</h4>
-                <p class="text-xs text-slate-300">Qatar Airways • Private Reef Diving</p>
-              </div>
-              <div class="text-right">
-                <span class="text-xs text-slate-400 block font-semibold">From</span>
-                <span class="text-xl font-bold text-cyan-400 font-display">$3,450</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
   <!-- ========================================================
-       FULL PAGE 2: GOLDEN SAHARA SAND DUNES (PINNED GSAP PARALLAX)
+       REALM 2: PINNED SAHARA GOLDEN SAND DUNES (GSAP PINNED PARALLAX)
        REAL CAMEL CARAVAN WALKING ON DUNES
        ======================================================== -->
-  <section id="biome-sand" class="fullpage-biome">
-    <div class="biome-bg-layer" style="background-image: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=2560&q=85');"></div>
-    <div class="desert-ambient-gradient"></div>
+  <section id="biome-sand" class="pin-stage">
+    <div class="stage-bg" style="background-image: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=2560&q=85');"></div>
+    <div class="desert-vibrant-glow"></div>
 
-    <!-- 1. REAL PHOTOGRAPHIC CAMEL CARAVAN ON DUNE CREST -->
-    <div class="parallax-camel-container">
-      <img id="desert-camel-img" src="assets/camel.png" alt="Camel in Desert Dunes" />
+    <!-- CAMEL CARAVAN WALKING ON DUNES -->
+    <div class="pinned-camel-container">
+      <img id="desert-camel-img" src="assets/camel.png" alt="Camel Caravan in Desert Dunes" />
     </div>
 
-    <!-- Section Content & Floating HUD -->
-    <div class="biome-content-wrap">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        
-        <!-- Showcase Card Left -->
-        <div class="lg:col-span-5 order-2 lg:order-1">
-          <div class="glass-panel-vibrant p-5 rounded-3xl border border-amber-400/35 shadow-2xl relative overflow-hidden group tilt-interactive">
-            <div class="relative h-80 rounded-2xl overflow-hidden mb-4">
-              <img src="https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=1600&q=85" alt="Sahara Dunes Mirage" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-              <span class="absolute top-4 left-4 tag-badge-vibrant bg-amber-500/85 text-slate-950 font-bold">Stargazing Dome</span>
-              <span class="absolute bottom-4 left-4 text-xs font-bold text-white bg-slate-900/80 px-3 py-1.5 rounded-full border border-white/20">Merzouga & Empty Quarter</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div>
-                <h4 class="text-lg font-serif font-bold text-white">Al Maha Royal Desert Pavilion</h4>
-                <p class="text-xs text-slate-300">Emirates Direct • 4x4 Private Expedition</p>
-              </div>
-              <div class="text-right">
-                <span class="text-xs text-slate-400 block font-semibold">From</span>
-                <span class="text-xl font-bold text-amber-400 font-display">$2,150</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Content Right -->
-        <div class="lg:col-span-7 order-1 lg:order-2">
-          <span class="tag-badge-vibrant bg-amber-500/25 text-amber-300 border border-amber-400/40 mb-4">
-            Realm II — Sahara Dunes & Desert Mirage
+    <!-- Editorial Glass HUD -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex justify-end">
+      <div class="w-full lg:max-w-2xl glass-hud p-6 sm:p-10 rounded-3xl border border-amber-400/35">
+        <span class="tag-badge-vibrant bg-amber-500/25 text-amber-300 border border-amber-400/40 mb-4">
+          Realm 02 — Sahara Golden Dunes & Mirage
+        </span>
+        <h2 class="massive-title text-white mb-4">
+          Golden<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-orange-400">
+            Desert Dunes.
           </span>
-          <h2 class="text-3xl sm:text-6xl font-serif font-black text-white mb-6 leading-tight drop-shadow-lg">
-            Infinite Silence.<br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-orange-400">
-              Golden Dunes & Starfield.
-            </span>
-          </h2>
-          <p class="text-slate-100 text-sm sm:text-lg mb-8 leading-relaxed max-w-xl font-light drop-shadow">
-            Traverse golden sand ripples in luxury 4x4s. Sleep beneath zero light-pollution skies in private panoramic celestial domes with telescopes, and indulge in gourmet Arabian feasts prepared over open embers.
-          </p>
-
-          <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-8 max-w-lg">
-            <div class="glass-panel-vibrant p-3.5 sm:p-4 rounded-2xl border border-amber-400/30 text-center">
-              <span class="text-2xl sm:text-3xl font-bold text-amber-400 font-display">Bortle 1</span>
-              <p class="text-[10px] sm:text-[11px] text-slate-300 mt-1 uppercase font-bold">Dark Skies</p>
-            </div>
-            <div class="glass-panel-vibrant p-3.5 sm:p-4 rounded-2xl border border-amber-400/30 text-center">
-              <span class="text-2xl sm:text-3xl font-bold text-orange-400 font-display">Private</span>
-              <p class="text-[10px] sm:text-[11px] text-slate-300 mt-1 uppercase font-bold">Dune Safari</p>
-            </div>
-            <div class="glass-panel-vibrant p-3.5 sm:p-4 rounded-2xl border border-amber-400/30 text-center">
-              <span class="text-2xl sm:text-3xl font-bold text-cyan-400 font-display">Emirates</span>
-              <p class="text-[10px] sm:text-[11px] text-slate-300 mt-1 uppercase font-bold">Direct Air</p>
-            </div>
+        </h2>
+        <p class="text-slate-100 text-sm sm:text-base mb-6 leading-relaxed font-light drop-shadow">
+          Traverse sweeping golden sand ripples with private camel caravans and bespoke 4x4 dune cruisers. Night stargazing inside celestial glass domes with private chef dinners.
+        </p>
+        <div class="grid grid-cols-3 gap-3 mb-6">
+          <div class="glass-panel-vibrant p-3 rounded-2xl border border-amber-400/30 text-center">
+            <span class="text-2xl font-bold text-amber-400 font-display">Bortle 1</span>
+            <p class="text-[10px] text-slate-300 mt-1 uppercase font-bold">Dark Skies</p>
           </div>
-
-          <div class="flex flex-wrap items-center gap-3">
-            <button onclick="filterByRealm('sand')" class="btn-luxury-vibrant px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2">
-              <span>View Desert Packages</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </button>
-            <button onclick="openBookingModal('sahara-royal-dunes')" class="px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold bg-white/10 hover:bg-white/20 border border-white/25 text-white transition">
-              Book Sahara Dome
-            </button>
+          <div class="glass-panel-vibrant p-3 rounded-2xl border border-amber-400/30 text-center">
+            <span class="text-2xl font-bold text-orange-400 font-display">4x4</span>
+            <p class="text-[10px] text-slate-300 mt-1 uppercase font-bold">Dune Safari</p>
+          </div>
+          <div class="glass-panel-vibrant p-3 rounded-2xl border border-amber-400/30 text-center">
+            <span class="text-2xl font-bold text-cyan-400 font-display">Royal</span>
+            <p class="text-[10px] text-slate-300 mt-1 uppercase font-bold">Bedouin Tent</p>
           </div>
         </div>
-
+        <div class="flex flex-wrap items-center gap-3">
+          <button onclick="filterByRealm('sand')" class="btn-luxury-vibrant px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2">
+            <span>View Desert Packages</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </button>
+          <button onclick="openBookingModal('sahara-royal-dunes')" class="px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold bg-white/10 hover:bg-white/20 border border-white/25 text-white transition">
+            Book Sahara Pavilion
+          </button>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ========================================================
-       FULL PAGE 3: MAJESTIC ALPINE SUMMITS (PINNED GSAP PARALLAX)
+       REALM 3: PINNED MAJESTIC ALPINE SUMMITS (GSAP PINNED PARALLAX)
        REAL ALPINE CHARTER HELICOPTER SOARING
        ======================================================== -->
-  <section id="biome-mountains" class="fullpage-biome">
-    <div class="biome-bg-layer" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2560&q=85');"></div>
-    <div class="mountain-ambient-gradient"></div>
+  <section id="biome-mountains" class="pin-stage">
+    <div class="stage-bg" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2560&q=85');"></div>
+    <div class="mountain-vibrant-glow"></div>
 
-    <!-- 1. REAL PHOTOGRAPHIC ALPINE HELICOPTER -->
-    <div class="parallax-heli-container">
+    <!-- ALPINE HELICOPTER SOARING OVER PEAKS -->
+    <div class="pinned-heli-container">
       <img id="mountain-heli-img" src="assets/helicopter.png" alt="Alpine Mountain Charter Helicopter" />
     </div>
 
-    <!-- Content & Floating HUD -->
-    <div class="biome-content-wrap">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        
-        <div class="lg:col-span-7">
+    <!-- Editorial Glass HUD -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 glass-hud p-6 sm:p-10 rounded-3xl border border-blue-400/35">
           <span class="tag-badge-vibrant bg-blue-500/25 text-blue-300 border border-blue-400/40 mb-4">
-            Realm III — Alpine Summits & Glaciers
+            Realm 03 — Alpine Summits & Glaciers
           </span>
-          <h2 class="text-3xl sm:text-6xl font-serif font-black text-white mb-6 leading-tight drop-shadow-lg">
-            Above the World.<br>
+          <h2 class="massive-title text-white mb-4">
+            Above the<br>
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-sky-300 to-indigo-300">
-              Matterhorn Peaks & Chalets.
+              Matterhorn Peaks.
             </span>
           </h2>
-          <p class="text-slate-100 text-sm sm:text-lg mb-8 leading-relaxed max-w-xl font-light drop-shadow">
-            Breathe crisp crystalline air at 3,800 meters. Stay in secluded cedar chalets with heated cantilever infinity pools overlooking towering glacial peaks. Packages include private Swiss helicopter transfers and UIAGM mountain guides.
+          <p class="text-slate-100 text-sm sm:text-base mb-6 leading-relaxed font-light drop-shadow">
+            Private charter helicopter glacier landings, heated cantilever infinity pools overlooking 4,000m peaks, and certified Swiss mountain ski guides.
           </p>
-
-          <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-8 max-w-lg">
-            <div class="glass-panel-vibrant p-3.5 sm:p-4 rounded-2xl border border-blue-400/30 text-center">
-              <span class="text-2xl sm:text-3xl font-bold text-amber-400 font-display">3,883m</span>
-              <p class="text-[10px] sm:text-[11px] text-slate-300 mt-1 uppercase font-bold">Peak Elevation</p>
+          <div class="grid grid-cols-3 gap-3 mb-6">
+            <div class="glass-panel-vibrant p-3 rounded-2xl border border-blue-400/30 text-center">
+              <span class="text-2xl font-bold text-amber-400 font-display">3,883m</span>
+              <p class="text-[10px] text-slate-300 mt-1 uppercase font-bold">Elevation</p>
             </div>
-            <div class="glass-panel-vibrant p-3.5 sm:p-4 rounded-2xl border border-blue-400/30 text-center">
-              <span class="text-2xl sm:text-3xl font-bold text-cyan-400 font-display">5-Star</span>
-              <p class="text-[10px] sm:text-[11px] text-slate-300 mt-1 uppercase font-bold">Chalet & Spa</p>
+            <div class="glass-panel-vibrant p-3 rounded-2xl border border-blue-400/30 text-center">
+              <span class="text-2xl font-bold text-cyan-400 font-display">5★</span>
+              <p class="text-[10px] text-slate-300 mt-1 uppercase font-bold">Chalet & Spa</p>
             </div>
-            <div class="glass-panel-vibrant p-3.5 sm:p-4 rounded-2xl border border-blue-400/30 text-center">
-              <span class="text-2xl sm:text-3xl font-bold text-emerald-400 font-display">Heli</span>
-              <p class="text-[10px] sm:text-[11px] text-slate-300 mt-1 uppercase font-bold">VIP Charter</p>
+            <div class="glass-panel-vibrant p-3 rounded-2xl border border-blue-400/30 text-center">
+              <span class="text-2xl font-bold text-emerald-400 font-display">Heli</span>
+              <p class="text-[10px] text-slate-300 mt-1 uppercase font-bold">VIP Charter</p>
             </div>
           </div>
-
           <div class="flex flex-wrap items-center gap-3">
             <button onclick="filterByRealm('mountains')" class="btn-luxury-vibrant px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2">
               <span>View Mountain Packages</span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </button>
             <button onclick="openBookingModal('alpine-matterhorn')" class="px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold bg-white/10 hover:bg-white/20 border border-white/25 text-white transition">
-              Book Matterhorn Chalet
+              Book Alpine Chalet
             </button>
           </div>
         </div>
-
-        <!-- 3D Card Right -->
-        <div class="lg:col-span-5">
-          <div class="glass-panel-vibrant p-5 rounded-3xl border border-blue-400/35 shadow-2xl relative overflow-hidden group tilt-interactive">
-            <div class="relative h-80 rounded-2xl overflow-hidden mb-4">
-              <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=85" alt="Patagonia & Alps Summits" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-              <span class="absolute top-4 left-4 tag-badge-vibrant bg-blue-500/80 text-white font-mono">Swiss Air Direct</span>
-              <span class="absolute bottom-4 left-4 text-xs font-bold text-white bg-slate-900/80 px-3 py-1.5 rounded-full border border-white/20">Zermatt & Torres del Paine</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div>
-                <h4 class="text-lg font-serif font-bold text-white">The Omnia Mountain Lodge</h4>
-                <p class="text-xs text-slate-300">Swiss Air First Class • Private Heli Guide</p>
-              </div>
-              <div class="text-right">
-                <span class="text-xs text-slate-400 block font-semibold">From</span>
-                <span class="text-xl font-bold text-amber-400 font-display">$2,890</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
   <!-- ========================================================
-       FULL PAGE 4: EMERALD RAINFOREST & CANOPY
+       REALM 4: EMERALD RAINFOREST & CANOPY
        ======================================================== -->
-  <section id="biome-forest" class="fullpage-biome">
-    <div class="biome-bg-layer" style="background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2560&q=85');"></div>
-    <div class="forest-ambient-gradient"></div>
+  <section id="biome-forest" class="pin-stage">
+    <div class="stage-bg" style="background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2560&q=85');"></div>
+    <div class="forest-vibrant-glow"></div>
 
-    <!-- Content & Floating HUD -->
-    <div class="biome-content-wrap">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        
-        <!-- Showcase Card Left -->
-        <div class="lg:col-span-5 order-2 lg:order-1">
-          <div class="glass-panel-vibrant p-5 rounded-3xl border border-emerald-400/35 shadow-2xl relative overflow-hidden group tilt-interactive">
-            <div class="relative h-80 rounded-2xl overflow-hidden mb-4">
-              <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=85" alt="Kyoto Bamboo Sanctuary" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-              <span class="absolute top-4 left-4 tag-badge-vibrant bg-emerald-500/80 text-white font-mono">Private Cedar Onsen</span>
-              <span class="absolute bottom-4 left-4 text-xs font-bold text-white bg-slate-900/80 px-3 py-1.5 rounded-full border border-white/20">Kyoto Bamboo & Nayara Camp</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div>
-                <h4 class="text-lg font-serif font-bold text-white">Hoshinoya & Nayara Sanctuaries</h4>
-                <p class="text-xs text-slate-300">JAL Sky Suite • Geothermal Hot Springs</p>
-              </div>
-              <div class="text-right">
-                <span class="text-xs text-slate-400 block font-semibold">From</span>
-                <span class="text-xl font-bold text-emerald-400 font-display">$1,980</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Content Right -->
-        <div class="lg:col-span-7 order-1 lg:order-2">
-          <span class="tag-badge-vibrant bg-emerald-500/25 text-emerald-300 border border-emerald-400/40 mb-4">
-            Realm IV — Ancient Rainforests & Sacred Groves
+    <!-- Editorial Glass HUD -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex justify-end">
+      <div class="w-full lg:max-w-2xl glass-hud p-6 sm:p-10 rounded-3xl border border-emerald-400/35">
+        <span class="tag-badge-vibrant bg-emerald-500/25 text-emerald-300 border border-emerald-400/40 mb-4">
+          Realm 04 — Ancient Canopies & Sacred Groves
+        </span>
+        <h2 class="massive-title text-white mb-4">
+          Sacred<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 via-emerald-400 to-teal-300">
+            Emerald Canopy.
           </span>
-          <h2 class="text-3xl sm:text-6xl font-serif font-black text-white mb-6 leading-tight drop-shadow-lg">
-            Sacred Verdure.<br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 via-emerald-400 to-teal-300">
-              Treehouses & Hot Springs.
-            </span>
-          </h2>
-          <p class="text-slate-100 text-sm sm:text-lg mb-8 leading-relaxed max-w-xl font-light drop-shadow">
-            Recharge amidst ancient moss-draped canopies and whispering bamboo groves. Stay in architectural bamboo eco-villas suspended over jungle rivers, soak in volcanic mineral springs, and experience authentic private tea ceremonies.
-          </p>
-
-          <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-8 max-w-lg">
-            <div class="glass-panel-vibrant p-3.5 sm:p-4 rounded-2xl border border-emerald-400/30 text-center">
-              <span class="text-2xl sm:text-3xl font-bold text-emerald-400 font-display">100%</span>
-              <p class="text-[10px] sm:text-[11px] text-slate-300 mt-1 uppercase font-bold">Eco-Certified</p>
-            </div>
-            <div class="glass-panel-vibrant p-3.5 sm:p-4 rounded-2xl border border-emerald-400/30 text-center">
-              <span class="text-2xl sm:text-3xl font-bold text-amber-400 font-display">Natural</span>
-              <p class="text-[10px] sm:text-[11px] text-slate-300 mt-1 uppercase font-bold">Onsen Spas</p>
-            </div>
-            <div class="glass-panel-vibrant p-3.5 sm:p-4 rounded-2xl border border-emerald-400/30 text-center">
-              <span class="text-2xl sm:text-3xl font-bold text-purple-400 font-display">Private</span>
-              <p class="text-[10px] sm:text-[11px] text-slate-300 mt-1 uppercase font-bold">Canopy Walks</p>
-            </div>
+        </h2>
+        <p class="text-slate-100 text-sm sm:text-base mb-6 leading-relaxed font-light drop-shadow">
+          Architectural eco-villas suspended amidst ancient moss-draped canopies, private geothermal hot springs, and serene Japanese Zen tea sanctuaries.
+        </p>
+        <div class="grid grid-cols-3 gap-3 mb-6">
+          <div class="glass-panel-vibrant p-3 rounded-2xl border border-emerald-400/30 text-center">
+            <span class="text-2xl font-bold text-emerald-400 font-display">100%</span>
+            <p class="text-[10px] text-slate-300 mt-1 uppercase font-bold">Eco-Certified</p>
           </div>
-
-          <div class="flex flex-wrap items-center gap-3">
-            <button onclick="filterByRealm('forest')" class="btn-luxury-vibrant px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2">
-              <span>View Rainforest Packages</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </button>
-            <button onclick="openBookingModal('costa-rica-canopy')" class="px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold bg-white/10 hover:bg-white/20 border border-white/25 text-white transition">
-              Book Canopy Villa
-            </button>
+          <div class="glass-panel-vibrant p-3 rounded-2xl border border-emerald-400/30 text-center">
+            <span class="text-2xl font-bold text-amber-400 font-display">Natural</span>
+            <p class="text-[10px] text-slate-300 mt-1 uppercase font-bold">Onsen Spas</p>
+          </div>
+          <div class="glass-panel-vibrant p-3 rounded-2xl border border-emerald-400/30 text-center">
+            <span class="text-2xl font-bold text-purple-400 font-display">Private</span>
+            <p class="text-[10px] text-slate-300 mt-1 uppercase font-bold">Canopy Walks</p>
           </div>
         </div>
-
+        <div class="flex flex-wrap items-center gap-3">
+          <button onclick="filterByRealm('forest')" class="btn-luxury-vibrant px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2">
+            <span>View Rainforest Packages</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </button>
+          <button onclick="openBookingModal('costa-rica-canopy')" class="px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold bg-white/10 hover:bg-white/20 border border-white/25 text-white transition">
+            Book Canopy Villa
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -962,7 +849,10 @@
     });
   </script>
 
-  <!-- GSAP & ScrollTrigger Libraries for Genuine Pinned Parallax Animations -->
+  <!-- Lenis Momentum Smooth Scrolling (Awwwards standard) -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- GSAP & ScrollTrigger for Pinned Parallax Animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
