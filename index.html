@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AURA VOYAGES — Ultra-Luxury 3D Parallax Travel Expeditions & Stays</title>
-  <meta name="description" content="Cinematic 3D parallax travel across turquoise seas, golden desert dunes, alpine summits, and emerald rainforests. Bespoke all-inclusive packages with flights and 5★ stays.">
+  <meta name="description" content="Cinematic 3D parallax travel across turquoise seas with sailing speedboats, golden sand dunes with camel rides, and alpine peaks with charter helicopters. All-inclusive luxury packages with flights and 5★ stays.">
 
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -59,7 +59,7 @@
         </div>
       </a>
 
-      <!-- Desktop Links (Visible on >= 1100px) -->
+      <!-- Desktop Links -->
       <nav class="hidden xl:flex items-center gap-6 text-xs uppercase tracking-wider font-bold text-slate-200">
         <a href="#hero-stage" class="hover:text-amber-400 transition-colors flex items-center gap-1.5 py-1">
           <span>✈️</span> <span>Sky</span>
@@ -108,7 +108,7 @@
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </button>
 
-        <!-- Mobile Menu Toggle Button (Visible on < 1100px) -->
+        <!-- Mobile Menu Toggle Button -->
         <button id="mobile-menu-btn" class="xl:hidden p-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-slate-200" aria-label="Open navigation menu">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -194,76 +194,10 @@
     <!-- Parallax Layer 3: Fluffy Clouds Behind Plane -->
     <div class="parallax-layer hero-clouds-back"></div>
 
-    <!-- Parallax Layer 4: 3D Airplane with Jet Contrail -->
+    <!-- Parallax Layer 4: REAL HIGH-RESOLUTION COMMERCIAL AIRLINER WITH CONTRAIL -->
     <div class="hero-airplane-container animate-plane-float">
       <div class="jet-contrail"></div>
-      
-      <svg viewBox="0 0 540 260" class="w-full h-full drop-shadow-[0_25px_35px_rgba(0,0,0,0.85)] filter brightness-110">
-        <defs>
-          <linearGradient id="fuselageGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" />
-            <stop offset="45%" stop-color="#f1f5f9" />
-            <stop offset="85%" stop-color="#cbd5e1" />
-            <stop offset="100%" stop-color="#64748b" />
-          </linearGradient>
-          <linearGradient id="wingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" />
-            <stop offset="70%" stop-color="#e2e8f0" />
-            <stop offset="100%" stop-color="#94a3b8" />
-          </linearGradient>
-          <linearGradient id="goldTrim" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#f59e0b" />
-            <stop offset="100%" stop-color="#fbbf24" />
-          </linearGradient>
-          <linearGradient id="windowGlass" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#38bdf8" />
-            <stop offset="100%" stop-color="#0284c7" />
-          </linearGradient>
-        </defs>
-
-        <!-- Far Wing -->
-        <polygon points="170,110 260,35 295,42 215,115" fill="url(#wingGrad)" opacity="0.85" />
-        <rect x="220" y="55" width="40" height="14" rx="7" fill="#334155" />
-        <ellipse cx="260" cy="62" rx="4" ry="7" fill="#0284c7" />
-
-        <!-- Fuselage -->
-        <path d="M480,135 C460,110 320,105 140,115 C90,118 45,130 30,140 C45,150 90,158 140,155 C320,150 460,145 480,135 Z" fill="url(#fuselageGrad)" />
-        <path d="M120,138 Q280,133 465,136 Q280,140 120,142 Z" fill="url(#goldTrim)" />
-
-        <!-- Cockpit Window -->
-        <polygon points="440,126 465,131 462,136 438,133" fill="url(#windowGlass)" />
-
-        <!-- Passenger Windows -->
-        <g fill="#0f172a" opacity="0.85">
-          <circle cx="160" cy="133" r="3" />
-          <circle cx="180" cy="133" r="3" />
-          <circle cx="200" cy="133" r="3" />
-          <circle cx="220" cy="133" r="3" />
-          <circle cx="240" cy="133" r="3" />
-          <circle cx="260" cy="133" r="3" />
-          <circle cx="280" cy="133" r="3" />
-          <circle cx="300" cy="133" r="3" />
-          <circle cx="320" cy="133" r="3" />
-          <circle cx="340" cy="133" r="3" />
-          <circle cx="360" cy="133" r="3" />
-          <circle cx="380" cy="133" r="3" />
-          <circle cx="400" cy="133" r="3" />
-          <circle cx="420" cy="133" r="3" />
-        </g>
-
-        <!-- Tail Fin -->
-        <polygon points="65,135 15,65 55,60 110,132" fill="url(#wingGrad)" />
-        <polygon points="25,72 50,68 95,126 70,130" fill="url(#goldTrim)" />
-
-        <!-- Near Wing (Swept) -->
-        <polygon points="205,145 310,230 350,225 260,140" fill="url(#wingGrad)" />
-        <rect x="250" y="180" width="55" height="22" rx="10" fill="#1e293b" />
-        <ellipse cx="305" cy="191" rx="6" ry="10" fill="#38bdf8" />
-        <ellipse cx="250" cy="191" rx="5" ry="9" fill="#0f172a" />
-        
-        <circle cx="348" cy="225" r="4" fill="#38bdf8" class="animate-ping" opacity="0.85" />
-        <circle cx="348" cy="225" r="3" fill="#ffffff" />
-      </svg>
+      <img id="hero-airplane-img" src="assets/airplane.png" alt="Aura Luxury Commercial Airliner in Flight" />
     </div>
 
     <!-- Parallax Layer 5: Foreground Clouds Passing in Front of Plane -->
@@ -290,7 +224,7 @@
       </h1>
 
       <p class="text-base sm:text-lg md:text-xl text-slate-100 max-w-2xl mx-auto mb-10 leading-relaxed font-light drop-shadow">
-        Scroll down through full-page 3D parallax realms — turquoise seas with sailing yachts, golden dunes with camel caravans, and alpine ski peaks.
+        Scroll down through pinned 3D parallax realms — turquoise seas with sailing speedboats, golden dunes with camel rides, and alpine ski peaks.
       </p>
 
       <!-- Glassmorphic Search Bar -->
@@ -348,69 +282,22 @@
   </aside>
 
   <!-- ========================================================
-       FULL PAGE 1: TURQUOISE AZURE SEA (WITH BOAT & PARAGLIDER)
+       FULL PAGE 1: TURQUOISE AZURE SEA (PINNED GSAP PARALLAX)
+       REAL SPEEDBOAT SAILING & REAL PARAGLIDER IN SKY
        ======================================================== -->
   <section id="biome-sea" class="fullpage-biome">
     <div class="biome-bg-layer" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2560&q=85');"></div>
     <div class="sea-ambient-gradient"></div>
 
-    <!-- 1. DYNAMIC PARALLAX PARAGLIDER IN SKY -->
+    <!-- 1. REAL PARAGLIDER SOARING IN SKY -->
     <div class="parallax-paraglider-container">
-      <svg viewBox="0 0 120 150" class="w-full h-full drop-shadow-2xl">
-        <!-- Colorful Paraglider Wing Canopy -->
-        <path d="M10,40 Q60,5 110,40 Q60,25 10,40 Z" fill="#f59e0b" />
-        <path d="M25,37 Q60,12 95,37 Q60,25 25,37 Z" fill="#06b6d4" />
-        <path d="M40,33 Q60,18 80,33 Q60,26 40,33 Z" fill="#ef4444" />
-        
-        <!-- Suspension Lines -->
-        <line x1="15" y1="39" x2="60" y2="105" stroke="rgba(255,255,255,0.7)" stroke-width="1" />
-        <line x1="35" y1="35" x2="60" y2="105" stroke="rgba(255,255,255,0.7)" stroke-width="1" />
-        <line x1="85" y1="35" x2="60" y2="105" stroke="rgba(255,255,255,0.7)" stroke-width="1" />
-        <line x1="105" y1="39" x2="60" y2="105" stroke="rgba(255,255,255,0.7)" stroke-width="1" />
-        
-        <!-- Paraglider Pilot Silhouette -->
-        <circle cx="60" cy="108" r="4" fill="#0f172a" />
-        <ellipse cx="60" cy="118" rx="5" ry="8" fill="#1e293b" />
-        <line x1="56" y1="124" x2="52" y2="136" stroke="#0f172a" stroke-width="2.5" />
-        <line x1="64" y1="124" x2="68" y2="136" stroke="#0f172a" stroke-width="2.5" />
-      </svg>
+      <img id="sea-paraglider-img" src="assets/paraglider.png" alt="Colorful Paraglider in Sky" />
     </div>
 
-    <!-- 2. DYNAMIC PARALLAX LUXURY YACHT / BOAT WITH FOAMING WATER WAKE -->
+    <!-- 2. REAL SPEEDBOAT SAILING ON WATER WITH FOAMING WAKE -->
     <div class="parallax-boat-container">
       <div class="boat-water-wake"></div>
-      
-      <!-- Realistic Luxury Boat Vector -->
-      <svg viewBox="0 0 260 110" class="w-full h-full drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)]">
-        <defs>
-          <linearGradient id="boatHull" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" />
-            <stop offset="80%" stop-color="#e2e8f0" />
-            <stop offset="100%" stop-color="#94a3b8" />
-          </linearGradient>
-          <linearGradient id="boatGlass" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#38bdf8" />
-            <stop offset="100%" stop-color="#0369a1" />
-          </linearGradient>
-        </defs>
-
-        <!-- Boat Hull -->
-        <path d="M20,70 L220,70 Q245,70 250,60 L230,48 L80,48 L50,55 Z" fill="url(#boatHull)" />
-        <polygon points="20,70 220,70 205,78 35,78" fill="#0284c7" />
-        
-        <!-- Cabin Deck -->
-        <polygon points="90,48 180,48 165,30 110,30" fill="#ffffff" />
-        <!-- Tinted Cabin Glass -->
-        <polygon points="115,45 170,45 158,34 122,34" fill="url(#boatGlass)" />
-        
-        <!-- Radar Mast & Flag -->
-        <line x1="135" y1="30" x2="135" y2="18" stroke="#64748b" stroke-width="2" />
-        <polygon points="135,18 148,22 135,26" fill="#f59e0b" />
-        
-        <!-- Water Bow Spray -->
-        <circle cx="235" cy="68" r="6" fill="#ffffff" opacity="0.8" />
-        <circle cx="248" cy="66" r="4" fill="#ffffff" opacity="0.6" />
-      </svg>
+      <img id="sea-boat-img" src="assets/speedboat.png" alt="Luxury White Speedboat on Turquoise Water" />
     </div>
 
     <!-- Section Content & Floating HUD -->
@@ -431,7 +318,6 @@
             Arrive via private twin-otter seaplane. Step from your king suite straight into warm crystal turquoise waters, enjoy breakfast delivered by outrigger canoes, and dine 5 meters beneath the surface.
           </p>
 
-          <!-- Minimal Punchy Stats -->
           <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-8 max-w-lg">
             <div class="glass-panel-vibrant p-3.5 sm:p-4 rounded-2xl border border-cyan-400/30 text-center">
               <span class="text-2xl sm:text-3xl font-bold text-cyan-400 font-display">28°C</span>
@@ -485,54 +371,16 @@
   </section>
 
   <!-- ========================================================
-       FULL PAGE 2: GOLDEN SAHARA SAND DUNES (WITH CAMEL CARAVAN)
+       FULL PAGE 2: GOLDEN SAHARA SAND DUNES (PINNED GSAP PARALLAX)
+       REAL CAMEL CARAVAN WALKING ON DUNES
        ======================================================== -->
   <section id="biome-sand" class="fullpage-biome">
     <div class="biome-bg-layer" style="background-image: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=2560&q=85');"></div>
     <div class="desert-ambient-gradient"></div>
 
-    <!-- 1. DYNAMIC PARALLAX CAMEL CARAVAN ALONG DUNE RIDGE -->
+    <!-- 1. REAL PHOTOGRAPHIC CAMEL CARAVAN ON DUNE CREST -->
     <div class="parallax-camel-container">
-      <svg viewBox="0 0 320 130" class="w-full h-full drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)] filter brightness-95">
-        <!-- Bedouin Leader -->
-        <circle cx="28" cy="62" r="5" fill="#1c1917" />
-        <polygon points="24,67 32,67 35,95 21,95" fill="#292524" />
-        <line x1="26" y1="95" x2="23" y2="114" stroke="#1c1917" stroke-width="2.5" />
-        <line x1="30" y1="95" x2="33" y2="114" stroke="#1c1917" stroke-width="2.5" />
-        <!-- Staff -->
-        <line x1="36" y1="58" x2="33" y2="115" stroke="#78350f" stroke-width="2" />
-        
-        <!-- Lead Lead Line -->
-        <path d="M33,78 Q60,95 90,75" stroke="rgba(245, 158, 11, 0.6)" stroke-width="1.5" fill="none" />
-
-        <!-- Camel 1 -->
-        <g transform="translate(80, 20)">
-          <!-- Head & Neck -->
-          <path d="M15,30 Q28,25 24,15 Q26,8 32,10 Q35,16 28,22 Q35,42 45,55" fill="#292524" />
-          <!-- Hump & Body -->
-          <ellipse cx="62" cy="60" rx="25" ry="16" fill="#1c1917" />
-          <path d="M50,50 Q60,25 72,50 Z" fill="#1c1917" />
-          <!-- Legs -->
-          <line x1="45" y1="72" x2="42" y2="102" stroke="#1c1917" stroke-width="3.5" />
-          <line x1="52" y1="72" x2="56" y2="102" stroke="#1c1917" stroke-width="3" />
-          <line x1="75" y1="72" x2="72" y2="102" stroke="#1c1917" stroke-width="3.5" />
-          <line x1="82" y1="72" x2="86" y2="102" stroke="#1c1917" stroke-width="3" />
-        </g>
-
-        <!-- Caravan Tether -->
-        <path d="M165,75 Q190,92 215,75" stroke="rgba(245, 158, 11, 0.6)" stroke-width="1.5" fill="none" />
-
-        <!-- Camel 2 -->
-        <g transform="translate(200, 25)">
-          <path d="M15,30 Q28,25 24,15 Q26,8 32,10 Q35,16 28,22 Q35,42 45,55" fill="#292524" />
-          <ellipse cx="62" cy="60" rx="24" ry="15" fill="#1c1917" />
-          <path d="M50,50 Q60,28 72,50 Z" fill="#1c1917" />
-          <line x1="45" y1="72" x2="43" y2="98" stroke="#1c1917" stroke-width="3.5" />
-          <line x1="52" y1="72" x2="55" y2="98" stroke="#1c1917" stroke-width="3" />
-          <line x1="75" y1="72" x2="73" y2="98" stroke="#1c1917" stroke-width="3.5" />
-          <line x1="82" y1="72" x2="85" y2="98" stroke="#1c1917" stroke-width="3" />
-        </g>
-      </svg>
+      <img id="desert-camel-img" src="assets/camel.png" alt="Camel in Desert Dunes" />
     </div>
 
     <!-- Section Content & Floating HUD -->
@@ -607,33 +455,16 @@
   </section>
 
   <!-- ========================================================
-       FULL PAGE 3: MAJESTIC ALPINE SUMMITS (WITH RED CABLE CAR)
+       FULL PAGE 3: MAJESTIC ALPINE SUMMITS (PINNED GSAP PARALLAX)
+       REAL ALPINE CHARTER HELICOPTER SOARING
        ======================================================== -->
   <section id="biome-mountains" class="fullpage-biome">
     <div class="biome-bg-layer" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2560&q=85');"></div>
     <div class="mountain-ambient-gradient"></div>
 
-    <!-- 1. DYNAMIC PARALLAX RED ALPINE GONDOLA / CABLE CAR -->
-    <div class="parallax-gondola-container">
-      <div class="gondola-cable-line"></div>
-      
-      <svg viewBox="0 0 110 130" class="w-full h-full drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)]">
-        <!-- Cable Grip / Hanger -->
-        <rect x="52" y="5" width="6" height="35" fill="#334155" />
-        <path d="M50,40 L60,40 L64,55 L46,55 Z" fill="#475569" />
-        
-        <!-- Red Swiss Gondola Cabin Body -->
-        <rect x="25" y="55" width="60" height="50" rx="14" fill="#dc2626" />
-        <path d="M25,65 Q55,60 85,65" stroke="#f87171" stroke-width="1.5" fill="none" />
-        
-        <!-- Panoramic Glass Windows -->
-        <rect x="32" y="64" width="46" height="22" rx="6" fill="#38bdf8" opacity="0.85" />
-        <line x1="55" y1="64" x2="55" y2="86" stroke="#991b1b" stroke-width="2" />
-
-        <!-- Swiss Cross Badge -->
-        <rect x="49" y="92" width="12" height="12" rx="2" fill="#ffffff" />
-        <polygon points="53,95 57,95 57,97 59,97 59,99 57,99 57,101 53,101 53,99 51,99 51,97 53,97" fill="#dc2626" />
-      </svg>
+    <!-- 1. REAL PHOTOGRAPHIC ALPINE HELICOPTER -->
+    <div class="parallax-heli-container">
+      <img id="mountain-heli-img" src="assets/helicopter.png" alt="Alpine Mountain Charter Helicopter" />
     </div>
 
     <!-- Content & Floating HUD -->
@@ -1130,6 +961,10 @@
       filterByRealm(e.target.value);
     });
   </script>
+
+  <!-- GSAP & ScrollTrigger Libraries for Genuine Pinned Parallax Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <!-- Interactive JavaScript Engine -->
   <script src="main.js"></script>

@@ -1,6 +1,6 @@
 /**
  * AURA VOYAGES - ADVANCED 3D PARALLAX LUXURY TRAVEL ENGINE
- * Vibrant Color Engine, Dynamic Boat/Paraglider/Camel/Gondola Entities, Type-Safe Booking
+ * GSAP ScrollTrigger Pinned Animations for Real Entities (Airplane, Boat, Paraglider, Camel, Heli)
  */
 
 // --- 1. DATA: ALL-INCLUSIVE CURATED LUXURY PACKAGES ---
@@ -153,7 +153,6 @@ const PACKAGES_DATA = [
   }
 ];
 
-// Currencies mapping
 const CURRENCIES = {
   USD: { symbol: '$', rate: 1.0, name: 'USD ($)' },
   EUR: { symbol: '€', rate: 0.92, name: 'EUR (€)' },
@@ -167,7 +166,6 @@ let activeCategory = 'all';
 let searchQuery = '';
 let selectedPackage = PACKAGES_DATA[0];
 
-// Safe Currency Formatter
 function formatPrice(usdAmount) {
   const safeUSD = (typeof usdAmount === 'number' && !isNaN(usdAmount)) ? usdAmount : 2890;
   const curr = CURRENCIES[currentCurrency] || CURRENCIES.USD;
@@ -175,10 +173,16 @@ function formatPrice(usdAmount) {
   return `${curr.symbol}${converted.toLocaleString()}`;
 }
 
-// --- 2. INITIALIZATION ---
+// --- 2. DOM INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
-  initHeroParallax();
-  initBiomeEntitiesParallax();
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    initGSAPPinnedParallax();
+  } else {
+    initFallbackParallax();
+  }
+
+  initMouseGyro3D();
   initFlightWaypointTracker();
   renderPackages();
   initBookingModal();
@@ -190,150 +194,235 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
 });
 
-// --- 3. HERO 3D MULTI-LAYER PARALLAX (AIRPLANE & CLOUDS) ---
-function initHeroParallax() {
-  const heroStage = document.getElementById('hero-stage');
-  const skyLayer = document.querySelector('.hero-bg-sky');
-  const mountainLayer = document.querySelector('.hero-layer-mountains');
-  const cloudsBack = document.querySelector('.hero-clouds-back');
-  const airplaneContainer = document.querySelector('.hero-airplane-container');
-  const cloudsFront = document.querySelector('.hero-clouds-front');
-  const heroContent = document.querySelector('.hero-content');
+// --- 3. GSAP PINNED 3D SCROLL SEQUENCES ---
+function initGSAPPinnedParallax() {
+  
+  // 1. HERO AIRPLANE FLIGHT SEQUENCE
+  const planeContainer = document.querySelector('.hero-airplane-container');
+  if (planeContainer) {
+    gsap.to(planeContainer, {
+      scrollTrigger: {
+        trigger: '#hero-stage',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1
+      },
+      y: 220,
+      x: 180,
+      scale: 1.25,
+      rotation: 6,
+      ease: 'none'
+    });
 
-  let mouseX = 0;
-  let mouseY = 0;
-  let targetMouseX = 0;
-  let targetMouseY = 0;
+    gsap.to('.hero-layer-mountains', {
+      scrollTrigger: {
+        trigger: '#hero-stage',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1
+      },
+      y: 120,
+      ease: 'none'
+    });
+
+    gsap.to('.hero-clouds-front', {
+      scrollTrigger: {
+        trigger: '#hero-stage',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1
+      },
+      x: 200,
+      scale: 1.4,
+      ease: 'none'
+    });
+  }
+
+  // 2. SEA SECTION: PINNED STAGE WITH BOAT SAILING & PARAGLIDER SOARING
+  const seaSection = document.querySelector('#biome-sea');
+  const boat = document.querySelector('.parallax-boat-container');
+  const paraglider = document.querySelector('.parallax-paraglider-container');
+  const seaCard = document.querySelector('#biome-sea .glass-panel-vibrant');
+
+  if (seaSection && boat) {
+    const seaTL = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#biome-sea',
+        start: 'top top',
+        end: '+=150%',
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1
+      }
+    });
+
+    // Boat sails smoothly across the water from left to right
+    seaTL.fromTo(boat, 
+      { x: '-20vw', y: 0, rotation: 0 },
+      { x: '75vw', y: -15, rotation: -2, ease: 'power1.inOut' }, 
+      0
+    );
+
+    // Paraglider swoops overhead in the sky
+    if (paraglider) {
+      seaTL.fromTo(paraglider,
+        { x: '10vw', y: '-10vh', scale: 0.85, rotation: -6 },
+        { x: '-60vw', y: '20vh', scale: 1.2, rotation: 6, ease: 'power1.inOut' },
+        0
+      );
+    }
+
+    // Background water layer subtle zoom
+    seaTL.to('#biome-sea .biome-bg-layer', {
+      scale: 1.2,
+      y: 40,
+      ease: 'none'
+    }, 0);
+
+    // Floating card depth animation
+    if (seaCard) {
+      seaTL.fromTo(seaCard,
+        { opacity: 0.6, scale: 0.95 },
+        { opacity: 1, scale: 1, ease: 'none' },
+        0.2
+      );
+    }
+  }
+
+  // 3. DESERT SECTION: PINNED STAGE WITH CAMEL CARAVAN TRAVERSING DUNES
+  const desertSection = document.querySelector('#biome-sand');
+  const camel = document.querySelector('.parallax-camel-container');
+  const desertCard = document.querySelector('#biome-sand .glass-panel-vibrant');
+
+  if (desertSection && camel) {
+    const desertTL = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#biome-sand',
+        start: 'top top',
+        end: '+=150%',
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1
+      }
+    });
+
+    // Camel caravan walks across the dune ridge from left to right
+    desertTL.fromTo(camel,
+      { x: '-15vw', y: 15 },
+      { x: '65vw', y: -20, ease: 'power1.inOut' },
+      0
+    );
+
+    desertTL.to('#biome-sand .biome-bg-layer', {
+      scale: 1.22,
+      y: 50,
+      ease: 'none'
+    }, 0);
+
+    if (desertCard) {
+      desertTL.fromTo(desertCard,
+        { opacity: 0.6, scale: 0.95 },
+        { opacity: 1, scale: 1, ease: 'none' },
+        0.2
+      );
+    }
+  }
+
+  // 4. MOUNTAINS SECTION: PINNED STAGE WITH CHARTER HELICOPTER SOARING
+  const mountainSection = document.querySelector('#biome-mountains');
+  const heli = document.querySelector('.parallax-heli-container');
+  const mountainCard = document.querySelector('#biome-mountains .glass-panel-vibrant');
+
+  if (mountainSection && heli) {
+    const mountainTL = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#biome-mountains',
+        start: 'top top',
+        end: '+=150%',
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1
+      }
+    });
+
+    // Helicopter cuts through the mountain pass from right to left
+    mountainTL.fromTo(heli,
+      { x: '20vw', y: '-5vh', scale: 0.85, rotation: 4 },
+      { x: '-65vw', y: '25vh', scale: 1.25, rotation: -6, ease: 'power1.inOut' },
+      0
+    );
+
+    mountainTL.to('#biome-mountains .biome-bg-layer', {
+      scale: 1.2,
+      y: 60,
+      ease: 'none'
+    }, 0);
+
+    if (mountainCard) {
+      mountainTL.fromTo(mountainCard,
+        { opacity: 0.6, scale: 0.95 },
+        { opacity: 1, scale: 1, ease: 'none' },
+        0.2
+      );
+    }
+  }
+
+  // 5. RAINFOREST SECTION: PARALLAX MIST
+  const forestSection = document.querySelector('#biome-forest');
+  if (forestSection) {
+    gsap.to('#biome-forest .biome-bg-layer', {
+      scrollTrigger: {
+        trigger: '#biome-forest',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1
+      },
+      y: 100,
+      scale: 1.2,
+      ease: 'none'
+    });
+  }
+}
+
+// Fallback in case GSAP CDN is blocked
+function initFallbackParallax() {
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const boat = document.querySelector('.parallax-boat-container');
+    const camel = document.querySelector('.parallax-camel-container');
+    if (boat) boat.style.transform = `translateX(${scrollY * 0.4}px)`;
+    if (camel) camel.style.transform = `translateX(${scrollY * 0.35}px)`;
+  });
+}
+
+// --- 4. MOUSE 3D GYRO PERSPECTIVE ON AIRPLANE ---
+function initMouseGyro3D() {
+  const airplaneContainer = document.querySelector('.hero-airplane-container');
+  if (!airplaneContainer) return;
+
+  let mouseX = 0, mouseY = 0;
+  let targetX = 0, targetY = 0;
 
   window.addEventListener('mousemove', (e) => {
     const halfW = window.innerWidth / 2;
     const halfH = window.innerHeight / 2;
-    targetMouseX = (e.clientX - halfW) / halfW;
-    targetMouseY = (e.clientY - halfH) / halfH;
+    targetX = (e.clientX - halfW) / halfW;
+    targetY = (e.clientY - halfH) / halfH;
   });
 
-  function updateHeroParallax() {
-    mouseX += (targetMouseX - mouseX) * 0.08;
-    mouseY += (targetMouseY - mouseY) * 0.08;
-    const scrollY = window.scrollY;
-    const heroH = heroStage ? heroStage.offsetHeight : 800;
+  function gyroLoop() {
+    mouseX += (targetX - mouseX) * 0.08;
+    mouseY += (targetY - mouseY) * 0.08;
 
-    if (scrollY <= heroH + 200) {
-      if (skyLayer) {
-        skyLayer.style.transform = `translate3d(${mouseX * -15}px, ${scrollY * 0.12 + mouseY * -8}px, 0)`;
-      }
-      if (mountainLayer) {
-        mountainLayer.style.transform = `translate3d(${mouseX * -28}px, ${scrollY * 0.35 + mouseY * -12}px, 0) scale(1.05)`;
-      }
-      if (cloudsBack) {
-        cloudsBack.style.transform = `translate3d(${mouseX * -45}px, ${scrollY * 0.22}px, 0)`;
-      }
-      if (airplaneContainer) {
-        const planeX = mouseX * 80 + (scrollY * 0.5);
-        const planeY = (scrollY * 0.52) + (mouseY * 40);
-        const bankAngle = (mouseX * 16) - (scrollY * 0.025);
-        const pitchAngle = (mouseY * 12) - (scrollY * 0.02);
-        airplaneContainer.style.transform = `translate(-50%, -50%) translate3d(${planeX}px, ${planeY}px, 80px) rotate(${bankAngle}deg) rotateX(${pitchAngle}deg)`;
-      }
-      if (cloudsFront) {
-        cloudsFront.style.transform = `translate3d(${mouseX * 60}px, ${scrollY * 0.68}px, 0) scale(1.35)`;
-      }
-      if (heroContent) {
-        const opacity = Math.max(0, 1 - (scrollY / 520));
-        heroContent.style.transform = `translate3d(${mouseX * 12}px, ${scrollY * 0.42}px, 0)`;
-        heroContent.style.opacity = opacity;
+    if (window.scrollY < window.innerHeight) {
+      const plane = document.getElementById('hero-airplane-img');
+      if (plane) {
+        plane.style.transform = `perspective(1000px) rotateY(${mouseX * 15}deg) rotateX(${-mouseY * 12}deg) rotateZ(${mouseX * 8}deg)`;
       }
     }
-
-    requestAnimationFrame(updateHeroParallax);
+    requestAnimationFrame(gyroLoop);
   }
-
-  requestAnimationFrame(updateHeroParallax);
-}
-
-// --- 4. DYNAMIC BIOME PARALLAX ENTITIES (BOAT, PARAGLIDER, CAMEL, GONDOLA) ---
-function initBiomeEntitiesParallax() {
-  const biomes = document.querySelectorAll('.fullpage-biome');
-  const boat = document.querySelector('.parallax-boat-container');
-  const paraglider = document.querySelector('.parallax-paraglider-container');
-  const camel = document.querySelector('.parallax-camel-container');
-  const gondola = document.querySelector('.parallax-gondola-container');
-
-  window.addEventListener('scroll', () => {
-    const windowH = window.innerHeight;
-
-    // 1. General Biome Section Parallax (Background & Content)
-    biomes.forEach(biome => {
-      const rect = biome.getBoundingClientRect();
-      if (rect.top <= windowH && rect.bottom >= 0) {
-        const bgLayer = biome.querySelector('.biome-bg-layer');
-        const contentWrap = biome.querySelector('.biome-content-wrap');
-
-        const progress = (windowH - rect.top) / (windowH + rect.height);
-        const yDelta = (progress - 0.5) * 160;
-
-        if (bgLayer) {
-          bgLayer.style.transform = `translate3d(0, ${yDelta * -0.6}px, 0) scale(1.18)`;
-        }
-        if (contentWrap) {
-          contentWrap.style.transform = `translate3d(0, ${yDelta * 0.18}px, 0)`;
-        }
-      }
-    });
-
-    // 2. SEA SECTION: Boat sailing & Paraglider soaring on scroll
-    const seaSection = document.getElementById('biome-sea');
-    if (seaSection) {
-      const seaRect = seaSection.getBoundingClientRect();
-      if (seaRect.top <= windowH && seaRect.bottom >= 0) {
-        // Progress from 0 (entering) to 1 (leaving)
-        const seaProgress = (windowH - seaRect.top) / (windowH + seaRect.height);
-        
-        // Boat moves smoothly across the turquoise water from left to right
-        if (boat) {
-          const boatX = (seaProgress - 0.2) * 320; // 320px travel
-          const boatY = Math.sin(seaProgress * Math.PI * 4) * 8; // gentle wave dip
-          boat.style.transform = `translate3d(${boatX}px, ${boatY}px, 40px)`;
-        }
-
-        // Paraglider glides across the azure sky in opposite direction
-        if (paraglider) {
-          const gliderX = (0.8 - seaProgress) * 220;
-          const gliderY = (seaProgress - 0.5) * 100;
-          paraglider.style.transform = `translate3d(${gliderX}px, ${gliderY}px, 60px) rotate(${(seaProgress - 0.5) * 10}deg)`;
-        }
-      }
-    }
-
-    // 3. DESERT SECTION: Camel caravan walking across the dune ridge
-    const desertSection = document.getElementById('biome-sand');
-    if (desertSection) {
-      const desertRect = desertSection.getBoundingClientRect();
-      if (desertRect.top <= windowH && desertRect.bottom >= 0) {
-        const desertProgress = (windowH - desertRect.top) / (windowH + desertRect.height);
-        if (camel) {
-          // Camel caravan traverses across the ridge
-          const camelX = (desertProgress - 0.15) * 280;
-          const camelY = Math.sin(desertProgress * Math.PI * 3) * 10; // follows undulating dune curve
-          camel.style.transform = `translate3d(${camelX}px, ${camelY}px, 40px)`;
-        }
-      }
-    }
-
-    // 4. MOUNTAINS SECTION: Alpine Cable Car (Gondola) gliding along cable
-    const mountainSection = document.getElementById('biome-mountains');
-    if (mountainSection) {
-      const mountainRect = mountainSection.getBoundingClientRect();
-      if (mountainRect.top <= windowH && mountainRect.bottom >= 0) {
-        const mountainProgress = (windowH - mountainRect.top) / (windowH + mountainRect.height);
-        if (gondola) {
-          const gondolaX = (mountainProgress - 0.3) * -240;
-          const gondolaY = (mountainProgress - 0.3) * 60;
-          gondola.style.transform = `translate3d(${gondolaX}px, ${gondolaY}px, 50px)`;
-        }
-      }
-    }
-  }, { passive: true });
+  gyroLoop();
 }
 
 // --- 5. FLIGHT ROUTE TRACKER (RADAR WAYPOINTS) ---
@@ -404,7 +493,7 @@ function renderPackages() {
 
     return `
       <div class="glass-card-vibrant rounded-3xl overflow-hidden flex flex-col group tilt-interactive" data-package-id="${pkg.id}">
-        <!-- Image Header with Hover Zoom -->
+        <!-- Image Header -->
         <div class="relative h-64 overflow-hidden">
           <img src="${pkg.image}" alt="${pkg.title}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
@@ -440,7 +529,6 @@ function renderPackages() {
               ${pkg.overview}
             </p>
 
-            <!-- Highlights Checklist -->
             <div class="space-y-2 mb-5 border-t border-b border-white/10 py-3.5">
               ${pkg.highlights.slice(0, 3).map(hl => `
                 <div class="flex items-center text-xs text-slate-300">
@@ -450,14 +538,12 @@ function renderPackages() {
               `).join('')}
             </div>
 
-            <!-- Flight Included Banner -->
             <div class="flex items-center text-xs text-cyan-300 bg-cyan-950/50 border border-cyan-500/30 rounded-xl px-3 py-2.5 mb-5 font-medium">
               <svg class="w-4 h-4 mr-2 text-cyan-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               <span class="truncate">${pkg.flightPartner}</span>
             </div>
           </div>
 
-          <!-- Price & Booking CTA -->
           <div class="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
             <div>
               <span class="text-[11px] text-slate-400 block uppercase tracking-wider font-semibold">All-Inclusive From</span>
@@ -492,7 +578,6 @@ window.resetFilters = function() {
   renderPackages();
 };
 
-// --- 7. FILTER & SEARCH HANDLERS ---
 function initSearchAndFilter() {
   const filterTabs = document.querySelectorAll('.filter-tab');
   filterTabs.forEach(tab => {
@@ -518,7 +603,6 @@ function initSearchAndFilter() {
   }
 }
 
-// --- 8. CURRENCY SELECTOR ---
 function initCurrencySelector() {
   const currencySelects = document.querySelectorAll('.currency-select');
   currencySelects.forEach(select => {
@@ -534,7 +618,7 @@ function initCurrencySelector() {
   });
 }
 
-// --- 9. INTERACTIVE BOOKING MODAL & ENGINE ---
+// --- 7. BOOKING MODAL & ENGINE ---
 function initBookingModal() {
   const modal = document.getElementById('booking-modal');
   const closeBtn = document.getElementById('close-booking-modal');
@@ -556,7 +640,6 @@ function initBookingModal() {
     });
   }
 
-  // Prepopulate dates
   const today = new Date();
   const departDate = new Date(today);
   departDate.setDate(today.getDate() + 14);
@@ -644,7 +727,6 @@ function updateModalPreview() {
   if (previewFlight) previewFlight.textContent = `Included Flight: ${selectedPackage.flightPartner}`;
 }
 
-// SAFE RECALCULATION
 function recalculateBookingPrice() {
   if (!selectedPackage) selectedPackage = PACKAGES_DATA[0];
 
@@ -708,7 +790,7 @@ function recalculateBookingPrice() {
   }
 }
 
-// --- 10. LUXURY BOARDING PASS & PRINT RECEIPT ---
+// --- 8. OFFICIAL BOARDING PASS & PRINT RECEIPT ---
 function handleBookingSubmission() {
   const name = document.getElementById('book-name')?.value || 'Valued Traveler';
   const email = document.getElementById('book-email')?.value || 'traveler@luxury.com';
@@ -729,7 +811,6 @@ function handleBookingSubmission() {
   if (modalBody) {
     modalBody.innerHTML = `
       <div class="py-4 px-2">
-        <!-- Action Buttons Bar -->
         <div class="no-print flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 p-4 rounded-2xl bg-amber-500/15 border border-amber-500/35">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xl">
@@ -752,9 +833,7 @@ function handleBookingSubmission() {
           </div>
         </div>
 
-        <!-- AUTHENTIC PRINTABLE BOARDING PASS -->
         <div id="printable-voucher" class="boarding-pass-card max-w-2xl mx-auto p-8 border border-slate-200">
-          
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-slate-900 pb-5 mb-6">
             <div>
               <div class="flex items-center gap-2 mb-1">
@@ -838,7 +917,6 @@ function handleBookingSubmission() {
                 <span class="text-[10px] text-slate-700 font-serif font-bold">Aura Travel Guild Certified</span>
               </div>
               
-              <!-- SVG Barcode Graphic -->
               <svg class="w-32 h-10" viewBox="0 0 140 40">
                 <rect x="0" y="0" width="3" height="40" fill="#0f172a" />
                 <rect x="5" y="0" width="1" height="40" fill="#0f172a" />
@@ -874,13 +952,12 @@ function handleBookingSubmission() {
             24/7 Global VIP Concierge Hotline: <strong class="text-slate-700">+1 (800) 428-AURA</strong> • Geneva • New York • Dubai • Singapore
           </div>
         </div>
-
       </div>
     `;
   }
 }
 
-// --- 11. ATMOSPHERIC CANVAS PARTICLES ---
+// --- 9. CANVAS PARTICLES ---
 function initParticleCanvas() {
   const canvas = document.getElementById('particles-canvas');
   if (!canvas) return;
@@ -895,7 +972,7 @@ function initParticleCanvas() {
   });
 
   const particles = [];
-  const PARTICLE_COUNT = 50;
+  const PARTICLE_COUNT = 45;
 
   for (let i = 0; i < PARTICLE_COUNT; i++) {
     particles.push({
@@ -934,7 +1011,7 @@ function initParticleCanvas() {
   renderParticles();
 }
 
-// --- 12. WEB AUDIO API SOUNDSCAPE ---
+// --- 10. WEB AUDIO API SOUNDSCAPE ---
 let audioCtx = null;
 let isAudioPlaying = false;
 let ambientNodes = [];
@@ -1020,7 +1097,7 @@ function stopAmbientSoundscape() {
   }
 }
 
-// --- 13. 3D CARD TILT ON MOUSE HOVER ---
+// --- 11. 3D CARD TILT ON MOUSE HOVER ---
 function initInteractive3DTilt() {
   document.addEventListener('mousemove', (e) => {
     const cards = document.querySelectorAll('.tilt-interactive');
@@ -1045,7 +1122,7 @@ function initInteractive3DTilt() {
   });
 }
 
-// --- 14. BULLETPROOF RESPONSIVE MOBILE MENU ---
+// --- 12. MOBILE MENU ---
 function initMobileMenu() {
   const toggleBtn = document.getElementById('mobile-menu-btn');
   const closeBtn = document.getElementById('mobile-menu-close');
