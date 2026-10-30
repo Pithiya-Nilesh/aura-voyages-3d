@@ -1,19 +1,20 @@
 /* ========================================================
-   AURA VOYAGES - 3D PARALLAX LUXURY TRAVEL STYLING
+   AURA VOYAGES - ULTRA-LUXURY 3D PARALLAX TRAVEL STYLING
    ======================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Cinzel:wght@600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root {
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
+  --font-cinzel: 'Cinzel', Georgia, serif;
   --font-display: 'Space Grotesk', monospace, sans-serif;
   
-  --bg-primary: #070b14;
-  --bg-secondary: #0d1527;
-  --bg-card: rgba(15, 23, 42, 0.75);
+  --bg-dark: #050811;
+  --bg-card: rgba(11, 18, 33, 0.75);
   --accent-gold: #f59e0b;
-  --accent-gold-glow: rgba(245, 158, 11, 0.35);
+  --accent-gold-light: #fef08a;
+  --accent-gold-dark: #b45309;
   --accent-cyan: #38bdf8;
   --accent-emerald: #10b981;
 }
@@ -27,36 +28,41 @@
 html {
   scroll-behavior: smooth;
   font-family: var(--font-sans);
-  background-color: var(--bg-primary);
+  background-color: var(--bg-dark);
   color: #f8fafc;
   overflow-x: hidden;
 }
 
 body {
   overflow-x: hidden;
-  background-color: var(--bg-primary);
+  background-color: var(--bg-dark);
   min-height: 100vh;
   position: relative;
+  color: #f1f5f9;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 9px;
 }
 ::-webkit-scrollbar-track {
-  background: #070b14;
+  background: #050811;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #38bdf8 0%, #f59e0b 100%);
+  background: linear-gradient(180deg, #38bdf8 0%, #f59e0b 50%, #d97706 100%);
   border-radius: 9999px;
+  border: 2px solid #050811;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #60a5fa 0%, #fbbf24 100%);
+  background: linear-gradient(180deg, #7dd3fc 0%, #fbbf24 50%, #f59e0b 100%);
 }
 
-/* Font Family Utility Classes */
+/* Typography Utility Classes */
 .font-serif {
   font-family: var(--font-serif);
+}
+.font-cinzel {
+  font-family: var(--font-cinzel);
 }
 .font-sans {
   font-family: var(--font-sans);
@@ -65,37 +71,50 @@ body {
   font-family: var(--font-display);
 }
 
-/* Glassmorphism Classes */
+/* Glassmorphism Styles */
+.glass-nav {
+  background: rgba(7, 11, 22, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
 .glass-panel {
-  background: rgba(13, 21, 39, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  background: rgba(11, 18, 33, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
 }
 
 .glass-card {
-  background: rgba(17, 27, 49, 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(13, 22, 40, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  background: rgba(22, 36, 66, 0.75);
-  border-color: rgba(245, 158, 11, 0.4);
-  transform: translateY(-6px);
-  box-shadow: 0 25px 50px -12px rgba(245, 158, 11, 0.15), 0 0 30px rgba(56, 189, 248, 0.1);
+  background: rgba(18, 30, 56, 0.85);
+  border-color: rgba(245, 158, 11, 0.45);
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.7), 0 0 35px rgba(245, 158, 11, 0.2);
 }
 
-/* 3D PARALLAX STAGE */
-.parallax-stage {
+/* ========================================================
+   FULL-PAGE 3D PARALLAX ENGINE & STAGES
+   ======================================================== */
+.fullpage-stage {
   position: relative;
   height: 100vh;
-  min-height: 720px;
+  min-height: 800px;
+  width: 100%;
   overflow: hidden;
-  perspective: 1000px;
+  display: flex;
+  align-items: center;
+  perspective: 1200px;
   transform-style: preserve-3d;
 }
 
@@ -110,24 +129,20 @@ body {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 0.08s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.parallax-interactive {
-  pointer-events: auto;
-}
-
-/* Depth Layers in Hero */
+/* HERO SECTION LAYERS */
 .hero-bg-sky {
   z-index: 1;
-  background-image: radial-gradient(circle at 50% 25%, #25447a 0%, #0c182f 45%, #070b14 85%);
+  background-image: radial-gradient(circle at 50% 20%, #1e3a68 0%, #0c182c 45%, #050811 85%);
 }
 
 .hero-layer-mountains {
   z-index: 2;
-  background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=80');
+  background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2560&q=85');
   background-position: center bottom;
-  filter: brightness(0.85) contrast(1.1);
+  filter: brightness(0.8) contrast(1.1);
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%);
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%);
 }
@@ -135,7 +150,7 @@ body {
 .hero-clouds-back {
   z-index: 3;
   opacity: 0.65;
-  background-image: url('https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=2000&q=80');
+  background-image: url('https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=2560&q=85');
   mix-blend-mode: screen;
   filter: blur(1px) contrast(1.2);
   animation: floatCloudsBack 60s linear infinite alternate;
@@ -144,10 +159,10 @@ body {
 .hero-airplane-container {
   z-index: 4;
   position: absolute;
-  top: 38%;
+  top: 40%;
   left: 50%;
-  width: 320px;
-  height: 180px;
+  width: 360px;
+  height: 200px;
   transform: translate(-50%, -50%);
   will-change: transform;
   pointer-events: none;
@@ -157,16 +172,16 @@ body {
 .hero-clouds-front {
   z-index: 5;
   opacity: 0.55;
-  background-image: url('https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=2000&q=80');
+  background-image: url('https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=2560&q=85');
   mix-blend-mode: screen;
-  filter: contrast(1.1);
+  filter: contrast(1.15);
   transform: scale(1.3);
-  animation: floatCloudsFront 40s linear infinite alternate-reverse;
+  animation: floatCloudsFront 45s linear infinite alternate-reverse;
 }
 
 .hero-foreground-gradient {
   z-index: 6;
-  background: linear-gradient(180deg, rgba(7, 11, 20, 0) 60%, rgba(7, 11, 20, 0.95) 90%, #070b14 100%);
+  background: linear-gradient(180deg, rgba(5, 8, 17, 0) 60%, rgba(5, 8, 17, 0.95) 90%, #050811 100%);
 }
 
 .hero-content {
@@ -177,105 +192,107 @@ body {
 
 /* Animations */
 @keyframes floatCloudsBack {
-  0% { transform: scale(1.1) translateX(-5%); }
-  100% { transform: scale(1.1) translateX(5%); }
+  0% { transform: scale(1.1) translateX(-6%); }
+  100% { transform: scale(1.1) translateX(6%); }
 }
 
 @keyframes floatCloudsFront {
-  0% { transform: scale(1.3) translateX(8%) translateY(-2%); }
-  100% { transform: scale(1.3) translateX(-8%) translateY(2%); }
+  0% { transform: scale(1.35) translateX(10%) translateY(-2%); }
+  100% { transform: scale(1.35) translateX(-10%) translateY(2%); }
 }
 
 @keyframes planeHover {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-12px) rotate(1.5deg); }
+  50% { transform: translateY(-14px) rotate(1.8deg); }
 }
 
 .animate-plane-float {
-  animation: planeHover 5s ease-in-out infinite;
+  animation: planeHover 5.5s ease-in-out infinite;
 }
 
-/* Airplane Jet Stream Glow */
+/* Jet Contrail */
 .jet-contrail {
   position: absolute;
-  right: 85%;
+  right: 88%;
   top: 50%;
-  width: 280px;
-  height: 4px;
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(200, 235, 255, 0.45) 80%, rgba(255, 255, 255, 0.9) 100%);
+  width: 340px;
+  height: 5px;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(186, 230, 253, 0.45) 75%, rgba(255, 255, 255, 0.95) 100%);
   filter: blur(2px);
   transform-origin: right center;
   border-radius: 9999px;
-  opacity: 0.8;
+  opacity: 0.85;
   animation: pulseContrail 2s ease-in-out infinite alternate;
 }
 
 @keyframes pulseContrail {
   0% { opacity: 0.6; transform: scaleX(0.9); }
-  100% { opacity: 0.9; transform: scaleX(1.1); }
+  100% { opacity: 0.95; transform: scaleX(1.15); }
 }
 
-/* 3D Tilt Card Effect */
-.tilt-card {
-  transform-style: preserve-3d;
-  transition: transform 0.2s ease-out;
-}
-.tilt-card-inner {
-  transform: translateZ(30px);
-}
-
-/* Biome Parallax Section */
-.biome-section {
+/* ========================================================
+   FULL-PAGE BIOME REALM SECTIONS (100VH PARALLAX)
+   ======================================================== */
+.fullpage-biome {
   position: relative;
-  min-height: 80vh;
+  height: 100vh;
+  min-height: 820px;
+  width: 100%;
+  overflow: hidden;
   display: flex;
   align-items: center;
-  overflow: hidden;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.biome-bg {
+.biome-bg-layer {
   position: absolute;
-  top: -25%;
+  top: -20%;
   left: 0;
   width: 100%;
-  height: 150%;
+  height: 140%;
   background-size: cover;
   background-position: center;
   will-change: transform;
-  filter: brightness(0.7) contrast(1.1);
+  filter: brightness(0.65) contrast(1.15);
   transition: transform 0.1s linear;
 }
 
-.biome-overlay {
+.biome-mist-layer {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(7, 11, 20, 0.3) 0%, rgba(7, 11, 20, 0.9) 90%);
+  pointer-events: none;
+  background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.08) 0%, transparent 60%);
+  mix-blend-mode: overlay;
 }
 
-/* Floating Flight Path Tracker */
-.flight-tracker-pill {
-  backdrop-filter: blur(12px);
-  background: rgba(13, 21, 39, 0.85);
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(245, 158, 11, 0.2);
+.biome-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(5, 8, 17, 0.25) 0%, rgba(5, 8, 17, 0.85) 85%, #050811 100%);
 }
 
-/* Glowing text and buttons */
-.text-glow-gold {
-  text-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
+.biome-content-wrap {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-.text-glow-cyan {
-  text-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
+/* 3D Tilt Card */
+.tilt-interactive {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease;
 }
 
+/* Buttons */
 .btn-luxury {
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  color: #070b14;
+  color: #050811;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.4), 0 0 15px rgba(245, 158, 11, 0.2);
 }
@@ -283,59 +300,41 @@ body {
 .btn-luxury:hover {
   background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 15px 35px -5px rgba(245, 158, 11, 0.6), 0 0 25px rgba(245, 158, 11, 0.35);
+  box-shadow: 0 16px 35px -5px rgba(245, 158, 11, 0.6), 0 0 25px rgba(245, 158, 11, 0.35);
 }
 
-.btn-outline-glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #f8fafc;
+.btn-luxury-outline {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+  font-weight: 600;
   transition: all 0.3s ease;
 }
 
-.btn-outline-glass:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.4);
+.btn-luxury-outline:hover {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: #f59e0b;
+  color: #ffffff;
   transform: translateY(-2px);
 }
 
-/* Modal animation */
-.modal-overlay {
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.modal-content {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-}
-
-.modal-hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.modal-hidden .modal-content {
-  transform: scale(0.95) translateY(20px);
-}
-
-/* Badge tags */
+/* Tag Badge */
 .tag-badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 600;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   border-radius: 9999px;
   backdrop-filter: blur(8px);
 }
 
-/* Custom interactive calendar & input style */
+/* Luxury Input */
 .luxury-input {
-  background: rgba(10, 16, 30, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(9, 15, 28, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   color: #f8fafc;
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
@@ -347,10 +346,47 @@ body {
   outline: none;
   border-color: #f59e0b;
   box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
-  background: rgba(15, 23, 42, 0.95);
+  background: rgba(14, 23, 42, 0.95);
 }
 
-/* Floating particles canvas */
+/* Equalizer Bars for Audio */
+.equalizer-bar {
+  display: inline-block;
+  width: 2.5px;
+  height: 10px;
+  background-color: #f59e0b;
+  border-radius: 2px;
+  animation: eqBounce 1s infinite ease-in-out;
+}
+.equalizer-bar:nth-child(2) { animation-delay: 0.2s; }
+.equalizer-bar:nth-child(3) { animation-delay: 0.4s; }
+.equalizer-bar:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes eqBounce {
+  0%, 100% { height: 4px; }
+  50% { height: 14px; }
+}
+
+/* Modals */
+.modal-overlay {
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-content {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.modal-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal-hidden .modal-content {
+  transform: scale(0.96) translateY(24px);
+}
+
+/* Canvas Particles */
 #particles-canvas {
   position: absolute;
   top: 0;
@@ -361,14 +397,100 @@ body {
   z-index: 6;
 }
 
-/* Responsive tweaks */
-@media (max-width: 768px) {
+/* Flight Tracker Badge */
+.flight-tracker-pill {
+  backdrop-filter: blur(14px);
+  background: rgba(9, 15, 28, 0.88);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 20px rgba(245, 158, 11, 0.18);
+}
+
+/* ========================================================
+   AUTHENTIC BOARDING PASS & PRINT RECEIPT STYLING
+   ======================================================== */
+.boarding-pass-card {
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+
+.boarding-pass-notch-left,
+.boarding-pass-notch-right {
+  position: absolute;
+  top: 68%;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #0b1220;
+  z-index: 20;
+}
+.boarding-pass-notch-left { left: -12px; }
+.boarding-pass-notch-right { right: -12px; }
+
+.boarding-pass-divider {
+  border-top: 2px dashed #cbd5e1;
+  position: relative;
+}
+
+/* PRINT FORMAT OPTIMIZATIONS */
+@media print {
+  /* Hide everything except printable receipt */
+  body * {
+    visibility: hidden;
+  }
+  
+  #printable-voucher,
+  #printable-voucher * {
+    visibility: visible;
+  }
+
+  #printable-voucher {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border: 2px solid #000000 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 1.5cm;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .fullpage-biome {
+    height: auto;
+    min-height: 100vh;
+    padding: 6rem 0;
+  }
   .hero-airplane-container {
-    width: 220px;
-    height: 120px;
+    width: 260px;
+    height: 140px;
+    top: 42%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-airplane-container {
+    width: 200px;
+    height: 110px;
     top: 45%;
   }
   .jet-contrail {
-    width: 160px;
+    width: 180px;
   }
 }

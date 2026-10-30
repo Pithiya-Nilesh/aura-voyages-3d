@@ -1,9 +1,9 @@
 /**
- * AURA VOYAGES - 3D PARALLAX LUXURY TRAVEL ENGINE
- * Multi-layer 3D Depth, Flight Tracking, Booking Modal, Audio Synthesis & Dynamic Currency
+ * AURA VOYAGES - ADVANCED 3D PARALLAX LUXURY TRAVEL ENGINE
+ * Bulletproof Calculations, Full-Page Biome Parallax, Soundscape & Print Boarding Pass
  */
 
-// --- 1. DATA: PACKAGES & CURRENCIES ---
+// --- 1. DATA: ALL-INCLUSIVE CURATED PACKAGES ---
 const PACKAGES_DATA = [
   {
     id: 'alpine-matterhorn',
@@ -14,12 +14,33 @@ const PACKAGES_DATA = [
     rating: 4.98,
     reviewsCount: 142,
     basePriceUSD: 2890,
-    badge: 'Popular Choice',
-    tagColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
-    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
+    badge: 'Swiss Chalet',
+    tagColor: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=85',
+    hotelName: 'The Omnia 5★ Mountain Lodge & Private Spa',
+    flightPartner: 'Swiss International Air (Flight LX-18)',
+    flightRoute: 'Direct Airport ➔ Zermatt Glacier Express',
     overview: 'High-altitude luxury ski chalet with panoramic Matterhorn vistas, private heated infinity pool, and Swiss Alpine helicopter tour.',
-    highlights: ['First-class Glacier Express scenic train', 'Private mountain UIAGM guide', 'Alpine fondue & Michelin star dining', 'Luxury ski-in / ski-out chalet'],
-    flightIncluded: 'Swiss International Air (Direct)'
+    highlights: ['First-class Glacier Express scenic train pass', 'Private UIAGM certified mountain ski guide', 'Alpine fondue & Michelin star private chef', 'Helicopter tour over Matterhorn & Monte Rosa'],
+    flightIncluded: 'Swiss International Air (First / Business Class)'
+  },
+  {
+    id: 'patagonia-wild-peaks',
+    title: 'Torres del Paine & Glacial Fjords',
+    location: 'Patagonia, Chile & Argentina',
+    category: 'mountains',
+    duration: '9 Days / 8 Nights',
+    rating: 4.96,
+    reviewsCount: 89,
+    badge: 'Glacier Expedition',
+    tagColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
+    image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=85',
+    hotelName: 'Explora Patagonia Geodesic Luxury Domes',
+    flightPartner: 'LATAM Airlines + Scenic Regional Floatplane',
+    flightRoute: 'Santiago ➔ Punta Arenas ➔ Grey Glacier',
+    overview: 'Marvel at granite towers, dramatic icebergs, and glacial fjords from ultra-luxury geodesic eco-domes with Chilean wine pairing.',
+    highlights: ['Grey Glacier navigation & iceberg boat safari', 'Puma tracking with private wildlife biologist', 'Private Andean horseback expedition', 'Sommelier-guided Chilean reserve wine tastings'],
+    flightIncluded: 'LATAM Airlines + Scenic Floatplane'
   },
   {
     id: 'sahara-royal-dunes',
@@ -29,13 +50,33 @@ const PACKAGES_DATA = [
     duration: '6 Days / 5 Nights',
     rating: 4.95,
     reviewsCount: 98,
-    basePriceUSD: 2150,
-    badge: 'Signature Luxury',
-    tagColor: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
-    image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80',
+    badge: 'Royal Desert',
+    tagColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+    image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1600&q=85',
+    hotelName: 'Al Maha Royal Desert Resort & Stargazing Pavilion',
+    flightPartner: 'Emirates Airlines (Flight EK-204)',
+    flightRoute: 'Direct Flight ➔ Private 4x4 Dune Chauffeur',
     overview: 'Glide over golden dunes in luxury 4x4s, sleep beneath infinite galaxies in private stargazing domes, and experience royal Arabian hospitality.',
-    highlights: ['Private celestial dome with telescope', 'Sunset royal camel caravan', 'Desert falconry & Arabian horses', '4x4 private dune expedition'],
-    flightIncluded: 'Emirates Luxury Flight (Direct)'
+    highlights: ['Private celestial dome with high-power telescope', 'Sunset royal camel caravan with champagne', 'Desert falconry & Arabian thoroughbred horses', 'Private gourmet banquet deep in the dunes'],
+    flightIncluded: 'Emirates Direct Flight (Included)'
+  },
+  {
+    id: 'arabian-empty-quarter',
+    title: 'Liwa Dunes & Palace Mirage',
+    location: 'Abu Dhabi Rub al Khali, UAE',
+    category: 'sand',
+    duration: '5 Days / 4 Nights',
+    rating: 4.93,
+    reviewsCount: 76,
+    badge: 'Oasis Sanctuary',
+    tagColor: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+    image: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=1600&q=85',
+    hotelName: 'Qasr Al Sarab Desert Palace by Anantara',
+    flightPartner: 'Etihad Airways Luxury Apartment',
+    flightRoute: 'Abu Dhabi ➔ Private Dune Helicopter Transfer',
+    overview: 'Perched on the edge of the world’s largest continuous sand desert, offering palace villas with private plunge pools overlooking soaring orange dunes.',
+    highlights: ['Sunrise hot air balloon over towering dunes', 'Hammam scrub & desert date seed spa rituals', 'Dune sandboarding & private rally course', 'Bedouin fireside storytelling with oud music'],
+    flightIncluded: 'Etihad Airways + Helicopter Arrival'
   },
   {
     id: 'maldives-overwater-haven',
@@ -46,11 +87,32 @@ const PACKAGES_DATA = [
     rating: 5.0,
     reviewsCount: 216,
     badge: 'Ultra Luxury',
-    tagColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+    tagColor: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=85',
+    hotelName: 'Soneva Fushi / Jumeirah Olhahali Overwater Villa',
+    flightPartner: 'Qatar Airways (Flight QR-672)',
+    flightRoute: 'Malé International ➔ VIP Twin-Otter Seaplane',
     overview: 'Hover above pristine turquoise crystal waters in a 5-star overwater villa with glass floor viewing, infinity plunge pool, and marine sanctuary.',
-    highlights: ['VIP Seaplane scenic island transfer', 'Manta ray & sea turtle snorkeling', 'Underwater restaurant 5-course dinner', 'Private sunset yacht with sommelier'],
-    flightIncluded: 'Qatar Airways / Seaplane Transfer'
+    highlights: ['VIP Seaplane scenic island transfer', 'Manta ray & sea turtle snorkeling with marine biologist', 'Underwater restaurant 5-course wine dinner', 'Private sunset yacht charter with champagne'],
+    flightIncluded: 'Qatar Airways + Island Seaplane'
+  },
+  {
+    id: 'bora-bora-pearl',
+    title: 'Bora Bora Coral Lagoon & Otemanu Villa',
+    location: 'French Polynesia, South Pacific',
+    category: 'sea',
+    duration: '9 Days / 8 Nights',
+    rating: 4.97,
+    reviewsCount: 164,
+    badge: 'Pacific Haven',
+    tagColor: 'bg-teal-500/20 text-teal-300 border-teal-500/30',
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85',
+    hotelName: 'The St. Regis Bora Bora Overwater Suite',
+    flightPartner: 'Air Tahiti Nui + Catamaran Yacht',
+    flightRoute: 'Papeete ➔ Bora Bora Motu Private Dock',
+    overview: 'Unrivaled views of Mount Otemanu from your spacious overwater bungalow with direct lagoon ladder, glass viewing portals, and Polynesian outrigger breakfast.',
+    highlights: ['Canoe-delivered gourmet breakfast to your sundeck', 'Lagoon ray and harmless reef shark feeding safari', 'Polynesian deep tissue monoi oil massage', 'Private sunset sailing catamaran with live music'],
+    flightIncluded: 'Air Tahiti Nui + Private Water Taxi'
   },
   {
     id: 'costa-rica-canopy',
@@ -62,25 +124,13 @@ const PACKAGES_DATA = [
     reviewsCount: 114,
     badge: 'Eco Adventure',
     tagColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-    image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=85',
+    hotelName: 'Nayara Tented Camp & Arenal Hot Springs',
+    flightPartner: 'United Airlines / Avianca',
+    flightRoute: 'San José ➔ Private Eco-SUV Escort',
     overview: 'Immerse in misty tropical biodiversity with private treehouse canopy suites, geothermal hot spring spas, and secret waterfall treks.',
-    highlights: ['Canopy suspension bridges & zipline', 'Volcanic geothermal private hot springs', 'Night cloudforest bioluminescence tour', 'Organic coffee & cacao private estate'],
+    highlights: ['Canopy suspension bridges & private zip line', 'Volcanic geothermal private mineral springs', 'Night cloudforest bioluminescence tour', 'Organic coffee & cacao private estate tour'],
     flightIncluded: 'International Flights + Eco SUV Chauffeur'
-  },
-  {
-    id: 'patagonia-wild-peaks',
-    title: 'Torres del Paine & Glacial Fjords',
-    location: 'Patagonia, Chile & Argentina',
-    category: 'mountains',
-    duration: '9 Days / 8 Nights',
-    rating: 4.96,
-    reviewsCount: 89,
-    badge: 'Iconic Trek',
-    tagColor: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-    image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80',
-    overview: 'Marvel at granite towers, dramatic icebergs, and glacial fjords from ultra-luxury geodesic eco-domes with Chilean wine pairing.',
-    highlights: ['Grey Glacier navigation cruise', 'Puma spotting & guanaco safari', 'Private Andean equestrian trek', 'Sommelier-guided Chilean wine tastings'],
-    flightIncluded: 'LATAM Airlines + Scenic Floatplane'
   },
   {
     id: 'kyoto-bamboo-onsen',
@@ -90,15 +140,19 @@ const PACKAGES_DATA = [
     duration: '8 Days / 7 Nights',
     rating: 4.99,
     reviewsCount: 178,
-    badge: 'Cultural Immersion',
+    badge: 'Cultural Zen',
     tagColor: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=85',
+    hotelName: 'Hoshinoya Kyoto & Suiran Luxury Collection',
+    flightPartner: 'Japan Airlines (JAL Sky Suite)',
+    flightRoute: 'Tokyo/Osaka ➔ Private Shinkansen & Boat',
     overview: 'Whispering bamboo groves, private cedar onsen thermal baths, centuries-old shrines, and private kaiseki banquet dinners with master geishas.',
-    highlights: ['Exclusive dawn entry to Bamboo Grove', 'Private Zen master meditation session', 'Traditional private tea ceremony', 'Kaiseki 10-course Michelin dinner'],
+    highlights: ['Exclusive dawn entry to Bamboo Grove before crowds', 'Private Zen temple meditation with head abbot', 'Traditional private tea ceremony masterclass', 'Kaiseki 10-course Michelin dinner in private garden pavilion'],
     flightIncluded: 'Japan Airlines (JAL) Sky Suite'
   }
 ];
 
+// Currencies mapping
 const CURRENCIES = {
   USD: { symbol: '$', rate: 1.0, name: 'USD ($)' },
   EUR: { symbol: '€', rate: 0.92, name: 'EUR (€)' },
@@ -110,12 +164,21 @@ const CURRENCIES = {
 let currentCurrency = 'USD';
 let activeCategory = 'all';
 let searchQuery = '';
+let selectedPackage = PACKAGES_DATA[0];
 
-// --- 2. INITIALIZATION ON DOM READY ---
+// Safe Currency Formatter
+function formatPrice(usdAmount) {
+  const safeUSD = (typeof usdAmount === 'number' && !isNaN(usdAmount)) ? usdAmount : 2500;
+  const curr = CURRENCIES[currentCurrency] || CURRENCIES.USD;
+  const converted = Math.round(safeUSD * curr.rate);
+  return `${curr.symbol}${converted.toLocaleString()}`;
+}
+
+// --- 2. INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
   initHeroParallax();
+  initFullpageBiomeParallax();
   initFlightWaypointTracker();
-  initBiomeParallax();
   renderPackages();
   initBookingModal();
   initCurrencySelector();
@@ -126,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
 });
 
-// --- 3. 3D HERO PARALLAX ENGINE ---
+// --- 3. HERO 3D MULTI-LAYER PARALLAX ---
 function initHeroParallax() {
   const heroStage = document.getElementById('hero-stage');
   const skyLayer = document.querySelector('.hero-bg-sky');
@@ -140,78 +203,95 @@ function initHeroParallax() {
   let mouseY = 0;
   let targetMouseX = 0;
   let targetMouseY = 0;
-  let scrollY = window.scrollY;
 
-  // Track Mouse Movement for 3D Gyro effect
   window.addEventListener('mousemove', (e) => {
     const halfW = window.innerWidth / 2;
     const halfH = window.innerHeight / 2;
-    targetMouseX = (e.clientX - halfW) / halfW; // -1 to 1
-    targetMouseY = (e.clientY - halfH) / halfH; // -1 to 1
+    targetMouseX = (e.clientX - halfW) / halfW;
+    targetMouseY = (e.clientY - halfH) / halfH;
   });
 
-  // Smooth RAF render loop
-  function updateParallax() {
-    // Interpolate mouse coordinates (smooth damping)
+  function updateHeroParallax() {
     mouseX += (targetMouseX - mouseX) * 0.08;
     mouseY += (targetMouseY - mouseY) * 0.08;
-    scrollY = window.scrollY;
+    const scrollY = window.scrollY;
+    const heroH = heroStage ? heroStage.offsetHeight : 800;
 
-    const heroHeight = heroStage ? heroStage.offsetHeight : 800;
-
-    if (scrollY <= heroHeight + 200) {
-      // 1. Sky layer
+    if (scrollY <= heroH + 200) {
       if (skyLayer) {
-        skyLayer.style.transform = `translate3d(${mouseX * -15}px, ${scrollY * 0.12 + mouseY * -10}px, 0)`;
+        skyLayer.style.transform = `translate3d(${mouseX * -15}px, ${scrollY * 0.12 + mouseY * -8}px, 0)`;
       }
-
-      // 2. Mountains layer
       if (mountainLayer) {
-        mountainLayer.style.transform = `translate3d(${mouseX * -25}px, ${scrollY * 0.38 + mouseY * -15}px, 0) scale(1.05)`;
+        mountainLayer.style.transform = `translate3d(${mouseX * -28}px, ${scrollY * 0.35 + mouseY * -12}px, 0) scale(1.05)`;
       }
-
-      // 3. Back Clouds
       if (cloudsBack) {
-        cloudsBack.style.transform = `translate3d(${mouseX * -40}px, ${scrollY * 0.25}px, 0)`;
+        cloudsBack.style.transform = `translate3d(${mouseX * -45}px, ${scrollY * 0.22}px, 0)`;
       }
-
-      // 4. Airplane in Sky with 3D banking angle
       if (airplaneContainer) {
-        const planeX = mouseX * 60 + (scrollY * 0.4);
-        const planeY = (scrollY * 0.5) + mouseY * 40;
-        const bankAngle = (mouseX * 12) - (scrollY * 0.03);
-        const pitchAngle = mouseY * 8 - (scrollY * 0.02);
-        airplaneContainer.style.transform = `translate(-50%, -50%) translate3d(${planeX}px, ${planeY}px, 60px) rotate(${bankAngle}deg) rotateX(${pitchAngle}deg)`;
+        const planeX = mouseX * 70 + (scrollY * 0.45);
+        const planeY = (scrollY * 0.5) + (mouseY * 35);
+        const bankAngle = (mouseX * 14) - (scrollY * 0.025);
+        const pitchAngle = (mouseY * 10) - (scrollY * 0.02);
+        airplaneContainer.style.transform = `translate(-50%, -50%) translate3d(${planeX}px, ${planeY}px, 80px) rotate(${bankAngle}deg) rotateX(${pitchAngle}deg)`;
       }
-
-      // 5. Front Clouds
       if (cloudsFront) {
-        cloudsFront.style.transform = `translate3d(${mouseX * 50}px, ${scrollY * 0.65}px, 0) scale(1.3)`;
+        cloudsFront.style.transform = `translate3d(${mouseX * 55}px, ${scrollY * 0.65}px, 0) scale(1.35)`;
       }
-
-      // 6. Hero typography floating HUD
       if (heroContent) {
-        const textOpacity = Math.max(0, 1 - scrollY / 550);
-        heroContent.style.transform = `translate3d(${mouseX * 15}px, ${scrollY * 0.45}px, 0)`;
-        heroContent.style.opacity = textOpacity;
+        const opacity = Math.max(0, 1 - (scrollY / 520));
+        heroContent.style.transform = `translate3d(${mouseX * 12}px, ${scrollY * 0.42}px, 0)`;
+        heroContent.style.opacity = opacity;
       }
     }
 
-    requestAnimationFrame(updateParallax);
+    requestAnimationFrame(updateHeroParallax);
   }
 
-  requestAnimationFrame(updateParallax);
+  requestAnimationFrame(updateHeroParallax);
 }
 
-// --- 4. FLIGHT ROUTE TRACKER (WAYPOINTS AS YOU SCROLL) ---
+// --- 4. FULL-PAGE BIOME PARALLAX ENGINE ---
+function initFullpageBiomeParallax() {
+  const biomes = document.querySelectorAll('.fullpage-biome');
+
+  window.addEventListener('scroll', () => {
+    const windowH = window.innerHeight;
+
+    biomes.forEach(biome => {
+      const rect = biome.getBoundingClientRect();
+      // If biome is within visible viewport range
+      if (rect.top <= windowH && rect.bottom >= 0) {
+        const bgLayer = biome.querySelector('.biome-bg-layer');
+        const contentWrap = biome.querySelector('.biome-content-wrap');
+        const floatingCard = biome.querySelector('.biome-floating-card');
+
+        // Normalise progress from 0 (entering) to 1 (leaving)
+        const progress = (windowH - rect.top) / (windowH + rect.height);
+        const yDelta = (progress - 0.5) * 160;
+
+        if (bgLayer) {
+          bgLayer.style.transform = `translate3d(0, ${yDelta * -0.6}px, 0) scale(1.18)`;
+        }
+        if (contentWrap) {
+          contentWrap.style.transform = `translate3d(0, ${yDelta * 0.2}px, 0)`;
+        }
+        if (floatingCard) {
+          floatingCard.style.transform = `translate3d(0, ${yDelta * -0.25}px, 0)`;
+        }
+      }
+    });
+  }, { passive: true });
+}
+
+// --- 5. FLIGHT ROUTE TRACKER (RADAR WAYPOINTS) ---
 function initFlightWaypointTracker() {
   const waypoints = [
-    { id: 'hero-stage', name: 'Takeoff: Cloud Flight', icon: '✈️' },
-    { id: 'biome-mountains', name: 'Alpine Summits', icon: '🏔️' },
-    { id: 'biome-sand', name: 'Sahara Golden Dunes', icon: '🏜️' },
-    { id: 'biome-sea', name: 'Azure Turquoise Sea', icon: '🌊' },
-    { id: 'biome-forest', name: 'Emerald Canopy', icon: '🌲' },
-    { id: 'packages-section', name: 'Destination Arrival', icon: '📍' }
+    { id: 'hero-stage', name: 'Takeoff: High Stratosphere', icon: '✈️' },
+    { id: 'biome-mountains', name: 'Waypoint 1: Alpine Summits', icon: '🏔️' },
+    { id: 'biome-sand', name: 'Waypoint 2: Sahara Dunes', icon: '🏜️' },
+    { id: 'biome-sea', name: 'Waypoint 3: Azure Atolls', icon: '🌊' },
+    { id: 'biome-forest', name: 'Waypoint 4: Emerald Canopy', icon: '🌲' },
+    { id: 'packages-section', name: 'Final Touchdown: All Packages', icon: '📍' }
   ];
 
   const waypointIndicator = document.getElementById('current-waypoint-name');
@@ -219,7 +299,7 @@ function initFlightWaypointTracker() {
   const waypointProgress = document.getElementById('flight-progress-bar');
 
   window.addEventListener('scroll', () => {
-    const scrollPos = window.scrollY + window.innerHeight * 0.4;
+    const scrollPos = window.scrollY + window.innerHeight * 0.45;
     const totalDocHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercentage = Math.min(100, Math.max(0, (window.scrollY / totalDocHeight) * 100));
 
@@ -238,27 +318,7 @@ function initFlightWaypointTracker() {
   }, { passive: true });
 }
 
-// --- 5. BIOME PARALLAX SCROLLING ---
-function initBiomeParallax() {
-  const biomeBgs = document.querySelectorAll('.biome-bg');
-
-  window.addEventListener('scroll', () => {
-    const windowH = window.innerHeight;
-    biomeBgs.forEach(bg => {
-      const parent = bg.parentElement;
-      const rect = parent.getBoundingClientRect();
-
-      // Only calculate if visible on screen
-      if (rect.top <= windowH && rect.bottom >= 0) {
-        const relativeScroll = (rect.top / windowH);
-        const yOffset = relativeScroll * 120; // 120px parallax delta
-        bg.style.transform = `translate3d(0, ${yOffset}px, 0) scale(1.1)`;
-      }
-    });
-  }, { passive: true });
-}
-
-// --- 6. PACKAGES RENDERING & FILTERING ---
+// --- 6. RENDER PACKAGES (NO NAN BUG) ---
 function renderPackages() {
   const container = document.getElementById('packages-grid');
   if (!container) return;
@@ -273,27 +333,25 @@ function renderPackages() {
 
   if (filtered.length === 0) {
     container.innerHTML = `
-      <div class="col-span-full py-16 text-center text-slate-400 glass-panel rounded-2xl p-8">
-        <svg class="w-16 h-16 mx-auto mb-4 text-amber-400 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <h3 class="text-xl font-bold text-white mb-2">No Expedition Packages Found</h3>
-        <p class="text-sm">Try choosing another realm filter or clearing your search keywords.</p>
-        <button onclick="resetFilters()" class="mt-4 px-6 py-2 rounded-xl bg-amber-500 text-slate-900 font-bold hover:bg-amber-400 transition">Show All Packages</button>
+      <div class="col-span-full py-16 text-center text-slate-400 glass-panel rounded-3xl p-10">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-2 font-serif">No Expeditions Match Your Filter</h3>
+        <p class="text-sm max-w-md mx-auto">Try selecting another realm above or clearing your search keywords to view all our journeys.</p>
+        <button onclick="resetFilters()" class="btn-luxury mt-5 px-6 py-2.5 rounded-xl text-sm font-bold">Show All Available Packages</button>
       </div>
     `;
     return;
   }
 
-  const curr = CURRENCIES[currentCurrency];
-
   container.innerHTML = filtered.map(pkg => {
-    const convertedPrice = Math.round(pkg.basePriceUSD * curr.rate);
-    const formattedPrice = curr.symbol + convertedPrice.toLocaleString();
+    const safePrice = (typeof pkg.basePriceUSD === 'number' && !isNaN(pkg.basePriceUSD)) ? pkg.basePriceUSD : 2890;
+    const priceFormatted = formatPrice(safePrice);
 
     return `
       <div class="glass-card rounded-3xl overflow-hidden flex flex-col group tilt-interactive" data-package-id="${pkg.id}">
-        <!-- Image Header with Hover Depth Zoom -->
+        <!-- Image Header with Hover Zoom -->
         <div class="relative h-64 overflow-hidden">
           <img src="${pkg.image}" alt="${pkg.title}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
@@ -307,56 +365,56 @@ function renderPackages() {
             </span>
           </div>
 
-          <!-- Location Pin -->
-          <div class="absolute bottom-4 left-4 flex items-center text-xs font-medium text-slate-300 bg-slate-900/60 backdrop-blur-md px-3 py-1 rounded-full">
+          <!-- Location Badge -->
+          <div class="absolute bottom-4 left-4 flex items-center text-xs font-medium text-slate-200 bg-slate-900/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
             <svg class="w-3.5 h-3.5 text-amber-400 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             ${pkg.location}
           </div>
 
           <!-- Rating -->
-          <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-md border border-white/10 px-2.5 py-1 rounded-full flex items-center text-xs font-bold text-amber-400">
+          <div class="absolute top-4 right-4 bg-slate-950/85 backdrop-blur-md border border-white/15 px-3 py-1 rounded-full flex items-center text-xs font-bold text-amber-400">
             ★ ${pkg.rating} <span class="text-slate-400 font-normal ml-1">(${pkg.reviewsCount})</span>
           </div>
         </div>
 
-        <!-- Package Body Content -->
+        <!-- Package Body -->
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
             <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors font-serif">
               ${pkg.title}
             </h3>
-            <p class="text-slate-300 text-sm mb-4 line-clamp-2 leading-relaxed">
+            <p class="text-slate-300 text-xs sm:text-sm mb-4 line-clamp-2 leading-relaxed">
               ${pkg.overview}
             </p>
 
             <!-- Highlights Checklist -->
-            <div class="space-y-1.5 mb-5 border-t border-b border-white/5 py-3">
+            <div class="space-y-2 mb-5 border-t border-b border-white/10 py-3.5">
               ${pkg.highlights.slice(0, 3).map(hl => `
                 <div class="flex items-center text-xs text-slate-300">
-                  <svg class="w-3.5 h-3.5 text-amber-400 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <svg class="w-4 h-4 text-amber-400 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                   <span class="truncate">${hl}</span>
                 </div>
               `).join('')}
             </div>
 
-            <!-- Flight Included Ribbon -->
-            <div class="flex items-center text-xs text-cyan-300 bg-cyan-950/40 border border-cyan-500/20 rounded-xl px-3 py-2 mb-5">
+            <!-- Flight Included Banner -->
+            <div class="flex items-center text-xs text-cyan-300 bg-cyan-950/40 border border-cyan-500/25 rounded-xl px-3 py-2.5 mb-5">
               <svg class="w-4 h-4 mr-2 text-cyan-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <span class="truncate">Flight: ${pkg.flightIncluded}</span>
+              <span class="truncate">${pkg.flightPartner}</span>
             </div>
           </div>
 
           <!-- Price & Booking CTA -->
           <div class="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
             <div>
-              <span class="text-xs text-slate-400 block uppercase tracking-wider">All-Inclusive from</span>
+              <span class="text-[11px] text-slate-400 block uppercase tracking-wider font-semibold">All-Inclusive From</span>
               <div class="flex items-baseline gap-1">
-                <span class="text-2xl font-extrabold text-amber-400 font-display">${formattedPrice}</span>
+                <span class="text-2xl font-extrabold text-amber-400 font-display">${priceFormatted}</span>
                 <span class="text-xs text-slate-400">/ person</span>
               </div>
             </div>
 
-            <button onclick="openBookingModal('${pkg.id}')" class="btn-luxury px-5 py-2.5 rounded-xl text-sm flex items-center gap-1.5 shadow-lg group-hover:shadow-amber-500/30">
+            <button onclick="openBookingModal('${pkg.id}')" class="btn-luxury px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 shadow-lg group-hover:shadow-amber-500/30">
               <span>Book Package</span>
               <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
@@ -381,7 +439,7 @@ window.resetFilters = function() {
   renderPackages();
 };
 
-// --- 7. SEARCH AND REALM FILTER LOGIC ---
+// --- 7. FILTER & SEARCH HANDLERS ---
 function initSearchAndFilter() {
   const filterTabs = document.querySelectorAll('.filter-tab');
   filterTabs.forEach(tab => {
@@ -407,33 +465,32 @@ function initSearchAndFilter() {
   }
 }
 
-// --- 8. CURRENCY CONVERTER ---
+// --- 8. CURRENCY SELECTOR ---
 function initCurrencySelector() {
   const currencySelects = document.querySelectorAll('.currency-select');
   currencySelects.forEach(select => {
     select.addEventListener('change', (e) => {
-      currentCurrency = e.target.value;
-      // Sync all currency selectors
-      currencySelects.forEach(s => s.value = currentCurrency);
-      renderPackages();
-      recalculateBookingPrice();
+      const selected = e.target.value;
+      if (CURRENCIES[selected]) {
+        currentCurrency = selected;
+        currencySelects.forEach(s => s.value = currentCurrency);
+        renderPackages();
+        recalculateBookingPrice();
+      }
     });
   });
 }
 
 // --- 9. INTERACTIVE BOOKING MODAL & ENGINE ---
-let selectedPackage = PACKAGES_DATA[0];
-
 function initBookingModal() {
   const modal = document.getElementById('booking-modal');
   const closeBtn = document.getElementById('close-booking-modal');
   const overlay = document.getElementById('modal-backdrop');
   const packageSelect = document.getElementById('modal-package-select');
 
-  // Populate Package Select dropdown
   if (packageSelect) {
     packageSelect.innerHTML = PACKAGES_DATA.map(p => `
-      <option value="${p.id}">${p.title} (${p.location}) - from $${p.basePriceUSD}</option>
+      <option value="${p.id}">${p.title} (${p.location})</option>
     `).join('');
 
     packageSelect.addEventListener('change', (e) => {
@@ -446,7 +503,7 @@ function initBookingModal() {
     });
   }
 
-  // Prepopulate dates: 14 days and 21 days from now
+  // Prepopulate dates: +14 days and +21 days
   const today = new Date();
   const departDate = new Date(today);
   departDate.setDate(today.getDate() + 14);
@@ -462,30 +519,24 @@ function initBookingModal() {
     returnInput.min = departInput.value;
   }
 
-  // Close handlers
   if (closeBtn) closeBtn.addEventListener('click', closeBookingModal);
   if (overlay) overlay.addEventListener('click', closeBookingModal);
 
-  // Form listeners to trigger real-time calculation
-  const recalculateInputs = [
-    'book-adults',
-    'book-children',
-    'book-flight-class',
-    'addon-chauffeur',
-    'addon-champagne',
-    'addon-spa',
-    'addon-drone'
-  ];
-
-  recalculateInputs.forEach(id => {
+  // Recalculation triggers
+  ['book-adults', 'book-children'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener('change', recalculateBookingPrice);
-      el.addEventListener('input', recalculateBookingPrice);
-    }
+    if (el) el.addEventListener('change', recalculateBookingPrice);
   });
 
-  // Booking Form Submission
+  document.querySelectorAll('input[name="flight-class"]').forEach(radio => {
+    radio.addEventListener('change', recalculateBookingPrice);
+  });
+
+  ['addon-chauffeur', 'addon-champagne', 'addon-spa', 'addon-drone'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('change', recalculateBookingPrice);
+  });
+
   const bookingForm = document.getElementById('booking-form');
   if (bookingForm) {
     bookingForm.addEventListener('submit', (e) => {
@@ -495,10 +546,13 @@ function initBookingModal() {
   }
 }
 
-window.openBookingModal = function(packageId = null) {
-  if (packageId) {
+window.openBookingModal = function(packageId) {
+  if (typeof packageId === 'string' && packageId.trim()) {
     const found = PACKAGES_DATA.find(p => p.id === packageId);
     if (found) selectedPackage = found;
+  }
+  if (!selectedPackage) {
+    selectedPackage = PACKAGES_DATA[0];
   }
 
   const packageSelect = document.getElementById('modal-package-select');
@@ -525,6 +579,8 @@ window.closeBookingModal = function() {
 };
 
 function updateModalPreview() {
+  if (!selectedPackage) selectedPackage = PACKAGES_DATA[0];
+
   const previewImg = document.getElementById('modal-pkg-img');
   const previewTitle = document.getElementById('modal-pkg-title');
   const previewLoc = document.getElementById('modal-pkg-location');
@@ -533,44 +589,47 @@ function updateModalPreview() {
   if (previewImg) previewImg.src = selectedPackage.image;
   if (previewTitle) previewTitle.textContent = selectedPackage.title;
   if (previewLoc) previewLoc.textContent = selectedPackage.location;
-  if (previewFlight) previewFlight.textContent = `Includes: ${selectedPackage.flightIncluded}`;
+  if (previewFlight) previewFlight.textContent = `Included Flight: ${selectedPackage.flightPartner}`;
 }
 
+// BULLETPROOF RECALCULATE (NEVER $NaN)
 function recalculateBookingPrice() {
-  const adults = parseInt(document.getElementById('book-adults')?.value || '2', 10);
-  const children = parseInt(document.getElementById('book-children')?.value || '0', 10);
-  const flightClass = document.getElementById('book-flight-class')?.value || 'economy';
+  if (!selectedPackage) selectedPackage = PACKAGES_DATA[0];
 
-  // Add-ons
+  const adults = parseInt(document.getElementById('book-adults')?.value || '2', 10) || 2;
+  const children = parseInt(document.getElementById('book-children')?.value || '0', 10) || 0;
+  
+  const checkedFlightRadio = document.querySelector('input[name="flight-class"]:checked');
+  const flightClass = checkedFlightRadio ? checkedFlightRadio.value : 'economy';
+
   const addChauffeur = document.getElementById('addon-chauffeur')?.checked ? 180 : 0;
   const addChampagne = document.getElementById('addon-champagne')?.checked ? 120 : 0;
   const addSpa = document.getElementById('addon-spa')?.checked ? 250 * adults : 0;
   const addDrone = document.getElementById('addon-drone')?.checked ? 390 : 0;
 
-  // Flight class upgrade per traveler
   const totalTravelers = adults + children;
   let flightUpgradePerPerson = 0;
   if (flightClass === 'premium') flightUpgradePerPerson = 350;
   if (flightClass === 'business') flightUpgradePerPerson = 950;
   if (flightClass === 'first') flightUpgradePerPerson = 1850;
 
-  const basePricePerAdult = selectedPackage.basePriceUSD;
-  const childPrice = Math.round(selectedPackage.basePriceUSD * 0.75); // 25% discount for kids
+  const basePriceUSD = (typeof selectedPackage.basePriceUSD === 'number' && !isNaN(selectedPackage.basePriceUSD)) ? selectedPackage.basePriceUSD : 2890;
+  const childPriceUSD = Math.round(basePriceUSD * 0.75);
 
-  const totalBaseUSD = (adults * basePricePerAdult) + (children * childPrice);
+  const totalBaseUSD = (adults * basePriceUSD) + (children * childPriceUSD);
   const totalFlightUpgradeUSD = totalTravelers * flightUpgradePerPerson;
   const totalAddonsUSD = addChauffeur + addChampagne + addSpa + addDrone;
   const grandTotalUSD = totalBaseUSD + totalFlightUpgradeUSD + totalAddonsUSD;
 
-  const curr = CURRENCIES[currentCurrency];
+  const curr = CURRENCIES[currentCurrency] || CURRENCIES.USD;
   const grandTotalConverted = Math.round(grandTotalUSD * curr.rate);
+  const formattedTotal = `${curr.symbol}${grandTotalConverted.toLocaleString()}`;
 
-  // Update UI breakdown
   const displayTotal = document.getElementById('modal-total-price');
   const displayBreakdown = document.getElementById('modal-price-breakdown');
 
   if (displayTotal) {
-    displayTotal.textContent = `${curr.symbol}${grandTotalConverted.toLocaleString()}`;
+    displayTotal.textContent = formattedTotal;
   }
 
   if (displayBreakdown) {
@@ -586,105 +645,201 @@ function recalculateBookingPrice() {
       </div>` : ''}
       ${totalAddonsUSD > 0 ? `
       <div class="flex justify-between text-xs text-slate-300 py-1">
-        <span>VIP Selected Add-ons</span>
+        <span>Selected VIP Concierge Add-ons</span>
         <span>${curr.symbol}${Math.round(totalAddonsUSD * curr.rate).toLocaleString()}</span>
       </div>` : ''}
       <div class="flex justify-between text-xs text-emerald-400 py-1 border-t border-white/10 mt-1 font-semibold">
-        <span>Taxes, Resort Fees & Concierge Service</span>
-        <span>Included (100%)</span>
+        <span>Taxes, Private Transfers & Resort Inclusions</span>
+        <span>100% Included</span>
       </div>
     `;
   }
 }
 
+// --- 10. LUXURY BOARDING PASS & PRINT RECEIPT ---
 function handleBookingSubmission() {
   const name = document.getElementById('book-name')?.value || 'Valued Traveler';
-  const email = document.getElementById('book-email')?.value || 'traveler@example.com';
-  const phone = document.getElementById('book-phone')?.value || '+1 555-0192';
-  const depart = document.getElementById('book-depart-date')?.value;
-  const returnD = document.getElementById('book-return-date')?.value;
+  const email = document.getElementById('book-email')?.value || 'traveler@luxury.com';
+  const phone = document.getElementById('book-phone')?.value || '+1 (555) 019-2834';
+  const depart = document.getElementById('book-depart-date')?.value || '2026-11-15';
+  const returnD = document.getElementById('book-return-date')?.value || '2026-11-22';
   const adults = document.getElementById('book-adults')?.value || '2';
-  const flightClass = document.getElementById('book-flight-class')?.value?.toUpperCase() || 'ECONOMY';
-  const totalFormatted = document.getElementById('modal-total-price')?.textContent || '$0';
+  const children = document.getElementById('book-children')?.value || '0';
+  
+  const checkedFlightRadio = document.querySelector('input[name="flight-class"]:checked');
+  const flightClass = checkedFlightRadio ? checkedFlightRadio.value.toUpperCase() : 'STANDARD LUXURY';
+  const totalFormatted = document.getElementById('modal-total-price')?.textContent || '$5,780';
 
-  // Generate Reference ID
   const refCode = 'AUR-' + Math.floor(100000 + Math.random() * 900000);
+  const issueDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
   const modalBody = document.getElementById('booking-modal-body');
   if (modalBody) {
     modalBody.innerHTML = `
-      <div class="text-center py-8 px-4 animate-fadeIn">
-        <div class="w-20 h-20 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-5 border border-amber-500/40 shadow-lg shadow-amber-500/20">
-          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        </div>
+      <div class="py-4 px-2">
         
-        <span class="tag-badge bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 mb-2">Expedition Confirmed</span>
-        <h2 class="text-3xl font-serif font-bold text-white mb-2">Your Journey is Secured!</h2>
-        <p class="text-slate-300 text-sm max-w-md mx-auto mb-6">
-          Congratulations, <span class="font-bold text-amber-400">${name}</span>! Your bespoke package reservation is locked in. A detailed boarding itinerary and flight ticket pass have been dispatched to <span class="text-cyan-300 underline">${email}</span>.
-        </p>
-
-        <!-- Digital Boarding Pass Ticket -->
-        <div class="glass-panel p-6 rounded-2xl max-w-lg mx-auto text-left border border-amber-500/30 mb-6 bg-slate-900/80">
-          <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-4">
-            <div>
-              <span class="text-[10px] uppercase tracking-widest text-slate-400">Boarding Pass & Voucher</span>
-              <h4 class="text-lg font-serif font-bold text-amber-400">${selectedPackage.title}</h4>
+        <!-- Action Buttons Bar (Hidden during print) -->
+        <div class="no-print flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xl">
+              ✓
             </div>
-            <div class="text-right">
-              <span class="text-[10px] uppercase tracking-widest text-slate-400">Reference ID</span>
-              <p class="font-mono text-cyan-400 font-bold tracking-wider">${refCode}</p>
+            <div>
+              <h4 class="text-white font-bold text-base">Booking Confirmed & Locked!</h4>
+              <p class="text-xs text-slate-300">Confirmation emailed to <span class="text-amber-400 underline">${email}</span></p>
             </div>
           </div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs mb-4">
-            <div>
-              <span class="text-slate-400 block">Lead Guest</span>
-              <span class="font-bold text-white">${name}</span>
-            </div>
-            <div>
-              <span class="text-slate-400 block">Travel Dates</span>
-              <span class="font-bold text-white">${depart} → ${returnD}</span>
-            </div>
-            <div>
-              <span class="text-slate-400 block">Flight Class</span>
-              <span class="font-bold text-amber-300">${flightClass}</span>
-            </div>
-            <div>
-              <span class="text-slate-400 block">Travelers</span>
-              <span class="font-bold text-white">${adults} Guests</span>
-            </div>
-            <div>
-              <span class="text-slate-400 block">Destinations</span>
-              <span class="font-bold text-white">${selectedPackage.location}</span>
-            </div>
-            <div>
-              <span class="text-slate-400 block">Amount Confirmed</span>
-              <span class="font-bold text-amber-400 text-sm">${totalFormatted}</span>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between pt-3 border-t border-white/10 text-[11px] text-slate-400">
-            <span>✨ 24/7 VIP Concierge Hotline: +1 (800) 428-AURA</span>
-            <span class="text-emerald-400 font-semibold">● Guaranteed Booking</span>
+          <div class="flex items-center gap-3 w-full sm:w-auto">
+            <button onclick="window.print()" class="btn-luxury px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg w-full sm:w-auto">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+              <span>Print Official Voucher</span>
+            </button>
+            <button onclick="closeBookingModal(); location.reload();" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold transition">
+              Done
+            </button>
           </div>
         </div>
 
-        <div class="flex justify-center gap-3">
-          <button onclick="window.print()" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-semibold transition flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
-            Print Voucher
-          </button>
-          <button onclick="closeBookingModal(); location.reload();" class="btn-luxury px-6 py-2.5 rounded-xl text-sm">
-            Complete & Return
-          </button>
+        <!-- AUTHENTIC PRINTABLE BOARDING PASS & OFFICIAL VOUCHER -->
+        <div id="printable-voucher" class="boarding-pass-card max-w-2xl mx-auto p-8 border border-slate-200">
+          
+          <!-- Notches for Airline Boarding Pass styling -->
+          <div class="boarding-pass-notch-left no-print"></div>
+          <div class="boarding-pass-notch-right no-print"></div>
+
+          <!-- Official Header -->
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-slate-900 pb-5 mb-6">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xl">✈️</span>
+                <span class="font-serif text-2xl font-black tracking-wider text-slate-900">AURA VOYAGES</span>
+              </div>
+              <p class="text-[11px] uppercase tracking-widest text-slate-500 font-bold">Bespoke Expeditions & Luxury Travel Carriage</p>
+            </div>
+            <div class="mt-3 sm:mt-0 text-left sm:text-right">
+              <span class="inline-block px-3 py-1 bg-amber-100 text-amber-900 rounded-full font-mono text-xs font-bold border border-amber-300">
+                REF: ${refCode}
+              </span>
+              <p class="text-[10px] text-slate-500 mt-1">Issued: ${issueDate}</p>
+            </div>
+          </div>
+
+          <!-- Route & Airline Banner -->
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 mb-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <div>
+                <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Expedition Package</span>
+                <h3 class="text-xl font-serif font-black text-slate-900">${selectedPackage.title}</h3>
+                <p class="text-xs text-slate-600 mt-0.5">Destination: <span class="font-bold text-slate-900">${selectedPackage.location}</span></p>
+              </div>
+              <div class="text-left sm:text-right">
+                <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Flight Routing</span>
+                <p class="text-sm font-bold text-amber-700">${selectedPackage.flightPartner}</p>
+                <p class="text-xs text-slate-500 font-mono">${selectedPackage.flightRoute}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key Passenger & Reservation Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 py-4 border-t border-b border-slate-200 text-xs mb-6">
+            <div>
+              <span class="text-[10px] uppercase text-slate-400 font-bold block">Lead Guest</span>
+              <span class="font-bold text-slate-900 text-sm">${name}</span>
+              <span class="text-[10px] text-slate-500 block">${phone}</span>
+            </div>
+
+            <div>
+              <span class="text-[10px] uppercase text-slate-400 font-bold block">Travel Dates</span>
+              <span class="font-bold text-slate-900">${depart}</span>
+              <span class="text-[10px] text-slate-500 block">to ${returnD}</span>
+            </div>
+
+            <div>
+              <span class="text-[10px] uppercase text-slate-400 font-bold block">Travelers</span>
+              <span class="font-bold text-slate-900">${adults} Adults</span>
+              ${children > 0 ? `<span class="text-[10px] text-slate-500 block">+ ${children} Children</span>` : ''}
+            </div>
+
+            <div>
+              <span class="text-[10px] uppercase text-slate-400 font-bold block">Cabin Class</span>
+              <span class="font-bold text-amber-600">${flightClass}</span>
+              <span class="text-[10px] text-slate-500 block">Luggage: 2x 32kg</span>
+            </div>
+          </div>
+
+          <!-- Hotel & Inclusions Section -->
+          <div class="mb-6">
+            <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500 block mb-2">5-Star Accommodation & Inclusions</span>
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 text-xs space-y-1.5">
+              <p class="font-bold text-slate-900 text-sm">🏨 ${selectedPackage.hotelName}</p>
+              <p class="text-slate-600">✓ VIP Airport Fast-Track & Private Arrival Chauffeur</p>
+              <p class="text-slate-600">✓ Daily Gourmet Champagne Breakfast & Private Dining Allocation</p>
+              <p class="text-slate-600">✓ Dedicated 24/7 Personal Concierge & Guide</p>
+            </div>
+          </div>
+
+          <!-- Financial Total & Signature -->
+          <div class="boarding-pass-divider pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 block">Payment Status</span>
+              <div class="flex items-center gap-2">
+                <span class="text-emerald-700 font-black text-sm">● PAID IN FULL</span>
+                <span class="text-xs text-slate-500">(${totalFormatted})</span>
+              </div>
+              <p class="text-[10px] text-slate-400 mt-1">All taxes, resort surcharges & air carriage fees included.</p>
+            </div>
+
+            <!-- Simulated Luxury Barcode & Agency Stamp -->
+            <div class="flex items-center gap-4">
+              <div class="text-right hidden sm:block">
+                <span class="text-[9px] uppercase tracking-widest text-slate-400 block font-mono">IATA AGENT #91-2-4820</span>
+                <span class="text-[10px] text-slate-700 font-serif font-bold">Aura Travel Guild Certified</span>
+              </div>
+              
+              <!-- SVG Barcode Graphic -->
+              <svg class="w-32 h-10" viewBox="0 0 140 40">
+                <rect x="0" y="0" width="3" height="40" fill="#0f172a" />
+                <rect x="5" y="0" width="1" height="40" fill="#0f172a" />
+                <rect x="8" y="0" width="4" height="40" fill="#0f172a" />
+                <rect x="15" y="0" width="2" height="40" fill="#0f172a" />
+                <rect x="19" y="0" width="1" height="40" fill="#0f172a" />
+                <rect x="23" y="0" width="5" height="40" fill="#0f172a" />
+                <rect x="30" y="0" width="2" height="40" fill="#0f172a" />
+                <rect x="35" y="0" width="3" height="40" fill="#0f172a" />
+                <rect x="42" y="0" width="1" height="40" fill="#0f172a" />
+                <rect x="45" y="0" width="4" height="40" fill="#0f172a" />
+                <rect x="52" y="0" width="3" height="40" fill="#0f172a" />
+                <rect x="58" y="0" width="1" height="40" fill="#0f172a" />
+                <rect x="62" y="0" width="4" height="40" fill="#0f172a" />
+                <rect x="68" y="0" width="2" height="40" fill="#0f172a" />
+                <rect x="73" y="0" width="5" height="40" fill="#0f172a" />
+                <rect x="81" y="0" width="2" height="40" fill="#0f172a" />
+                <rect x="86" y="0" width="3" height="40" fill="#0f172a" />
+                <rect x="92" y="0" width="1" height="40" fill="#0f172a" />
+                <rect x="95" y="0" width="4" height="40" fill="#0f172a" />
+                <rect x="102" y="0" width="2" height="40" fill="#0f172a" />
+                <rect x="106" y="0" width="4" height="40" fill="#0f172a" />
+                <rect x="113" y="0" width="1" height="40" fill="#0f172a" />
+                <rect x="116" y="0" width="3" height="40" fill="#0f172a" />
+                <rect x="122" y="0" width="4" height="40" fill="#0f172a" />
+                <rect x="128" y="0" width="2" height="40" fill="#0f172a" />
+                <rect x="133" y="0" width="4" height="40" fill="#0f172a" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 text-[10px] text-slate-400 text-center">
+            24/7 Global VIP Concierge Hotline: <strong class="text-slate-700">+1 (800) 428-AURA</strong> • Geneva • New York • Dubai • Singapore
+          </div>
         </div>
+
       </div>
     `;
   }
 }
 
-// --- 10. LIGHTWEIGHT VOLUMETRIC CANVAS PARTICLES ---
+// --- 11. ATMOSPHERIC CANVAS PARTICLES ---
 function initParticleCanvas() {
   const canvas = document.getElementById('particles-canvas');
   if (!canvas) return;
@@ -699,16 +854,16 @@ function initParticleCanvas() {
   });
 
   const particles = [];
-  const PARTICLE_COUNT = 45;
+  const PARTICLE_COUNT = 50;
 
   for (let i = 0; i < PARTICLE_COUNT; i++) {
     particles.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 2.5 + 0.8,
-      speedX: (Math.random() - 0.5) * 0.4 + 0.2,
+      size: Math.random() * 2.2 + 0.8,
+      speedX: (Math.random() - 0.5) * 0.4 + 0.25,
       speedY: (Math.random() - 0.5) * 0.3 - 0.1,
-      opacity: Math.random() * 0.5 + 0.2
+      opacity: Math.random() * 0.6 + 0.2
     });
   }
 
@@ -738,15 +893,15 @@ function initParticleCanvas() {
   renderParticles();
 }
 
-// --- 11. WEB AUDIO API LUXURY FLIGHT AMBIENCE ---
+// --- 12. WEB AUDIO API SOUNDSCAPE ---
 let audioCtx = null;
 let isAudioPlaying = false;
 let ambientNodes = [];
 
 function initAudioSynthesizer() {
   const soundToggleBtn = document.getElementById('soundscape-toggle');
-  const soundIcon = document.getElementById('soundscape-icon');
   const soundText = document.getElementById('soundscape-text');
+  const eqBars = document.getElementById('soundscape-equalizer');
 
   if (!soundToggleBtn) return;
 
@@ -762,14 +917,14 @@ function initAudioSynthesizer() {
     if (!isAudioPlaying) {
       startAmbientSoundscape();
       isAudioPlaying = true;
-      if (soundIcon) soundIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />`;
-      if (soundText) soundText.textContent = 'Audio: On';
+      if (soundText) soundText.textContent = 'Cabin Breeze: On';
+      if (eqBars) eqBars.classList.remove('hidden');
       soundToggleBtn.classList.add('border-amber-400', 'text-amber-400');
     } else {
       stopAmbientSoundscape();
       isAudioPlaying = false;
-      if (soundIcon) soundIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />`;
       if (soundText) soundText.textContent = 'Audio: Off';
+      if (eqBars) eqBars.classList.add('hidden');
       soundToggleBtn.classList.remove('border-amber-400', 'text-amber-400');
     }
   });
@@ -778,7 +933,6 @@ function initAudioSynthesizer() {
 function startAmbientSoundscape() {
   if (!audioCtx) return;
 
-  // Pink noise buffer generator for soothing high-altitude airflow
   const bufferSize = audioCtx.sampleRate * 2;
   const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
   const output = noiseBuffer.getChannelData(0);
@@ -800,14 +954,13 @@ function startAmbientSoundscape() {
   whiteNoise.buffer = noiseBuffer;
   whiteNoise.loop = true;
 
-  // Lowpass filter mimicking jet cabin and mountain breeze
   const filter = audioCtx.createBiquadFilter();
   filter.type = 'lowpass';
-  filter.frequency.value = 380;
+  filter.frequency.value = 400;
 
   const gainNode = audioCtx.createGain();
   gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime);
-  gainNode.gain.exponentialRampToValueAtTime(0.35, audioCtx.currentTime + 2);
+  gainNode.gain.exponentialRampToValueAtTime(0.32, audioCtx.currentTime + 1.5);
 
   whiteNoise.connect(filter);
   filter.connect(gainNode);
@@ -821,15 +974,15 @@ function stopAmbientSoundscape() {
   if (ambientNodes.length > 0) {
     const [source, , gain] = ambientNodes;
     if (gain && audioCtx) {
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
       setTimeout(() => {
         try { source.stop(); } catch(e) {}
-      }, 1000);
+      }, 800);
     }
   }
 }
 
-// --- 12. 3D CARD TILT ON HOVER ---
+// --- 13. 3D CARD TILT ON MOUSE HOVER ---
 function initInteractive3DTilt() {
   document.addEventListener('mousemove', (e) => {
     const cards = document.querySelectorAll('.tilt-interactive');
@@ -844,8 +997,8 @@ function initInteractive3DTilt() {
       if (isHovered) {
         const xVal = (e.clientX - rect.left) / rect.width;
         const yVal = (e.clientY - rect.top) / rect.height;
-        const rotateY = (xVal - 0.5) * 14;
-        const rotateX = (0.5 - yVal) * 14;
+        const rotateY = (xVal - 0.5) * 16;
+        const rotateX = (0.5 - yVal) * 16;
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
       } else {
         card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
@@ -854,13 +1007,30 @@ function initInteractive3DTilt() {
   });
 }
 
-// --- 13. MOBILE MENU TOGGLE ---
+// --- 14. MOBILE MENU DRAWER ---
 function initMobileMenu() {
   const toggleBtn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('mobile-menu-close');
   const menu = document.getElementById('mobile-menu');
-  if (toggleBtn && menu) {
-    toggleBtn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-    });
+  const overlay = document.getElementById('mobile-menu-overlay');
+
+  function openMenu() {
+    if (menu) menu.classList.remove('translate-x-full');
+    if (overlay) overlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
   }
+
+  function closeMenu() {
+    if (menu) menu.classList.add('translate-x-full');
+    if (overlay) overlay.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  if (toggleBtn) toggleBtn.addEventListener('click', openMenu);
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+  if (overlay) overlay.addEventListener('click', closeMenu);
+
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
 }
