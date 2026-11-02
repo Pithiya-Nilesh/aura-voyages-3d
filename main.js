@@ -699,13 +699,13 @@ function initGSAPParallaxScroll() {
     ease: 'none'
   });
 
-  // 2. SEA REALM: Speedboat sails across turquoise waters on the right half, Paraglider soars overhead
+  // 2. SEA REALM: Speedboat sails from start (left) all the way across to the right
   gsap.fromTo('#sea-boat',
-    { x: '-8vw', y: 30, rotation: -2 },
+    { x: '-22vw', y: 35, rotation: -2 },
     {
-      x: '8vw',
-      y: -25,
-      rotation: 1.5,
+      x: '75vw',
+      y: -20,
+      rotation: 2,
       ease: 'none',
       scrollTrigger: {
         trigger: '#biome-sea',
@@ -846,10 +846,10 @@ function initGSAPParallaxScroll() {
 // ═══════════════════════════════════════════════════════════════════
 // 12. THREE.JS INTERACTIVE 3D EARTH GLOBE
 // ═══════════════════════════════════════════════════════════════════
-let globeScene, globeCamera, globeRenderer, globeSphere, globeGroup;
+let globeScene, globeCamera, globeRenderer, globeSphere, globeGroup, cloudMesh;
 let isDraggingGlobe = false, prevMouseX = 0, prevMouseY = 0;
-let targetGlobeRotX = 0.25, targetGlobeRotY = 1.8;
-let currentGlobeRotX = 0.25, currentGlobeRotY = 1.8;
+let targetGlobeRotX = 0.25, targetGlobeRotY = -0.6;
+let currentGlobeRotX = 0.25, currentGlobeRotY = -0.6;
 let flightSparkMeshes = [];
 
 function initThreeJSGlobe() {
@@ -876,39 +876,64 @@ function initThreeJSGlobe() {
 
   const radius = 75;
 
-  // Real NASA High-Resolution Earth Texture
+  // Real NASA High-Resolution Satellite Earth Texture with CORS & Fallback
   const textureLoader = new THREE.TextureLoader();
-  const earthTexture = textureLoader.load('assets/earth-map.jpg', () => {
+  textureLoader.setCrossOrigin('anonymous');
+
+  const onTextureLoaded = (tex) => {
+    tex.colorSpace = THREE.SRGBColorSpace;
+    if (globeSphere && globeSphere.material) {
+      globeSphere.material.map = tex;
+      globeSphere.material.needsUpdate = true;
+    }
     if (globeRenderer && globeScene && globeCamera) {
       globeRenderer.render(globeScene, globeCamera);
     }
-  });
+  };
 
-  // Base Earth Sphere with real satellite continents & oceans
+  const earthTexture = textureLoader.load(
+    'assets/earth-map.jpg',
+    onTextureLoaded,
+    undefined,
+    () => {
+      // High-speed CDN satellite texture fallback
+      textureLoader.load(
+        'https://cdn.jsdelivr.net/gh/mrdoob/three.js@dev/examples/textures/planets/earth_atmos_2048.jpg',
+        onTextureLoaded
+      );
+    }
+  );
+
+  // Base Earth Sphere with authentic satellite continents, vegetation & oceans
   const sphereGeo = new THREE.SphereGeometry(radius, 64, 64);
   const sphereMat = new THREE.MeshPhongMaterial({
     map: earthTexture,
-    specular: new THREE.Color(0x0284c7),
-    shininess: 12,
-    emissive: new THREE.Color(0x050d1e),
-    emissiveIntensity: 0.15
+    specular: new THREE.Color(0x1a334d),
+    shininess: 6,
+    emissive: new THREE.Color(0x020612),
+    emissiveIntensity: 0.08
   });
   globeSphere = new THREE.Mesh(sphereGeo, sphereMat);
   globeGroup.add(globeSphere);
 
-  // Digital Wireframe Grid (subtle navigational longitude / latitude)
-  const wireGeo = new THREE.SphereGeometry(radius + 0.35, 36, 18);
-  const wireMat = new THREE.MeshBasicMaterial({
-    color: 0x38bdf8,
-    wireframe: true,
-    transparent: true,
-    opacity: 0.15
-  });
-  const wireMesh = new THREE.Mesh(wireGeo, wireMat);
-  globeGroup.add(wireMesh);
+  // Realistic Atmospheric Cloud Layer
+  textureLoader.load(
+    'https://cdn.jsdelivr.net/gh/mrdoob/three.js@dev/examples/textures/planets/earth_clouds_1024.png',
+    (cloudTex) => {
+      const cloudGeo = new THREE.SphereGeometry(radius + 0.6, 64, 64);
+      const cloudMat = new THREE.MeshPhongMaterial({
+        map: cloudTex,
+        transparent: true,
+        opacity: 0.35,
+        blending: THREE.AdditiveBlending
+      });
+      cloudMesh = new THREE.Mesh(cloudGeo, cloudMat);
+      globeGroup.add(cloudMesh);
+    }
+  );
 
-  // Glowing Atmosphere Halo
-  const haloGeo = new THREE.SphereGeometry(radius + 7, 32, 32);
+  // Soft Atmospheric Outer Glow
+  const haloGeo = new THREE.SphereGeometry(radius + 5, 32, 32);
   const haloMat = new THREE.ShaderMaterial({
     vertexShader: `
       varying vec3 vNormal;
@@ -920,8 +945,8 @@ function initThreeJSGlobe() {
     fragmentShader: `
       varying vec3 vNormal;
       void main() {
-        float intensity = pow(0.65 - dot(vNormal, vec3(0, 0, 1.0)), 2.0);
-        gl_FragColor = vec4(0.0, 0.95, 1.0, 1.0) * intensity * 0.7;
+        float intensity = pow(0.68 - dot(vNormal, vec3(0, 0, 1.0)), 2.5);
+        gl_FragColor = vec4(0.2, 0.6, 1.0, 1.0) * intensity * 0.45;
       }
     `,
     blending: THREE.AdditiveBlending,
@@ -931,13 +956,13 @@ function initThreeJSGlobe() {
   const haloMesh = new THREE.Mesh(haloGeo, haloMat);
   globeGroup.add(haloMesh);
 
-  // Natural Sunlight & Atmospheric Rim Lights
-  globeScene.add(new THREE.AmbientLight(0xffffff, 1.4));
-  const sunLight = new THREE.DirectionalLight(0xfff8ee, 1.8);
-  sunLight.position.set(180, 120, 180);
+  // Natural Sunlight & Atmospheric Rim Lighting
+  globeScene.add(new THREE.AmbientLight(0xffffff, 1.3));
+  const sunLight = new THREE.DirectionalLight(0xfff8ee, 1.6);
+  sunLight.position.set(160, 100, 160);
   globeScene.add(sunLight);
-  const rimLight = new THREE.DirectionalLight(0x0284c7, 0.7);
-  rimLight.position.set(-150, 60, -150);
+  const rimLight = new THREE.DirectionalLight(0x0284c7, 0.5);
+  rimLight.position.set(-150, 50, -150);
   globeScene.add(rimLight);
 
   function latLonToVec3(lat, lon, r) {
@@ -1070,6 +1095,9 @@ function initThreeJSGlobe() {
     currentGlobeRotY += (targetGlobeRotY - currentGlobeRotY) * 0.08;
     globeGroup.rotation.x = currentGlobeRotX;
     globeGroup.rotation.y = currentGlobeRotY;
+    if (cloudMesh) {
+      cloudMesh.rotation.y += 0.0003;
+    }
 
     flightSparkMeshes.forEach((item) => {
       item.progress = (item.progress + item.speed) % 1;

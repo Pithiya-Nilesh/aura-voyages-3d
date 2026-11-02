@@ -745,10 +745,9 @@ body {
 /* ── 3D VEHICLE SPRITES ──────────────────────────────────────────────────────── */
 .realm-boat-wrap {
   position: absolute;
-  bottom: 8%;
-  right: 4%;
-  left: auto;
-  width: clamp(340px, 36vw, 620px);
+  bottom: 2%;
+  left: 0;
+  width: clamp(320px, 34vw, 560px);
   z-index: 10;
   pointer-events: none;
   will-change: transform;
