@@ -672,14 +672,14 @@
 
       <!-- Quick Destination Selector Pills -->
       <div class="flex items-center justify-center gap-2 flex-wrap mb-10">
-        <button onclick="flyGlobeToDestination('maldives-overwater-haven')" class="radar-dest-btn filter-chip active" data-id="maldives-overwater-haven">🌊 Maldives Lagoon</button>
-        <button onclick="flyGlobeToDestination('bora-bora-pearl')" class="radar-dest-btn filter-chip" data-id="bora-bora-pearl">🏝️ Bora Bora</button>
-        <button onclick="flyGlobeToDestination('sahara-royal-dunes')" class="radar-dest-btn filter-chip" data-id="sahara-royal-dunes">🏜️ Sahara Mirage</button>
-        <button onclick="flyGlobeToDestination('arabian-empty-quarter')" class="radar-dest-btn filter-chip" data-id="arabian-empty-quarter">🏰 Abu Dhabi Dunes</button>
-        <button onclick="flyGlobeToDestination('alpine-matterhorn')" class="radar-dest-btn filter-chip" data-id="alpine-matterhorn">🏔️ Swiss Matterhorn</button>
-        <button onclick="flyGlobeToDestination('patagonia-wild-peaks')" class="radar-dest-btn filter-chip" data-id="patagonia-wild-peaks">❄️ Patagonia Fjords</button>
-        <button onclick="flyGlobeToDestination('costa-rica-canopy')" class="radar-dest-btn filter-chip" data-id="costa-rica-canopy">🌲 Costa Rica Canopy</button>
-        <button onclick="flyGlobeToDestination('kyoto-bamboo-onsen')" class="radar-dest-btn filter-chip" data-id="kyoto-bamboo-onsen">⛩️ Kyoto Ryokan</button>
+        <button onclick="flyGlobeToDestination('maldives-overwater-haven')" class="radar-dest-btn radar-pill active" data-id="maldives-overwater-haven">🌊 Maldives Lagoon</button>
+        <button onclick="flyGlobeToDestination('bora-bora-pearl')" class="radar-dest-btn radar-pill" data-id="bora-bora-pearl">🏝️ Bora Bora</button>
+        <button onclick="flyGlobeToDestination('sahara-royal-dunes')" class="radar-dest-btn radar-pill" data-id="sahara-royal-dunes">🏜️ Sahara Mirage</button>
+        <button onclick="flyGlobeToDestination('arabian-empty-quarter')" class="radar-dest-btn radar-pill" data-id="arabian-empty-quarter">🏰 Abu Dhabi Dunes</button>
+        <button onclick="flyGlobeToDestination('alpine-matterhorn')" class="radar-dest-btn radar-pill" data-id="alpine-matterhorn">🏔️ Swiss Matterhorn</button>
+        <button onclick="flyGlobeToDestination('patagonia-wild-peaks')" class="radar-dest-btn radar-pill" data-id="patagonia-wild-peaks">❄️ Patagonia Fjords</button>
+        <button onclick="flyGlobeToDestination('costa-rica-canopy')" class="radar-dest-btn radar-pill" data-id="costa-rica-canopy">🌲 Costa Rica Canopy</button>
+        <button onclick="flyGlobeToDestination('kyoto-bamboo-onsen')" class="radar-dest-btn radar-pill" data-id="kyoto-bamboo-onsen">⛩️ Kyoto Ryokan</button>
       </div>
 
       <!-- Three.js Globe Container -->
@@ -733,7 +733,7 @@
 
       <!-- Filters & Live Search Bar -->
       <div class="flex flex-col md:flex-row gap-4 items-center justify-between mb-12 pb-6 border-b border-white/10">
-        <div class="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 scrollbar-none">
+        <div class="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 scrollbar-none" id="pkg-filter-bar">
           <button class="filter-chip active" data-category="all">All Expeditions (8)</button>
           <button class="filter-chip" data-category="sea">🌊 Azure Sea</button>
           <button class="filter-chip" data-category="sand">🏜️ Golden Dunes</button>

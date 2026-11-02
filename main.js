@@ -699,12 +699,13 @@ function initGSAPParallaxScroll() {
     ease: 'none'
   });
 
-  // 2. SEA REALM: Speedboat sails across turquoise waters, Paraglider soars overhead
+  // 2. SEA REALM: Speedboat sails across turquoise waters on the right half, Paraglider soars overhead
   gsap.fromTo('#sea-boat',
-    { x: '-5vw', y: 40 },
+    { x: '-8vw', y: 30, rotation: -2 },
     {
-      x: '65vw',
+      x: '8vw',
       y: -25,
+      rotation: 1.5,
       ease: 'none',
       scrollTrigger: {
         trigger: '#biome-sea',
@@ -716,12 +717,12 @@ function initGSAPParallaxScroll() {
   );
 
   gsap.fromTo('#sea-paraglider',
-    { x: '10vw', y: '-8vh', scale: 0.9, rotation: -5 },
+    { x: '5vw', y: '-4vh', scale: 0.95, rotation: -3 },
     {
-      x: '-60vw',
-      y: '22vh',
-      scale: 1.25,
-      rotation: 6,
+      x: '-25vw',
+      y: '16vh',
+      scale: 1.15,
+      rotation: 4,
       ease: 'none',
       scrollTrigger: {
         trigger: '#biome-sea',
@@ -833,22 +834,6 @@ function initGSAPParallaxScroll() {
           }
         }
       );
-    }
-  });
-
-  // Stagger reveal on packages
-  ScrollTrigger.create({
-    trigger: '#packages-grid',
-    start: 'top 85%',
-    once: true,
-    onEnter: () => {
-      gsap.from('.pkg-card-vibrant', {
-        y: 80,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.8,
-        ease: 'power3.out'
-      });
     }
   });
 
@@ -1277,9 +1262,9 @@ function renderExpeditionCatalog() {
 }
 
 function initFilterAndSearch() {
-  document.querySelectorAll('.filter-chip').forEach((tab) => {
+  document.querySelectorAll('#pkg-filter-bar .filter-chip').forEach((tab) => {
     tab.addEventListener('click', () => {
-      document.querySelectorAll('.filter-chip').forEach((t) => t.classList.remove('active'));
+      document.querySelectorAll('#pkg-filter-bar .filter-chip').forEach((t) => t.classList.remove('active'));
       tab.classList.add('active');
       activeCategory = tab.dataset.category || 'all';
       renderExpeditionCatalog();
@@ -1300,7 +1285,7 @@ window.resetFilters = function () {
   packageSearchQuery = '';
   const searchInput = document.getElementById('search-packages');
   if (searchInput) searchInput.value = '';
-  document.querySelectorAll('.filter-chip').forEach((t) => {
+  document.querySelectorAll('#pkg-filter-bar .filter-chip').forEach((t) => {
     t.classList.toggle('active', t.dataset.category === 'all');
   });
   renderExpeditionCatalog();
@@ -1308,7 +1293,7 @@ window.resetFilters = function () {
 
 window.filterByRealm = function (realmId) {
   activeCategory = realmId || 'all';
-  document.querySelectorAll('.filter-chip').forEach((t) => {
+  document.querySelectorAll('#pkg-filter-bar .filter-chip').forEach((t) => {
     t.classList.toggle('active', t.dataset.category === activeCategory);
   });
   renderExpeditionCatalog();
