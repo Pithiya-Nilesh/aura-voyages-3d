@@ -701,10 +701,10 @@ function initGSAPParallaxScroll() {
 
   // 2. SEA REALM: Speedboat sails across turquoise waters, Paraglider soars overhead
   gsap.fromTo('#sea-boat',
-    { x: '-15vw', y: 30 },
+    { x: '-5vw', y: 40 },
     {
       x: '65vw',
-      y: -20,
+      y: -25,
       ease: 'none',
       scrollTrigger: {
         trigger: '#biome-sea',
@@ -891,26 +891,33 @@ function initThreeJSGlobe() {
 
   const radius = 75;
 
-  // Base Earth Sphere
+  // Real NASA High-Resolution Earth Texture
+  const textureLoader = new THREE.TextureLoader();
+  const earthTexture = textureLoader.load('assets/earth-map.jpg', () => {
+    if (globeRenderer && globeScene && globeCamera) {
+      globeRenderer.render(globeScene, globeCamera);
+    }
+  });
+
+  // Base Earth Sphere with real satellite continents & oceans
   const sphereGeo = new THREE.SphereGeometry(radius, 64, 64);
   const sphereMat = new THREE.MeshPhongMaterial({
-    color: 0x0c0828,
-    emissive: 0x050314,
-    specular: 0x38bdf8,
-    shininess: 30,
-    transparent: true,
-    opacity: 0.94
+    map: earthTexture,
+    specular: new THREE.Color(0x0284c7),
+    shininess: 12,
+    emissive: new THREE.Color(0x050d1e),
+    emissiveIntensity: 0.15
   });
   globeSphere = new THREE.Mesh(sphereGeo, sphereMat);
   globeGroup.add(globeSphere);
 
-  // Digital Wireframe Grid
-  const wireGeo = new THREE.SphereGeometry(radius + 0.3, 36, 18);
+  // Digital Wireframe Grid (subtle navigational longitude / latitude)
+  const wireGeo = new THREE.SphereGeometry(radius + 0.35, 36, 18);
   const wireMat = new THREE.MeshBasicMaterial({
-    color: 0x7c3aed,
+    color: 0x38bdf8,
     wireframe: true,
     transparent: true,
-    opacity: 0.18
+    opacity: 0.15
   });
   const wireMesh = new THREE.Mesh(wireGeo, wireMat);
   globeGroup.add(wireMesh);
@@ -939,14 +946,14 @@ function initThreeJSGlobe() {
   const haloMesh = new THREE.Mesh(haloGeo, haloMat);
   globeGroup.add(haloMesh);
 
-  // Lights
-  globeScene.add(new THREE.AmbientLight(0xffffff, 0.85));
-  const dirLight1 = new THREE.DirectionalLight(0x00f2fe, 1.4);
-  dirLight1.position.set(150, 100, 150);
-  globeScene.add(dirLight1);
-  const dirLight2 = new THREE.DirectionalLight(0xff2a85, 1.0);
-  dirLight2.position.set(-150, -100, -150);
-  globeScene.add(dirLight2);
+  // Natural Sunlight & Atmospheric Rim Lights
+  globeScene.add(new THREE.AmbientLight(0xffffff, 1.4));
+  const sunLight = new THREE.DirectionalLight(0xfff8ee, 1.8);
+  sunLight.position.set(180, 120, 180);
+  globeScene.add(sunLight);
+  const rimLight = new THREE.DirectionalLight(0x0284c7, 0.7);
+  rimLight.position.set(-150, 60, -150);
+  globeScene.add(rimLight);
 
   function latLonToVec3(lat, lon, r) {
     const phi = (90 - lat) * (Math.PI / 180);
@@ -1835,4 +1842,27 @@ function initCounterStats() {
   }, { threshold: 0.5 });
 
   document.querySelectorAll('[data-count]').forEach((el) => observer.observe(el));
+}
+
+// Deep link / query scroll helper
+const urlParams = new URLSearchParams(window.location.search);
+const scrollTarget = urlParams.get('scroll');
+if (scrollTarget) {
+  const triggerScroll = () => {
+    const el = document.getElementById(scrollTarget);
+    if (el) {
+      if (window.lenis) {
+        window.lenis.scrollTo(el, { immediate: true });
+      } else {
+        el.scrollIntoView({ behavior: 'auto' });
+      }
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+      }
+    }
+  };
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(triggerScroll, 200);
+    setTimeout(triggerScroll, 600);
+  });
 }

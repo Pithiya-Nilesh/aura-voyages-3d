@@ -673,7 +673,7 @@ body {
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 7rem 0;
+  padding: 4.5rem 0;
 }
 
 .realm-bg-layer {
@@ -745,10 +745,10 @@ body {
 /* ── 3D VEHICLE SPRITES ──────────────────────────────────────────────────────── */
 .realm-boat-wrap {
   position: absolute;
-  bottom: 8%;
-  left: -5%;
-  width: clamp(340px, 38vw, 650px);
-  z-index: 5;
+  bottom: 5%;
+  left: 2%;
+  width: clamp(360px, 40vw, 680px);
+  z-index: 25;
   pointer-events: none;
   will-change: transform;
   filter: drop-shadow(0 25px 50px rgba(0, 25, 50, 0.8)) drop-shadow(0 0 40px rgba(0, 242, 254, 0.45));
@@ -756,12 +756,12 @@ body {
 .realm-boat-wrap img { width: 100%; height: auto; }
 .boat-wake-trail {
   position: absolute;
-  bottom: 8px;
-  right: 68%;
-  width: 380px;
-  height: 25px;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.9) 0%, rgba(0, 242, 254, 0.7) 40%, transparent 75%);
-  filter: blur(5px);
+  bottom: 15px;
+  left: -110px;
+  width: 320px;
+  height: 40px;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.95) 0%, rgba(0, 242, 254, 0.7) 40%, transparent 80%);
+  filter: blur(6px);
   border-radius: 50%;
   animation: wakeSpray 1.5s ease-out infinite;
 }
