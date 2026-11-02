@@ -1,1086 +1,1604 @@
 /**
- * AURA VOYAGES — AWARD-WINNING 3D PARALLAX LUXURY TRAVEL ENGINE
- * Lenis Kinetic Smooth Scroll + GSAP ScrollTrigger Pinned 3D Depth
- * Real Speedboat, Paraglider, Camel Caravan & Helicopter Animations
+ * AURA VOYAGES — ULTRA-LUXURY 3D PARALLAX & KINETIC WEB ENGINE 2026
+ * Features:
+ *  - Preloader with Jet Contrail Lift-Off
+ *  - Henrietta-Style Multi-Layer Physics Repulsion Engine ([data-parallax="scene"])
+ *  - Three.js Interactive 3D Earth Globe with Flight Corridors & Beacons
+ *  - GSAP ScrollTrigger Multi-Layer 3D Depth Parallax
+ *  - 3D Tilt Cards with Dynamic Glare Hotspots
+ *  - 360° Virtual Horizon Panorama Viewer
+ *  - Multi-Currency Conversion Engine (USD, EUR, GBP, INR, AED, JPY)
+ *  - Bespoke Booking Drawer & Printable Boarding Voucher
+ *  - Native Web Audio Synthesizer with Live Equalizer
  */
 
-// --- 1. DATA: ALL-INCLUSIVE CURATED LUXURY PACKAGES ---
-const PACKAGES_DATA = [
+// ═══════════════════════════════════════════════════════════════════
+// 1. DATA: 8 CURATED EXPEDITIONS & DESTINATIONS
+// ═══════════════════════════════════════════════════════════════════
+const EXPEDITIONS_DATA = [
   {
     id: 'maldives-overwater-haven',
     title: 'Azure Lagoon & Overwater Sanctuary',
     location: 'Baa Atoll, Maldives',
     category: 'sea',
-    duration: '8 Days / 7 Nights',
+    realmName: 'Turquoise Azure Sea',
+    lat: 5.15, lon: 73.05,
+    duration: '8 Days · 7 Nights',
     rating: 5.0,
-    reviewsCount: 216,
+    reviewsCount: 248,
     basePriceUSD: 3450,
     badge: 'Overwater Villa',
-    tagColor: 'bg-cyan-500/25 text-cyan-300 border-cyan-400/40',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=85',
+    accentColor: '#00f2fe',
+    accentGlow: 'rgba(0, 242, 254, 0.4)',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=90',
     hotelName: 'Soneva Overwater Sanctuary & Marine Biosphere',
-    flightPartner: 'Qatar Airways (QR-672) + Twin-Otter Seaplane',
-    flightRoute: 'Direct Airport ➔ Scenic Lagoon Seaplane Landing',
-    overview: 'Hover above crystalline turquoise lagoons with direct marine ladder access, private plunge pool, and underwater 5-course dining.',
-    highlights: ['VIP Seaplane lagoon landing', 'Manta ray & coral reef snorkeling safari', 'Underwater restaurant 5-course dinner', 'Sunset catamaran cruise with sommelier'],
-    flightIncluded: 'Qatar Airways + Seaplane Island Transfer'
+    flightPartner: 'Qatar Airways (Qsuite) + Scenic Seaplane',
+    flightTime: '4h 20m from Dubai',
+    weather: '29°C · Sunlit Azure Skies',
+    overview: 'Crystalline turquoise lagoons with private waterslides into coral gardens, dedicated Mr./Ms. Friday butler service, and private sommelier cruises.',
+    highlights: ['VIP Twin-Otter Seaplane lagoon landing', 'Manta ray & sea turtle biosphere diving', '5-Course underwater restaurant banquet', 'Sunset yacht cruise with Dom Pérignon'],
+    departureHub: 'Dubai / London'
   },
   {
     id: 'bora-bora-pearl',
     title: 'Bora Bora Coral Lagoon & Otemanu Villa',
     location: 'French Polynesia, South Pacific',
     category: 'sea',
-    duration: '9 Days / 8 Nights',
-    rating: 4.97,
-    reviewsCount: 164,
+    realmName: 'Turquoise Azure Sea',
+    lat: -16.50, lon: -151.74,
+    duration: '9 Days · 8 Nights',
+    rating: 4.98,
+    reviewsCount: 182,
+    basePriceUSD: 4200,
     badge: 'Pacific Haven',
-    tagColor: 'bg-sky-500/25 text-sky-300 border-sky-400/40',
-    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85',
-    hotelName: 'The St. Regis Bora Bora Overwater Suite',
-    flightPartner: 'Air Tahiti Nui + Catamaran Yacht',
-    flightRoute: 'Papeete ➔ Bora Bora Private Motu Dock',
-    overview: 'Unobstructed Mount Otemanu vistas from your overwater villa, private sun deck, glass floor viewing portals, and outrigger canoe breakfast.',
-    highlights: ['Outrigger canoe gourmet breakfast', 'Lagoon ray & sea turtle feeding excursion', 'Polynesian deep tissue massage', 'Private sunset yacht with live music'],
-    flightIncluded: 'Air Tahiti Nui + Catamaran Transfer'
+    accentColor: '#38bdf8',
+    accentGlow: 'rgba(56, 189, 248, 0.4)',
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=90',
+    hotelName: 'The St. Regis Bora Bora Royal Overwater Estate',
+    flightPartner: 'Air Tahiti Nui (Poerava Business) + Catamaran',
+    flightTime: '8h 15m from Los Angeles',
+    weather: '28°C · Tropical Trade Winds',
+    overview: 'Unobstructed Mount Otemanu horizons, glass floor viewing portals, Polynesian deep-sea pearl diving, and sunrise canoe breakfast.',
+    highlights: ['Outrigger canoe delivered breakfast', 'Lagoon ray & harmless reef shark safari', 'Deep ocean botanical spa pavilion', 'Private motu islet champagne picnic'],
+    departureHub: 'San Francisco / Tokyo'
   },
   {
     id: 'sahara-royal-dunes',
-    title: 'Sahara Mirage & Royal Bedouin Oasis',
-    location: 'Merzouga & Dubai Desert Reserve',
+    title: 'Sahara Mirage & Royal Celestial Dome',
+    location: 'Merzouga & Erg Chebbi, Morocco',
     category: 'sand',
-    duration: '6 Days / 5 Nights',
-    rating: 4.95,
-    reviewsCount: 98,
+    realmName: 'Sahara Golden Dunes',
+    lat: 31.08, lon: -4.01,
+    duration: '6 Days · 5 Nights',
+    rating: 4.96,
+    reviewsCount: 134,
+    basePriceUSD: 2680,
     badge: 'Royal Glamping',
-    tagColor: 'bg-amber-500/25 text-amber-300 border-amber-400/40',
-    image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1600&q=85',
-    hotelName: 'Al Maha Royal Desert Pavilion & Stargazing Dome',
-    flightPartner: 'Emirates Airlines (Flight EK-204)',
-    flightRoute: 'Direct Airport ➔ Private 4x4 Dune Chauffeur',
-    overview: 'Traverse golden dunes in luxury 4x4s, gaze into unpolluted galaxies in private celestial domes, and experience royal Arabian hospitality.',
-    highlights: ['Private celestial dome with high-power telescope', 'Sunset royal camel caravan with champagne', 'Desert falconry & Arabian thoroughbred horses', 'Private gourmet banquet in golden dunes'],
-    flightIncluded: 'Emirates Direct Flight (Included)'
+    accentColor: '#ffd200',
+    accentGlow: 'rgba(255, 210, 0, 0.4)',
+    image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1600&q=90',
+    hotelName: 'Merzouga Royal Celestial Stargazing Domes',
+    flightPartner: 'Emirates / Royal Air Maroc + VIP 4×4 Dune Cruiser',
+    flightTime: '3h 10m from Paris',
+    weather: '26°C · Crystal Clear Night Skies',
+    overview: 'Towering golden dunes under zero-light-pollution skies, private camel caravans, astronomer-guided deep space telescopes, and Berber feast banquets.',
+    highlights: ['Private celestial glass dome with telescope', 'Sunset camel caravan with vintage champagne', '4×4 High-speed dune ridge safari', 'Fireside oud performance & chef banquet'],
+    departureHub: 'Geneva / Paris'
   },
   {
     id: 'arabian-empty-quarter',
-    title: 'Liwa Dunes & Palace Mirage',
-    location: 'Abu Dhabi Rub al Khali, UAE',
+    title: 'Liwa Mirage & Rub al Khali Palace',
+    location: 'Abu Dhabi Desert Reserve, UAE',
     category: 'sand',
-    duration: '5 Days / 4 Nights',
-    rating: 4.93,
-    reviewsCount: 76,
+    realmName: 'Sahara Golden Dunes',
+    lat: 23.13, lon: 53.78,
+    duration: '5 Days · 4 Nights',
+    rating: 4.94,
+    reviewsCount: 96,
+    basePriceUSD: 2350,
     badge: 'Desert Palace',
-    tagColor: 'bg-orange-500/25 text-orange-300 border-orange-400/40',
-    image: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=1600&q=85',
-    hotelName: 'Qasr Al Sarab Desert Palace by Anantara',
-    flightPartner: 'Etihad Airways Luxury Apartment',
-    flightRoute: 'Abu Dhabi ➔ Private Dune Helicopter Arrival',
-    overview: 'Palatial villas overlooking colossal golden sand ridges with private plunge pool, sunrise hot air ballooning, and date-seed spa treatments.',
-    highlights: ['Sunrise hot air balloon over orange dunes', 'Hammam scrub & desert date seed spa rituals', 'Dune sandboarding & private rally course', 'Bedouin fireside storytelling & live oud'],
-    flightIncluded: 'Etihad Airways + Helicopter Arrival'
+    accentColor: '#f97316',
+    accentGlow: 'rgba(249, 115, 22, 0.4)',
+    image: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=1600&q=90',
+    hotelName: 'Qasr Al Sarab Desert Palace & Anantara Spa',
+    flightPartner: 'Etihad Airways First Residence + Heli Transfer',
+    flightTime: '45m Heli from Abu Dhabi',
+    weather: '31°C · Golden Sunlit Serenity',
+    overview: 'Secluded luxury palace nestled among colossal 300-meter sand dunes, sunrise hot-air balloon flights, royal falconry, and Arabian hammams.',
+    highlights: ['Sunrise desert hot-air balloon flight', 'Traditional royal falconry masterclass', 'Private date-seed and Moroccan hammam', 'Sunset dune sandboarding with private guide'],
+    departureHub: 'Dubai / London'
   },
   {
     id: 'alpine-matterhorn',
-    title: 'Alpine Majesty & Glacier Chalet',
-    location: 'Zermatt, Swiss Alps',
+    title: 'Matterhorn Alpine Chalet & Glacier Sky',
+    location: 'Zermatt & Swiss Alps, Switzerland',
     category: 'mountains',
-    duration: '7 Days / 6 Nights',
-    rating: 4.98,
-    reviewsCount: 142,
-    basePriceUSD: 2890,
+    realmName: 'Alpine Mountain Summits',
+    lat: 45.97, lon: 7.74,
+    duration: '7 Days · 6 Nights',
+    rating: 4.99,
+    reviewsCount: 198,
+    basePriceUSD: 3100,
     badge: 'Swiss Chalet',
-    tagColor: 'bg-blue-500/25 text-blue-300 border-blue-400/40',
-    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=85',
-    hotelName: 'The Omnia 5★ Mountain Lodge & Private Spa',
-    flightPartner: 'Swiss International Air (Flight LX-18)',
-    flightRoute: 'Direct Airport ➔ Zermatt Glacier Express',
-    overview: 'High-altitude luxury ski chalet with panoramic Matterhorn vistas, private heated infinity pool, and Swiss Alpine helicopter tour.',
-    highlights: ['First-class Glacier Express scenic train pass', 'Private UIAGM certified mountain ski guide', 'Alpine fondue & Michelin star private chef', 'Helicopter tour over Matterhorn & Monte Rosa'],
-    flightIncluded: 'Swiss International Air (First / Business Class)'
+    accentColor: '#a855f7',
+    accentGlow: 'rgba(168, 85, 247, 0.45)',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=90',
+    hotelName: 'The Omnia 5★ Alpine Mountain Lodge & Spa',
+    flightPartner: 'Swiss International Air (LX First) + Glacier Heli',
+    flightTime: '30m Heli from Zurich',
+    weather: '-2°C · Crisp Alpine Sun & Powder Snow',
+    overview: 'Cantilever heated infinity pool gazing onto the iconic Matterhorn, UIAGM-certified private ski instructors, helicopter glacier drops, and Michelin dining.',
+    highlights: ['First-class Glacier Express scenic panorama pass', 'Private charter helicopter glacier landing', 'Michelin-starred Alpine fondue & sommelier', 'Private cedarwood thermal spa & cedar sauna'],
+    departureHub: 'Zurich / Geneva / London'
   },
   {
     id: 'patagonia-wild-peaks',
     title: 'Torres del Paine & Glacial Fjords',
     location: 'Patagonia, Chile & Argentina',
     category: 'mountains',
-    duration: '9 Days / 8 Nights',
-    rating: 4.96,
-    reviewsCount: 89,
+    realmName: 'Alpine Mountain Summits',
+    lat: -51.25, lon: -72.88,
+    duration: '9 Days · 8 Nights',
+    rating: 4.97,
+    reviewsCount: 112,
+    basePriceUSD: 3490,
     badge: 'Glacier Expedition',
-    tagColor: 'bg-indigo-500/25 text-indigo-300 border-indigo-400/40',
-    image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=85',
-    hotelName: 'Explora Patagonia Geodesic Luxury Domes',
-    flightPartner: 'LATAM Airlines + Scenic Floatplane',
-    flightRoute: 'Santiago ➔ Punta Arenas ➔ Grey Glacier',
-    overview: 'Granite peaks, electric-blue icebergs, and glacial fjords explored from ultra-luxury geodesic eco-domes with Chilean reserve wine pairings.',
-    highlights: ['Grey Glacier navigation & iceberg boat safari', 'Puma tracking with private wildlife biologist', 'Private Andean horseback expedition', 'Sommelier-guided Chilean reserve wine tastings'],
-    flightIncluded: 'LATAM Airlines + Scenic Floatplane'
+    accentColor: '#6366f1',
+    accentGlow: 'rgba(99, 102, 241, 0.4)',
+    image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=90',
+    hotelName: 'Explora Patagonia Geodesic Eco-Residences',
+    flightPartner: 'LATAM Airlines Business + Twin Otter Floatplane',
+    flightTime: '3h 30m from Santiago',
+    weather: '14°C · Wild Patagonian Splendor',
+    overview: 'Granite spires rising above electric-blue icebergs, horseback expeditions with authentic Gauchos, private fjord cruises, and vintage Chilean reserve wines.',
+    highlights: ['Grey Glacier electric-blue iceberg zodiac safari', 'Wild puma tracking with lead biologist', 'Andean horseback trail with local gauchos', 'Fireside Chilean reserve wine & lamb roast'],
+    departureHub: 'Santiago / Buenos Aires'
   },
   {
     id: 'costa-rica-canopy',
-    title: 'Emerald Cloudforest & Eco-Sanctuary',
+    title: 'Emerald Cloudforest & Volcanic Spring',
     location: 'Monteverde & Arenal, Costa Rica',
     category: 'forest',
-    duration: '7 Days / 6 Nights',
-    rating: 4.92,
-    reviewsCount: 114,
-    badge: 'Eco Adventure',
-    tagColor: 'bg-emerald-500/25 text-emerald-300 border-emerald-400/40',
-    image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=85',
-    hotelName: 'Nayara Tented Camp & Arenal Hot Springs',
-    flightPartner: 'United Airlines / Avianca',
-    flightRoute: 'San José ➔ Private Eco-SUV Escort',
-    overview: 'Immerse in misty tropical biodiversity with private treehouse canopy suites, geothermal hot spring spas, and secret waterfall treks.',
-    highlights: ['Canopy suspension bridges & private zip line', 'Volcanic geothermal private mineral springs', 'Night cloudforest bioluminescence tour', 'Organic coffee & cacao private estate tour'],
-    flightIncluded: 'International Flights + Eco SUV Chauffeur'
+    realmName: 'Emerald Ancient Rainforest',
+    lat: 10.46, lon: -84.70,
+    duration: '7 Days · 6 Nights',
+    rating: 4.95,
+    reviewsCount: 146,
+    basePriceUSD: 2580,
+    badge: 'Eco Sanctuary',
+    accentColor: '#10b981',
+    accentGlow: 'rgba(16, 185, 129, 0.4)',
+    image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=90',
+    hotelName: 'Nayara Tented Camp & Arenal Rainforest Oasis',
+    flightPartner: 'United Polaris / Avianca + Private Eco-SUV',
+    flightTime: '2h 15m from Miami',
+    weather: '25°C · Warm Tropical Mist & Sunlight',
+    overview: 'Luxurious canopy tented villas suspended high above lush rainforest valleys, mineral-rich thermal volcanic springs, private sloth reserves, and canopy bridges.',
+    highlights: ['Private suspension bridge canopy walk', 'Natural volcanic thermal spring mineral soaking', 'Bioluminescent night rainforest wildlife tour', 'Highland organic single-origin coffee masterclass'],
+    departureHub: 'Miami / New York / San José'
   },
   {
     id: 'kyoto-bamboo-onsen',
-    title: 'Kyoto Sacred Groves & Zen Ryokan',
+    title: 'Kyoto Sacred Bamboo & Zen Ryokan',
     location: 'Arashiyama & Kyoto, Japan',
     category: 'forest',
-    duration: '8 Days / 7 Nights',
-    rating: 4.99,
-    reviewsCount: 178,
+    realmName: 'Emerald Ancient Rainforest',
+    lat: 35.01, lon: 135.76,
+    duration: '8 Days · 7 Nights',
+    rating: 5.0,
+    reviewsCount: 224,
+    basePriceUSD: 3890,
     badge: 'Cultural Zen',
-    tagColor: 'bg-purple-500/25 text-purple-300 border-purple-400/40',
-    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=85',
-    hotelName: 'Hoshinoya Kyoto & Suiran Luxury Collection',
-    flightPartner: 'Japan Airlines (JAL Sky Suite)',
-    flightRoute: 'Tokyo/Osaka ➔ Private Shinkansen & Boat',
-    overview: 'Whispering bamboo groves, private cedar onsen thermal baths, centuries-old shrines, and private kaiseki banquet dinners with master geishas.',
-    highlights: ['Exclusive dawn entry to Bamboo Grove before crowds', 'Private Zen temple meditation with head abbot', 'Traditional private tea ceremony masterclass', 'Kaiseki 10-course Michelin dinner in private garden pavilion'],
-    flightIncluded: 'Japan Airlines (JAL) Sky Suite'
+    accentColor: '#ff2a85',
+    accentGlow: 'rgba(255, 42, 133, 0.45)',
+    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=90',
+    hotelName: 'Hoshinoya Kyoto River Pavilion & Suiran Luxury Ryokan',
+    flightPartner: 'Japan Airlines (JAL First Class Sky Suite) + Shinkansen',
+    flightTime: '11h 20m from London / SF',
+    weather: '21°C · Serene Forest Mist',
+    overview: 'Ancient whispering bamboo forests, private hinoki cypress onsen baths fed by hot springs, dawn meditation with Zen masters, and 12-course Kaiseki cuisine.',
+    highlights: ['VIP dawn Arashiyama Bamboo Grove private entry', 'Zen temple meditation with senior Abbot', 'Private matcha tea ceremony with 15th-gen master', '12-Course Kaiseki dinner paired with rare sakes'],
+    departureHub: 'Tokyo / Osaka / New York'
   }
 ];
 
+// ═══════════════════════════════════════════════════════════════════
+// 2. CURRENCY CONVERSION ENGINE
+// ═══════════════════════════════════════════════════════════════════
 const CURRENCIES = {
-  USD: { symbol: '$', rate: 1.0, name: 'USD ($)' },
+  USD: { symbol: '$', rate: 1.00, name: 'USD ($)' },
   EUR: { symbol: '€', rate: 0.92, name: 'EUR (€)' },
-  GBP: { symbol: '£', rate: 0.78, name: 'GBP (£)' },
-  INR: { symbol: '₹', rate: 83.2, name: 'INR (₹)' },
-  AED: { symbol: 'AED ', rate: 3.67, name: 'AED (د.إ)' }
+  GBP: { symbol: '£', rate: 0.79, name: 'GBP (£)' },
+  INR: { symbol: '₹', rate: 83.4, name: 'INR (₹)' },
+  AED: { symbol: 'AED ', rate: 3.67, name: 'AED (د.إ)' },
+  JPY: { symbol: '¥', rate: 154.5, name: 'JPY (¥)' }
 };
 
 let currentCurrency = 'USD';
 let activeCategory = 'all';
-let searchQuery = '';
-let selectedPackage = PACKAGES_DATA[0];
+let packageSearchQuery = '';
+let activeExpedition = EXPEDITIONS_DATA[0];
 
-function formatPrice(usdAmount) {
-  const safeUSD = (typeof usdAmount === 'number' && !isNaN(usdAmount)) ? usdAmount : 2890;
-  const curr = CURRENCIES[currentCurrency] || CURRENCIES.USD;
-  const converted = Math.round(safeUSD * curr.rate);
-  return `${curr.symbol}${converted.toLocaleString()}`;
+function formatPrice(usd) {
+  const c = CURRENCIES[currentCurrency];
+  const converted = Math.round((usd || 2890) * c.rate);
+  return `${c.symbol}${converted.toLocaleString()}`;
 }
 
-// --- 2. INITIALIZATION ON DOM READY ---
+// ═══════════════════════════════════════════════════════════════════
+// 3. LIFECYCLE INITIALIZATION
+// ═══════════════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
+  initPreloader();
   initLenisSmoothScroll();
-  initGSAPPinnedParallax();
-  initMouseGyro3D();
-  initFlightWaypointTracker();
-  renderPackages();
-  initBookingModal();
+  initCursorSpotlight();
+  initAtmosphereParticles();
+  initHenriettaParallaxScenes();
+  initMouse3DParallax();
+  init3DTiltCards();
+  initGSAPParallaxScroll();
+  initThreeJSGlobe();
+  initFlightTelemetryHUD();
+  renderExpeditionCatalog();
+  initFilterAndSearch();
   initCurrencySelector();
-  initSearchAndFilter();
-  initParticleCanvas();
-  initAudioSynthesizer();
-  initInteractive3DTilt();
-  initMobileMenu();
+  initBookingModal();
+  init360PanoramaViewer();
+  initSynthesizerAudio();
+  initMobileDrawer();
+  initCounterStats();
 });
 
-// --- 3. LENIS MOMENTUM SMOOTH SCROLL (AWWWARDS STANDARD) ---
-let lenis = null;
+// ═══════════════════════════════════════════════════════════════════
+// 4. PRELOADER ENGINE
+// ═══════════════════════════════════════════════════════════════════
+function initPreloader() {
+  const preloader = document.getElementById('site-preloader');
+  const bar = document.getElementById('preloader-bar');
+  const percentText = document.getElementById('preloader-percent');
+  if (!preloader) return;
 
-function initLenisSmoothScroll() {
-  if (typeof Lenis !== 'undefined') {
-    lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 1.0
-    });
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.floor(Math.random() * 18) + 8;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      if (bar) bar.style.width = '100%';
+      if (percentText) percentText.textContent = '100%';
 
-    if (typeof ScrollTrigger !== 'undefined') {
-      lenis.on('scroll', ScrollTrigger.update);
-
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
-      gsap.ticker.lagSmoothing(0);
+      setTimeout(() => {
+        preloader.classList.add('loaded');
+        document.body.style.overflow = '';
+      }, 400);
     } else {
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
+      if (bar) bar.style.width = `${progress}%`;
+      if (percentText) percentText.textContent = `${progress}%`;
     }
-  }
+  }, 45);
 }
 
-// --- 4. GSAP PINNED 3D SCROLL SEQUENCES ---
-function initGSAPPinnedParallax() {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  // 1. HERO AIRPLANE FLIGHT SEQUENCE
-  const planeWrap = document.querySelector('.hero-plane-wrap');
-  if (planeWrap) {
-    gsap.to(planeWrap, {
-      scrollTrigger: {
-        trigger: '#hero-stage',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1
-      },
-      y: '30vh',
-      x: '15vw',
-      scale: 1.35,
-      rotation: 6,
-      ease: 'power1.out'
-    });
-
-    gsap.to('.hero-mountains-backdrop', {
-      scrollTrigger: {
-        trigger: '#hero-stage',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1
-      },
-      y: 120,
-      ease: 'none'
-    });
-
-    gsap.to('.hero-clouds-front', {
-      scrollTrigger: {
-        trigger: '#hero-stage',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1
-      },
-      x: 180,
-      scale: 1.45,
-      ease: 'none'
-    });
-  }
-
-  // 2. SEA SECTION: PINNED STAGE WITH SPEEDBOAT & PARAGLIDER
-  const seaSection = document.querySelector('#biome-sea');
-  const boat = document.querySelector('.pinned-boat-container');
-  const paraglider = document.querySelector('.pinned-paraglider-container');
-  const seaHUD = document.querySelector('#biome-sea .glass-hud');
-
-  if (seaSection && boat) {
-    const seaTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#biome-sea',
-        start: 'top top',
-        end: '+=160%',
-        pin: true,
-        scrub: 1,
-        anticipatePin: 1
-      }
-    });
-
-    // Speedboat cruises smoothly across turquoise ocean from left to right
-    seaTL.fromTo(boat, 
-      { x: '-25vw', y: 0, rotation: 0 },
-      { x: '70vw', y: -20, rotation: -2, ease: 'power1.inOut' }, 
-      0
-    );
-
-    // Paraglider swoops overhead in the sky
-    if (paraglider) {
-      seaTL.fromTo(paraglider,
-        { x: '15vw', y: '-10vh', scale: 0.85, rotation: -6 },
-        { x: '-65vw', y: '25vh', scale: 1.25, rotation: 6, ease: 'power1.inOut' },
-        0
-      );
-    }
-
-    // Background water scales slightly
-    seaTL.to('#biome-sea .stage-bg', {
-      scale: 1.18,
-      y: 45,
-      ease: 'none'
-    }, 0);
-
-    // Glass HUD floats in smoothly
-    if (seaHUD) {
-      seaTL.fromTo(seaHUD,
-        { opacity: 0.7, scale: 0.95 },
-        { opacity: 1, scale: 1, ease: 'none' },
-        0.2
-      );
-    }
-  }
-
-  // 3. DESERT SECTION: PINNED STAGE WITH CAMEL CARAVAN
-  const desertSection = document.querySelector('#biome-sand');
-  const camel = document.querySelector('.pinned-camel-container');
-  const desertHUD = document.querySelector('#biome-sand .glass-hud');
-
-  if (desertSection && camel) {
-    const desertTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#biome-sand',
-        start: 'top top',
-        end: '+=160%',
-        pin: true,
-        scrub: 1,
-        anticipatePin: 1
-      }
-    });
-
-    // Camel caravan walks across the dune ridge
-    desertTL.fromTo(camel,
-      { x: '-20vw', y: 15 },
-      { x: '65vw', y: -25, ease: 'power1.inOut' },
-      0
-    );
-
-    desertTL.to('#biome-sand .stage-bg', {
-      scale: 1.2,
-      y: 50,
-      ease: 'none'
-    }, 0);
-
-    if (desertHUD) {
-      desertTL.fromTo(desertHUD,
-        { opacity: 0.7, scale: 0.95 },
-        { opacity: 1, scale: 1, ease: 'none' },
-        0.2
-      );
-    }
-  }
-
-  // 4. MOUNTAINS SECTION: PINNED STAGE WITH ALPINE HELICOPTER
-  const mountainSection = document.querySelector('#biome-mountains');
-  const heli = document.querySelector('.pinned-heli-container');
-  const mountainHUD = document.querySelector('#biome-mountains .glass-hud');
-
-  if (mountainSection && heli) {
-    const mountainTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#biome-mountains',
-        start: 'top top',
-        end: '+=160%',
-        pin: true,
-        scrub: 1,
-        anticipatePin: 1
-      }
-    });
-
-    // Helicopter cuts through the mountain pass from right to left
-    mountainTL.fromTo(heli,
-      { x: '20vw', y: '-5vh', scale: 0.85, rotation: 5 },
-      { x: '-70vw', y: '25vh', scale: 1.3, rotation: -6, ease: 'power1.inOut' },
-      0
-    );
-
-    mountainTL.to('#biome-mountains .stage-bg', {
-      scale: 1.2,
-      y: 60,
-      ease: 'none'
-    }, 0);
-
-    if (mountainHUD) {
-      mountainTL.fromTo(mountainHUD,
-        { opacity: 0.7, scale: 0.95 },
-        { opacity: 1, scale: 1, ease: 'none' },
-        0.2
-      );
-    }
-  }
-
-  // 5. RAINFOREST SECTION: PINNED CANOPY STAGE
-  const forestSection = document.querySelector('#biome-forest');
-  const forestHUD = document.querySelector('#biome-forest .glass-hud');
-  if (forestSection) {
-    const forestTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#biome-forest',
-        start: 'top top',
-        end: '+=150%',
-        pin: true,
-        scrub: 1,
-        anticipatePin: 1
-      }
-    });
-
-    forestTL.to('#biome-forest .stage-bg', {
-      scale: 1.25,
-      y: 50,
-      ease: 'none'
-    }, 0);
-
-    if (forestHUD) {
-      forestTL.fromTo(forestHUD,
-        { opacity: 0.7, scale: 0.95 },
-        { opacity: 1, scale: 1, ease: 'none' },
-        0.2
-      );
-    }
-  }
+// ═══════════════════════════════════════════════════════════════════
+// 5. HENRIETTA-STYLE MULTI-LAYER PHYSICS REPULSION PARALLAX ENGINE
+// ═══════════════════════════════════════════════════════════════════
+function initHenriettaParallaxScenes() {
+  document.querySelectorAll('[data-parallax="scene"]').forEach(initParallaxScene);
 }
 
-// --- 5. MOUSE 3D GYRO PERSPECTIVE ON AIRPLANE ---
-function initMouseGyro3D() {
-  const plane = document.getElementById('hero-plane-photo');
-  if (!plane) return;
+function initParallaxScene(scene) {
+  const cfg = (key, fallback) => {
+    const val = scene.dataset[key];
+    return val !== undefined ? parseFloat(val) : fallback;
+  };
 
-  let mouseX = 0, mouseY = 0;
+  const images = Array.from(scene.querySelectorAll('.parallax-float-item'));
+  if (images.length === 0) return;
+
+  const items = images.map((el) => ({
+    el,
+    layer: parseFloat(el.dataset.layer ?? 0.5),
+    rot: parseFloat(el.dataset.rot ?? 0),
+    phX: Math.random() * Math.PI * 2,
+    phY: Math.random() * Math.PI * 2,
+    phS: Math.random() * Math.PI * 2,
+    phR: Math.random() * Math.PI * 2,
+    pxK: 0.85 + Math.random() * 0.3,
+    pyK: 0.85 + Math.random() * 0.3,
+    fqK: 0.75 + Math.random() * 0.55,
+    repX: 0,
+    repY: 0,
+  }));
+
   let targetX = 0, targetY = 0;
+  let currentX = 0, currentY = 0;
+  let mouseScreenX = -9999, mouseScreenY = -9999;
+  let lastTime = null, elapsed = 0;
 
-  window.addEventListener('mousemove', (e) => {
-    const halfW = window.innerWidth / 2;
-    const halfH = window.innerHeight / 2;
-    targetX = (e.clientX - halfW) / halfW;
-    targetY = (e.clientY - halfH) / halfH;
+  document.addEventListener('mousemove', (e) => {
+    targetX = (e.clientX / window.innerWidth) - 0.5;
+    targetY = (e.clientY / window.innerHeight) - 0.5;
+    mouseScreenX = e.clientX;
+    mouseScreenY = e.clientY;
   });
 
-  function gyroLoop() {
-    mouseX += (targetX - mouseX) * 0.08;
-    mouseY += (targetY - mouseY) * 0.08;
+  document.addEventListener('mouseleave', () => {
+    targetX = 0;
+    targetY = 0;
+    mouseScreenX = -9999;
+    mouseScreenY = -9999;
+  });
 
-    if (window.scrollY < window.innerHeight) {
-      plane.style.transform = `perspective(1000px) rotateY(${mouseX * 15}deg) rotateX(${-mouseY * 12}deg) rotateZ(${mouseX * 8}deg)`;
-    }
-    requestAnimationFrame(gyroLoop);
+  function animate(now) {
+    requestAnimationFrame(animate);
+
+    if (lastTime === null) lastTime = now;
+    const dt = Math.min((now - lastTime) / 1000, 0.05);
+    lastTime = now;
+    elapsed += dt;
+
+    const lerpSpeed = cfg('parallaxLerp', 5.5) / 100;
+    currentX += (targetX - currentX) * lerpSpeed;
+    currentY += (targetY - currentY) * lerpSpeed;
+
+    const parallax = cfg('parallaxStrength', 65);
+    const rotStr = cfg('parallaxRot', 3.8);
+    const floatY = cfg('floatY', 12);
+    const floatX = cfg('floatX', 9);
+    const breath = cfg('breath', 1.5) / 100;
+    const fspeed = cfg('floatSpeed', 12) * 0.025;
+    const frot = cfg('floatRot', 5);
+    const repRadius = cfg('repulseRadius', 280);
+    const repStr = cfg('repulseStrength', 40);
+    const repLerp = cfg('repulseLerp', 4.5) / 100;
+
+    items.forEach((item) => {
+      const { el, layer, rot, phX, phY, phS, phR, pxK, pyK, fqK } = item;
+      const d = layer;
+      const ft = elapsed * fspeed * fqK;
+
+      // Natural harmonic floating movement
+      const fY = Math.sin(ft + phY) * floatY;
+      const fX = Math.sin(ft * 0.6 + phX) * floatX;
+      const sc = 1 + Math.sin(ft * 0.35 + phS) * breath;
+      const fR = Math.sin(ft * 0.5 + phR) * frot;
+
+      // Mouse camera parallax
+      const mX = currentX * -parallax * d * pxK;
+      const mY = currentY * -parallax * 0.7 * d * pyK;
+      const mR = (currentX * rotStr + currentY * rotStr * 0.6) * d;
+
+      // Physical Mouse Repulsion Vector
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width * 0.5;
+      const cy = rect.top + rect.height * 0.5;
+      const dx = mouseScreenX - cx;
+      const dy = mouseScreenY - cy;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      let tRepX = 0, tRepY = 0;
+      if (dist < repRadius && dist > 0) {
+        const force = 1 - dist / repRadius;
+        tRepX = (-dx / dist) * force * repStr;
+        tRepY = (-dy / dist) * force * repStr;
+
+        const mag = Math.sqrt(tRepX * tRepX + tRepY * tRepY);
+        if (mag > repStr) {
+          tRepX = (tRepX / mag) * repStr;
+          tRepY = (tRepY / mag) * repStr;
+        }
+      }
+
+      item.repX += (tRepX - item.repX) * repLerp;
+      item.repY += (tRepY - item.repY) * repLerp;
+
+      const tx = mX + fX + item.repX;
+      const ty = mY + fY + item.repY;
+
+      el.style.transformOrigin = 'center center';
+      el.style.willChange = 'transform';
+      el.style.transform = `translate(${tx.toFixed(2)}px, ${ty.toFixed(2)}px) rotate(${(rot + fR + mR).toFixed(3)}deg) scale(${sc.toFixed(4)})`;
+    });
   }
-  gyroLoop();
+
+  requestAnimationFrame(animate);
 }
 
-// --- 6. FLIGHT ROUTE TRACKER (RADAR WAYPOINTS) ---
-function initFlightWaypointTracker() {
-  const waypoints = [
-    { id: 'hero-stage', name: 'Takeoff: High Stratosphere', icon: '✈️' },
-    { id: 'biome-sea', name: 'Waypoint 1: Turquoise Azure Sea', icon: '🌊' },
-    { id: 'biome-sand', name: 'Waypoint 2: Sahara Golden Dunes', icon: '🏜️' },
-    { id: 'biome-mountains', name: 'Waypoint 3: Alpine Mountain Summits', icon: '🏔️' },
-    { id: 'biome-forest', name: 'Waypoint 4: Emerald Canopy', icon: '🌲' },
-    { id: 'packages-section', name: 'Final Touchdown: All Packages', icon: '📍' }
+// ═══════════════════════════════════════════════════════════════════
+// 6. LENIS SMOOTH SCROLL
+// ═══════════════════════════════════════════════════════════════════
+let lenisInstance;
+function initLenisSmoothScroll() {
+  if (typeof Lenis === 'undefined') return;
+  lenisInstance = new Lenis({
+    duration: 1.25,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    touchMultiplier: 1.5
+  });
+
+  if (typeof ScrollTrigger !== 'undefined' && typeof gsap !== 'undefined') {
+    lenisInstance.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenisInstance.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+  } else {
+    function raf(t) {
+      lenisInstance.raf(t);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// 7. CURSOR SPOTLIGHT
+// ═══════════════════════════════════════════════════════════════════
+function initCursorSpotlight() {
+  const glowEl = document.getElementById('cursor-glow');
+  if (!glowEl || window.matchMedia('(pointer: coarse)').matches) {
+    if (glowEl) glowEl.style.display = 'none';
+    return;
+  }
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let currentX = mouseX;
+  let currentY = mouseY;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function loopGlow() {
+    currentX += (mouseX - currentX) * 0.12;
+    currentY += (mouseY - currentY) * 0.12;
+    glowEl.style.left = `${currentX}px`;
+    glowEl.style.top = `${currentY}px`;
+    requestAnimationFrame(loopGlow);
+  }
+  requestAnimationFrame(loopGlow);
+
+  const realms = [
+    { id: 'hero-stage', color: 'radial-gradient(circle, rgba(255, 42, 133, 0.2) 0%, rgba(0, 242, 254, 0.14) 35%, transparent 70%)' },
+    { id: 'biome-sea', color: 'radial-gradient(circle, rgba(0, 242, 254, 0.24) 0%, rgba(79, 172, 254, 0.14) 35%, transparent 70%)' },
+    { id: 'biome-sand', color: 'radial-gradient(circle, rgba(255, 210, 0, 0.24) 0%, rgba(247, 151, 30, 0.14) 35%, transparent 70%)' },
+    { id: 'biome-mountains', color: 'radial-gradient(circle, rgba(168, 85, 247, 0.24) 0%, rgba(99, 102, 241, 0.14) 35%, transparent 70%)' },
+    { id: 'biome-forest', color: 'radial-gradient(circle, rgba(16, 185, 129, 0.24) 0%, rgba(52, 211, 153, 0.14) 35%, transparent 70%)' },
+    { id: 'radar-section', color: 'radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(0, 242, 254, 0.15) 35%, transparent 70%)' },
+    { id: 'packages-section', color: 'radial-gradient(circle, rgba(255, 42, 133, 0.22) 0%, rgba(255, 210, 0, 0.14) 35%, transparent 70%)' }
   ];
 
-  const waypointIndicator = document.getElementById('current-waypoint-name');
-  const waypointIcon = document.getElementById('current-waypoint-icon');
-  const waypointProgress = document.getElementById('flight-progress-bar');
-
   window.addEventListener('scroll', () => {
-    const scrollPos = window.scrollY + window.innerHeight * 0.45;
-    const totalDocHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercentage = Math.min(100, Math.max(0, (window.scrollY / totalDocHeight) * 100));
-
-    if (waypointProgress) {
-      waypointProgress.style.width = `${scrollPercentage}%`;
-    }
-
-    for (let i = waypoints.length - 1; i >= 0; i--) {
-      const section = document.getElementById(waypoints[i].id);
+    const scrollPos = window.scrollY + window.innerHeight * 0.4;
+    for (let i = realms.length - 1; i >= 0; i--) {
+      const section = document.getElementById(realms[i].id);
       if (section && section.offsetTop <= scrollPos) {
-        if (waypointIndicator) waypointIndicator.textContent = waypoints[i].name;
-        if (waypointIcon) waypointIcon.textContent = waypoints[i].icon;
+        glowEl.style.background = realms[i].color;
         break;
       }
     }
   }, { passive: true });
 }
 
-// --- 7. RENDER PACKAGES ---
-function renderPackages() {
-  const container = document.getElementById('packages-grid');
-  if (!container) return;
+// ═══════════════════════════════════════════════════════════════════
+// 8. ATMOSPHERIC PARTICLES
+// ═══════════════════════════════════════════════════════════════════
+function initAtmosphereParticles() {
+  const heroStars = document.getElementById('hero-stars-container');
+  if (heroStars) {
+    for (let i = 0; i < 75; i++) {
+      const star = document.createElement('span');
+      star.className = 'particle-star';
+      const size = Math.random() * 2.8 + 1;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 85}%`;
+      star.style.backgroundColor = ['#ffffff', '#38bdf8', '#c084fc', '#fde68a', '#ff2a85'][Math.floor(Math.random() * 5)];
+      star.style.boxShadow = `0 0 ${size * 3}px ${star.style.backgroundColor}`;
+      star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      star.style.animationDelay = `${Math.random() * -5}s`;
+      heroStars.appendChild(star);
+    }
+  }
 
-  const filtered = PACKAGES_DATA.filter(pkg => {
-    const matchesCategory = activeCategory === 'all' || pkg.category === activeCategory;
-    const matchesSearch = pkg.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          pkg.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          pkg.overview.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+  const seaParticles = document.getElementById('sea-sparkle-container');
+  if (seaParticles) {
+    for (let i = 0; i < 35; i++) {
+      const bubble = document.createElement('span');
+      bubble.className = 'particle-star';
+      const size = Math.random() * 4 + 2;
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${Math.random() * 100}%`;
+      bubble.style.top = `${Math.random() * 90}%`;
+      bubble.style.backgroundColor = ['rgba(0, 242, 254, 0.85)', 'rgba(56, 189, 248, 0.75)', 'rgba(255, 255, 255, 0.95)'][Math.floor(Math.random() * 3)];
+      bubble.style.boxShadow = '0 0 10px #00f2fe';
+      bubble.style.animationDuration = `${Math.random() * 4 + 2}s`;
+      seaParticles.appendChild(bubble);
+    }
+  }
+
+  const sandParticles = document.getElementById('sand-motes-container');
+  if (sandParticles) {
+    for (let i = 0; i < 40; i++) {
+      const mote = document.createElement('span');
+      mote.className = 'particle-star';
+      const size = Math.random() * 3 + 1.5;
+      mote.style.width = `${size}px`;
+      mote.style.height = `${size}px`;
+      mote.style.left = `${Math.random() * 100}%`;
+      mote.style.top = `${Math.random() * 95}%`;
+      mote.style.backgroundColor = ['#ffd200', '#f97316', '#fbbf24', '#ffffff'][Math.floor(Math.random() * 4)];
+      mote.style.boxShadow = '0 0 8px #ffd200';
+      mote.style.animationDuration = `${Math.random() * 3 + 1.5}s`;
+      sandParticles.appendChild(mote);
+    }
+  }
+
+  const snowParticles = document.getElementById('mountain-snow-container');
+  if (snowParticles) {
+    for (let i = 0; i < 50; i++) {
+      const flake = document.createElement('span');
+      flake.className = 'particle-star';
+      const size = Math.random() * 4 + 2;
+      flake.style.width = `${size}px`;
+      flake.style.height = `${size}px`;
+      flake.style.left = `${Math.random() * 100}%`;
+      flake.style.top = `${Math.random() * 90}%`;
+      flake.style.backgroundColor = ['#ffffff', '#e0e7ff', '#c7d2fe'][Math.floor(Math.random() * 3)];
+      flake.style.boxShadow = '0 0 12px rgba(255, 255, 255, 0.9)';
+      flake.style.animationDuration = `${Math.random() * 4 + 3}s`;
+      snowParticles.appendChild(flake);
+    }
+  }
+
+  const forestParticles = document.getElementById('forest-spores-container');
+  if (forestParticles) {
+    for (let i = 0; i < 40; i++) {
+      const spore = document.createElement('span');
+      spore.className = 'particle-star';
+      const size = Math.random() * 5 + 2;
+      spore.style.width = `${size}px`;
+      spore.style.height = `${size}px`;
+      spore.style.left = `${Math.random() * 100}%`;
+      spore.style.top = `${Math.random() * 90}%`;
+      spore.style.backgroundColor = ['#34d399', '#10b981', '#6ee7b7', '#a7f3d0'][Math.floor(Math.random() * 4)];
+      spore.style.boxShadow = '0 0 14px #10b981';
+      spore.style.animationDuration = `${Math.random() * 4 + 2}s`;
+      forestParticles.appendChild(spore);
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// 9. MOUSE 3D AIRPLANE BANKING
+// ═══════════════════════════════════════════════════════════════════
+function initMouse3DParallax() {
+  const planeWrap = document.getElementById('hero-plane-wrap');
+  let targetX = 0, targetY = 0;
+  let currentX = 0, currentY = 0;
+
+  window.addEventListener('mousemove', (e) => {
+    targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+    targetY = (e.clientY / window.innerHeight - 0.5) * 2;
   });
 
-  if (filtered.length === 0) {
-    container.innerHTML = `
-      <div class="col-span-full py-16 text-center text-slate-400 glass-hud rounded-3xl p-10">
-        <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-        </div>
-        <h3 class="text-2xl font-bold text-white mb-2 font-serif">No Expeditions Match Your Filter</h3>
-        <p class="text-sm max-w-md mx-auto">Try selecting another realm above or clearing your search keywords to view all our journeys.</p>
-        <button onclick="resetFilters()" class="btn-luxury-vibrant mt-5 px-6 py-2.5 rounded-xl text-sm font-bold">Show All Available Packages</button>
+  function tickMouse3D() {
+    currentX += (targetX - currentX) * 0.06;
+    currentY += (targetY - currentY) * 0.06;
+
+    if (planeWrap && window.scrollY < window.innerHeight * 1.2) {
+      const rotateY = currentX * 22;
+      const rotateX = -currentY * 18;
+      const rotateZ = currentX * 12;
+      const translateX = currentX * 35;
+      const translateY = currentY * 25;
+
+      planeWrap.style.transform = `translate(-50%, -50%) translate3d(${translateX}px, ${translateY}px, 0) perspective(1200px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) rotateZ(${rotateZ}deg)`;
+    }
+
+    requestAnimationFrame(tickMouse3D);
+  }
+  requestAnimationFrame(tickMouse3D);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// 10. 3D TILT CARDS WITH GLARE
+// ═══════════════════════════════════════════════════════════════════
+function init3DTiltCards() {
+  document.addEventListener('mousemove', (e) => {
+    const cards = document.querySelectorAll('.tilt-card');
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      if (
+        e.clientX < rect.left - 50 ||
+        e.clientX > rect.right + 50 ||
+        e.clientY < rect.top - 50 ||
+        e.clientY > rect.bottom + 50
+      ) {
+        return;
+      }
+
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -12;
+      const rotateY = ((x - centerX) / centerX) * 12;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+      card.style.setProperty('--glare-x', `${(x / rect.width) * 100}%`);
+      card.style.setProperty('--glare-y', `${(y / rect.height) * 100}%`);
+    });
+  });
+
+  document.addEventListener('mouseleave', () => {
+    document.querySelectorAll('.tilt-card').forEach((card) => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// 11. GSAP SCROLLTRIGGER MULTI-LAYER PARALLAX
+// ═══════════════════════════════════════════════════════════════════
+function initGSAPParallaxScroll() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero Parallax Timeline
+  const heroTL = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#hero-stage',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1.2
+    }
+  });
+
+  heroTL
+    .to('.hero-mtn-ridge', { y: 120, scale: 1.05, ease: 'none' }, 0)
+    .to('.hero-clouds-back', { x: -160, y: -40, ease: 'none' }, 0)
+    .to('.hero-clouds-front', { x: 200, scale: 1.3, ease: 'none' }, 0)
+    .to('#hero-plane-wrap', { y: '35vh', x: '18vw', scale: 1.35, rotateZ: 8, ease: 'power1.inOut' }, 0)
+    .to('#hero-main-content', { y: -80, opacity: 0.2, ease: 'none' }, 0);
+
+  // Sea Realm
+  const seaTL = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#biome-sea',
+      start: 'top top',
+      end: '+=180%',
+      pin: true,
+      scrub: 1.2,
+      anticipatePin: 1
+    }
+  });
+  seaTL
+    .to('#sea-bg-layer', { scale: 1.25, y: 70, ease: 'none' }, 0)
+    .fromTo('#sea-boat', { x: '-35vw', y: 40 }, { x: '75vw', y: -25, ease: 'power1.inOut' }, 0)
+    .fromTo('#sea-paraglider', { x: '15vw', y: '-5vh', scale: 0.85, rotation: -6 }, { x: '-70vw', y: '28vh', scale: 1.35, rotation: 8, ease: 'power1.inOut' }, 0)
+    .fromTo('#sea-hud-panel', { opacity: 0.5, y: 50, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, ease: 'power2.out' }, 0.05);
+
+  // Sand Realm
+  const sandTL = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#biome-sand',
+      start: 'top top',
+      end: '+=180%',
+      pin: true,
+      scrub: 1.2,
+      anticipatePin: 1
+    }
+  });
+  sandTL
+    .to('#sand-bg-layer', { scale: 1.28, y: 80, ease: 'none' }, 0)
+    .fromTo('#sand-camel', { x: '-30vw', y: 25 }, { x: '70vw', y: -30, ease: 'power1.inOut' }, 0)
+    .fromTo('#sand-hud-panel', { opacity: 0.5, y: 50, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, ease: 'power2.out' }, 0.05);
+
+  // Mountain Realm
+  const mtnTL = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#biome-mountains',
+      start: 'top top',
+      end: '+=180%',
+      pin: true,
+      scrub: 1.2,
+      anticipatePin: 1
+    }
+  });
+  mtnTL
+    .to('#mtn-bg-layer', { scale: 1.28, y: 80, ease: 'none' }, 0)
+    .fromTo('#mtn-heli', { x: '25vw', y: '-8vh', scale: 0.75, rotation: 12 }, { x: '-85vw', y: '32vh', scale: 1.45, rotation: -8, ease: 'power1.inOut' }, 0)
+    .fromTo('#mtn-hud-panel', { opacity: 0.5, y: 50, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, ease: 'power2.out' }, 0.05);
+
+  // Forest Realm
+  const fstTL = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#biome-forest',
+      start: 'top top',
+      end: '+=170%',
+      pin: true,
+      scrub: 1.2,
+      anticipatePin: 1
+    }
+  });
+  fstTL
+    .to('#fst-bg-layer', { scale: 1.3, y: 70, ease: 'none' }, 0)
+    .fromTo('#fst-hud-panel', { opacity: 0.5, y: 50, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, ease: 'power2.out' }, 0.05);
+
+  // Stagger reveal on packages
+  ScrollTrigger.create({
+    trigger: '#packages-grid',
+    start: 'top 85%',
+    once: true,
+    onEnter: () => {
+      gsap.from('.pkg-card-vibrant', {
+        y: 80,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.9,
+        ease: 'power3.out'
+      });
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// 12. THREE.JS INTERACTIVE 3D EARTH GLOBE
+// ═══════════════════════════════════════════════════════════════════
+let globeScene, globeCamera, globeRenderer, globeSphere, globeGroup;
+let isDraggingGlobe = false, prevMouseX = 0, prevMouseY = 0;
+let targetGlobeRotX = 0.25, targetGlobeRotY = 1.8;
+let currentGlobeRotX = 0.25, currentGlobeRotY = 1.8;
+let flightSparkMeshes = [];
+
+function initThreeJSGlobe() {
+  const container = document.getElementById('globe-canvas-wrap');
+  if (!container || typeof THREE === 'undefined') return;
+
+  const width = container.clientWidth;
+  const height = container.clientHeight;
+
+  globeScene = new THREE.Scene();
+  globeCamera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+  globeCamera.position.z = 240;
+
+  globeRenderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('three-globe-canvas'),
+    alpha: true,
+    antialias: true
+  });
+  globeRenderer.setSize(width, height);
+  globeRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  globeGroup = new THREE.Group();
+  globeScene.add(globeGroup);
+
+  const radius = 75;
+
+  // Base Earth Sphere
+  const sphereGeo = new THREE.SphereGeometry(radius, 64, 64);
+  const sphereMat = new THREE.MeshPhongMaterial({
+    color: 0x0c0828,
+    emissive: 0x050314,
+    specular: 0x38bdf8,
+    shininess: 30,
+    transparent: true,
+    opacity: 0.94
+  });
+  globeSphere = new THREE.Mesh(sphereGeo, sphereMat);
+  globeGroup.add(globeSphere);
+
+  // Digital Wireframe Grid
+  const wireGeo = new THREE.SphereGeometry(radius + 0.3, 36, 18);
+  const wireMat = new THREE.MeshBasicMaterial({
+    color: 0x7c3aed,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.18
+  });
+  const wireMesh = new THREE.Mesh(wireGeo, wireMat);
+  globeGroup.add(wireMesh);
+
+  // Glowing Atmosphere Halo
+  const haloGeo = new THREE.SphereGeometry(radius + 7, 32, 32);
+  const haloMat = new THREE.ShaderMaterial({
+    vertexShader: `
+      varying vec3 vNormal;
+      void main() {
+        vNormal = normalize(normalMatrix * normal);
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      varying vec3 vNormal;
+      void main() {
+        float intensity = pow(0.65 - dot(vNormal, vec3(0, 0, 1.0)), 2.0);
+        gl_FragColor = vec4(0.0, 0.95, 1.0, 1.0) * intensity * 0.7;
+      }
+    `,
+    blending: THREE.AdditiveBlending,
+    side: THREE.BackSide,
+    transparent: true
+  });
+  const haloMesh = new THREE.Mesh(haloGeo, haloMat);
+  globeGroup.add(haloMesh);
+
+  // Lights
+  globeScene.add(new THREE.AmbientLight(0xffffff, 0.85));
+  const dirLight1 = new THREE.DirectionalLight(0x00f2fe, 1.4);
+  dirLight1.position.set(150, 100, 150);
+  globeScene.add(dirLight1);
+  const dirLight2 = new THREE.DirectionalLight(0xff2a85, 1.0);
+  dirLight2.position.set(-150, -100, -150);
+  globeScene.add(dirLight2);
+
+  function latLonToVec3(lat, lon, r) {
+    const phi = (90 - lat) * (Math.PI / 180);
+    const theta = (lon + 180) * (Math.PI / 180);
+    return new THREE.Vector3(
+      -(r * Math.sin(phi) * Math.cos(theta)),
+      r * Math.cos(phi),
+      r * Math.sin(phi) * Math.sin(theta)
+    );
+  }
+
+  // Add Destination Beacons
+  EXPEDITIONS_DATA.forEach((pkg) => {
+    const pos = latLonToVec3(pkg.lat, pkg.lon, radius + 1.2);
+    const pinGeo = new THREE.SphereGeometry(1.6, 16, 16);
+    const pinMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(pkg.accentColor) });
+    const pinMesh = new THREE.Mesh(pinGeo, pinMat);
+    pinMesh.position.copy(pos);
+    globeGroup.add(pinMesh);
+
+    const ringGeo = new THREE.RingGeometry(2.4, 3.4, 32);
+    const ringMat = new THREE.MeshBasicMaterial({
+      color: new THREE.Color(pkg.accentColor),
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.85
+    });
+    const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+    ringMesh.position.copy(pos);
+    ringMesh.lookAt(new THREE.Vector3(0, 0, 0));
+    globeGroup.add(ringMesh);
+  });
+
+  // Flight Arcs
+  const hubs = [
+    { name: 'Geneva', lat: 46.20, lon: 6.14 },
+    { name: 'Dubai', lat: 25.20, lon: 55.27 },
+    { name: 'New York', lat: 40.71, lon: -74.00 },
+    { name: 'Tokyo', lat: 35.67, lon: 139.65 }
+  ];
+
+  EXPEDITIONS_DATA.forEach((pkg, idx) => {
+    const hub = hubs[idx % hubs.length];
+    const p1 = latLonToVec3(hub.lat, hub.lon, radius);
+    const p2 = latLonToVec3(pkg.lat, pkg.lon, radius);
+
+    const mid = p1.clone().add(p2).multiplyScalar(0.5);
+    const distance = p1.distanceTo(p2);
+    const altitude = radius + distance * 0.22;
+    mid.normalize().multiplyScalar(altitude);
+
+    const curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
+    const points = curve.getPoints(50);
+    const curveGeo = new THREE.BufferGeometry().setFromPoints(points);
+
+    const curveMat = new THREE.LineBasicMaterial({
+      color: new THREE.Color(pkg.accentColor),
+      transparent: true,
+      opacity: 0.55
+    });
+    globeGroup.add(new THREE.Line(curveGeo, curveMat));
+
+    const sparkGeo = new THREE.SphereGeometry(1.2, 8, 8);
+    const sparkMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const sparkMesh = new THREE.Mesh(sparkGeo, sparkMat);
+    globeGroup.add(sparkMesh);
+
+    flightSparkMeshes.push({
+      mesh: sparkMesh,
+      curve: curve,
+      speed: 0.002 + Math.random() * 0.002,
+      progress: Math.random()
+    });
+  });
+
+  // Mouse drag rotation
+  container.addEventListener('mousedown', (e) => {
+    isDraggingGlobe = true;
+    prevMouseX = e.clientX;
+    prevMouseY = e.clientY;
+  });
+  window.addEventListener('mouseup', () => { isDraggingGlobe = false; });
+  container.addEventListener('mousemove', (e) => {
+    if (!isDraggingGlobe) return;
+    const deltaX = e.clientX - prevMouseX;
+    const deltaY = e.clientY - prevMouseY;
+    targetGlobeRotY += deltaX * 0.006;
+    targetGlobeRotX += deltaY * 0.006;
+    targetGlobeRotX = Math.max(-1.1, Math.min(1.1, targetGlobeRotX));
+    prevMouseX = e.clientX;
+    prevMouseY = e.clientY;
+  });
+
+  // Touch controls
+  container.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+      isDraggingGlobe = true;
+      prevMouseX = e.touches[0].clientX;
+      prevMouseY = e.touches[0].clientY;
+    }
+  });
+  window.addEventListener('touchend', () => { isDraggingGlobe = false; });
+  container.addEventListener('touchmove', (e) => {
+    if (!isDraggingGlobe || e.touches.length !== 1) return;
+    const deltaX = e.touches[0].clientX - prevMouseX;
+    const deltaY = e.touches[0].clientY - prevMouseY;
+    targetGlobeRotY += deltaX * 0.007;
+    targetGlobeRotX += deltaY * 0.007;
+    targetGlobeRotX = Math.max(-1.1, Math.min(1.1, targetGlobeRotX));
+    prevMouseX = e.touches[0].clientX;
+    prevMouseY = e.touches[0].clientY;
+  });
+
+  window.addEventListener('resize', () => {
+    if (!container) return;
+    const newW = container.clientWidth;
+    const newH = container.clientHeight;
+    globeCamera.aspect = newW / newH;
+    globeCamera.updateProjectionMatrix();
+    globeRenderer.setSize(newW, newH);
+  });
+
+  function animateGlobe() {
+    requestAnimationFrame(animateGlobe);
+    if (!isDraggingGlobe) {
+      targetGlobeRotY += 0.0015;
+    }
+    currentGlobeRotX += (targetGlobeRotX - currentGlobeRotX) * 0.08;
+    currentGlobeRotY += (targetGlobeRotY - currentGlobeRotY) * 0.08;
+    globeGroup.rotation.x = currentGlobeRotX;
+    globeGroup.rotation.y = currentGlobeRotY;
+
+    flightSparkMeshes.forEach((item) => {
+      item.progress = (item.progress + item.speed) % 1;
+      const pt = item.curve.getPoint(item.progress);
+      item.mesh.position.copy(pt);
+    });
+
+    globeRenderer.render(globeScene, globeCamera);
+  }
+  animateGlobe();
+}
+
+window.flyGlobeToDestination = function (pkgId) {
+  const pkg = EXPEDITIONS_DATA.find((p) => p.id === pkgId);
+  if (!pkg) return;
+
+  const targetPhi = (pkg.lat * Math.PI) / 180;
+  const targetTheta = -(pkg.lon * Math.PI) / 180 - Math.PI / 2;
+
+  targetGlobeRotX = targetPhi * 0.7;
+  targetGlobeRotY = targetTheta;
+
+  const hudTitle = document.getElementById('globe-hud-title');
+  const hudLoc = document.getElementById('globe-hud-loc');
+  const hudWeather = document.getElementById('globe-hud-weather');
+  const hudFlight = document.getElementById('globe-hud-flight');
+  const hudPrice = document.getElementById('globe-hud-price');
+  const hudBtn = document.getElementById('globe-hud-book');
+
+  if (hudTitle) hudTitle.textContent = pkg.title;
+  if (hudLoc) hudLoc.textContent = pkg.location;
+  if (hudWeather) hudWeather.textContent = pkg.weather;
+  if (hudFlight) hudFlight.textContent = `✈ ${pkg.flightPartner}`;
+  if (hudPrice) hudPrice.textContent = `${formatPrice(pkg.basePriceUSD)} / person`;
+  if (hudBtn) hudBtn.onclick = () => openBookingModal(pkg.id);
+
+  document.querySelectorAll('.radar-dest-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.id === pkgId);
+  });
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// 13. FLIGHT TELEMETRY HUD
+// ═══════════════════════════════════════════════════════════════════
+function initFlightTelemetryHUD() {
+  const waypoints = [
+    { id: 'hero-stage', name: 'Takeoff · Stratosphere (38,000 FT)', icon: '✈️' },
+    { id: 'biome-sea', name: 'Waypoint 01 · Turquoise Azure Sea', icon: '🌊' },
+    { id: 'biome-sand', name: 'Waypoint 02 · Sahara Golden Dunes', icon: '🏜️' },
+    { id: 'biome-mountains', name: 'Waypoint 03 · Alpine Summits & Glacier', icon: '🏔️' },
+    { id: 'biome-forest', name: 'Waypoint 04 · Emerald Ancient Rainforest', icon: '🌲' },
+    { id: 'radar-section', name: 'Flight Navigation Radar & Orbit', icon: '🌐' },
+    { id: 'packages-section', name: 'Touchdown · Luxury Expedition Packages', icon: '📍' }
+  ];
+
+  const wpName = document.getElementById('wp-name');
+  const wpIcon = document.getElementById('wp-icon');
+  const wpBar = document.getElementById('wp-bar');
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = Math.min(100, Math.max(0, (scrollY / totalHeight) * 100));
+
+    if (wpBar) wpBar.style.width = `${progress}%`;
+
+    const midScreen = scrollY + window.innerHeight * 0.35;
+    for (let i = waypoints.length - 1; i >= 0; i--) {
+      const section = document.getElementById(waypoints[i].id);
+      if (section && section.offsetTop <= midScreen) {
+        if (wpName) wpName.textContent = waypoints[i].name;
+        if (wpIcon) wpIcon.textContent = waypoints[i].icon;
+        break;
+      }
+    }
+  }, { passive: true });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// 14. EXPEDITIONS CATALOG & FILTER ENGINE
+// ═══════════════════════════════════════════════════════════════════
+function renderExpeditionCatalog() {
+  const grid = document.getElementById('packages-grid');
+  if (!grid) return;
+
+  const filtered = EXPEDITIONS_DATA.filter((p) => {
+    const matchCat = activeCategory === 'all' || p.category === activeCategory;
+    const matchQuery = !packageSearchQuery ||
+      [p.title, p.location, p.overview, p.hotelName, p.flightPartner]
+        .some((str) => str.toLowerCase().includes(packageSearchQuery.toLowerCase()));
+    return matchCat && matchQuery;
+  });
+
+  if (!filtered.length) {
+    grid.innerHTML = `
+      <div class="col-span-full py-20 text-center glass-panel p-10 max-w-xl mx-auto">
+        <div class="text-5xl mb-4">🔍</div>
+        <h3 class="text-2xl font-bold font-serif text-white mb-2">No Expeditions Found</h3>
+        <p class="text-slate-400 text-sm mb-6">Try searching for Maldives, Sahara, Zermatt, or Kyoto.</p>
+        <button onclick="resetFilters()" class="btn-vibrant-primary text-xs">Reset All Filters</button>
       </div>
     `;
     return;
   }
 
-  container.innerHTML = filtered.map(pkg => {
-    const safePrice = (typeof pkg.basePriceUSD === 'number' && !isNaN(pkg.basePriceUSD)) ? pkg.basePriceUSD : 2890;
-    const priceFormatted = formatPrice(safePrice);
+  grid.innerHTML = filtered.map((p) => {
+    const priceFormatted = formatPrice(p.basePriceUSD);
+    const isUltraPopular = p.rating >= 4.98;
 
     return `
-      <div class="glass-card-vibrant rounded-3xl overflow-hidden flex flex-col group tilt-interactive" data-package-id="${pkg.id}">
-        <!-- Image Header -->
-        <div class="relative h-64 overflow-hidden">
-          <img src="${pkg.image}" alt="${pkg.title}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+      <article class="pkg-card-vibrant tilt-card" style="--accent-color:${p.accentColor};--accent-glow:${p.accentGlow}">
+        <div class="tilt-glare"></div>
+        <div class="pkg-img-frame">
+          <img src="${p.image}" alt="${p.title}" loading="lazy">
+          <div class="pkg-img-overlay"></div>
           
-          <!-- Badges -->
-          <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-            <span class="tag-badge-vibrant ${pkg.tagColor} border">${pkg.badge}</span>
-            <span class="tag-badge-vibrant bg-slate-900/80 text-cyan-300 border border-cyan-500/30">
-              <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              ${pkg.duration}
+          ${isUltraPopular ? `
+            <div class="absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider text-slate-950 font-sans shadow-lg shadow-amber-500/30" style="background:linear-gradient(135deg,#ffd200,#f97316)">
+              ★ Curated Top Pick
+            </div>
+          ` : ''}
+
+          <div class="absolute top-4 left-4 z-20">
+            <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider backdrop-blur-md border" style="background:rgba(4,2,12,0.7);border-color:${p.accentColor};color:${p.accentColor}">
+              ${p.badge}
             </span>
           </div>
 
-          <!-- Location Badge -->
-          <div class="absolute bottom-4 left-4 flex items-center text-xs font-semibold text-slate-100 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
-            <svg class="w-3.5 h-3.5 text-amber-400 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            ${pkg.location}
+          <div class="absolute bottom-4 left-4 z-20 flex items-center gap-1.5 text-xs text-white font-semibold px-3 py-1.5 rounded-full backdrop-blur-md" style="background:rgba(4,2,12,0.8);border:1px solid rgba(255,255,255,0.15)">
+            <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            ${p.location}
           </div>
 
-          <!-- Rating -->
-          <div class="absolute top-4 right-4 bg-slate-950/85 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full flex items-center text-xs font-bold text-amber-400">
-            ★ ${pkg.rating} <span class="text-slate-400 font-normal ml-1">(${pkg.reviewsCount})</span>
+          <div class="absolute bottom-4 right-4 z-20 flex items-center gap-1 text-xs font-bold text-amber-300 px-2.5 py-1 rounded-full backdrop-blur-md" style="background:rgba(4,2,12,0.85);border:1px solid rgba(255,255,255,0.15)">
+            ★ ${p.rating} <span class="text-slate-400 font-normal">(${p.reviewsCount})</span>
           </div>
         </div>
 
-        <!-- Package Body -->
-        <div class="p-6 flex-1 flex flex-col justify-between">
-          <div>
-            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors font-serif">
-              ${pkg.title}
-            </h3>
-            <p class="text-slate-300 text-xs sm:text-sm mb-4 line-clamp-2 leading-relaxed font-light">
-              ${pkg.overview}
-            </p>
-
-            <div class="space-y-2 mb-5 border-t border-b border-white/10 py-3.5">
-              ${pkg.highlights.slice(0, 3).map(hl => `
-                <div class="flex items-center text-xs text-slate-300">
-                  <svg class="w-4 h-4 text-amber-400 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                  <span class="truncate">${hl}</span>
-                </div>
-              `).join('')}
-            </div>
-
-            <div class="flex items-center text-xs text-cyan-300 bg-cyan-950/50 border border-cyan-500/30 rounded-xl px-3 py-2.5 mb-5 font-medium">
-              <svg class="w-4 h-4 mr-2 text-cyan-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <span class="truncate">${pkg.flightPartner}</span>
-            </div>
+        <div class="p-6 flex-1 flex flex-col relative z-10">
+          <div class="flex items-center gap-2 mb-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+            <svg class="w-3.5 h-3.5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            ${p.duration}
           </div>
 
-          <div class="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
+          <h3 class="text-xl font-bold font-serif text-white mb-2 leading-snug group-hover:text-cyan-300 transition-colors">
+            ${p.title}
+          </h3>
+
+          <p class="text-slate-300 text-xs mb-4 leading-relaxed line-clamp-2">
+            ${p.overview}
+          </p>
+
+          <div class="space-y-2 mb-4 py-3 border-t border-b border-white/8 text-xs text-slate-300">
+            ${p.highlights.slice(0, 3).map((h) => `
+              <div class="flex items-center gap-2">
+                <span class="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 text-[10px]" style="background:${p.accentColor}33;color:${p.accentColor}">✓</span>
+                <span class="truncate">${h}</span>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="flex items-center gap-2 text-xs p-3 rounded-xl mb-5" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)">
+            <span class="text-base">✈️</span>
+            <span class="text-slate-200 truncate font-mono text-[11px]">${p.flightPartner}</span>
+          </div>
+
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/8">
             <div>
-              <span class="text-[11px] text-slate-400 block uppercase tracking-wider font-semibold">All-Inclusive From</span>
+              <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold block">All-Inclusive From</span>
               <div class="flex items-baseline gap-1">
-                <span class="text-2xl font-extrabold text-amber-400 font-display">${priceFormatted}</span>
-                <span class="text-xs text-slate-400">/ person</span>
+                <span class="text-2xl font-extrabold font-mono" style="color:${p.accentColor}">${priceFormatted}</span>
+                <span class="text-xs text-slate-400">/ guest</span>
               </div>
             </div>
-
-            <button onclick="openBookingModal('${pkg.id}')" class="btn-luxury-vibrant px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 shadow-lg group-hover:shadow-amber-500/40">
-              <span>Book Package</span>
-              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </button>
+            
+            <div class="flex items-center gap-2">
+              <button onclick="open360Panorama('${p.id}')" title="360° Virtual Horizon Tour" class="p-2.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+              </button>
+              <button onclick="openBookingModal('${p.id}')" class="px-5 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5 transition-all duration-300" style="background:linear-gradient(135deg,${p.accentColor},${p.accentColor}cc);color:#030712;box-shadow:0 8px 25px ${p.accentColor}55" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+                Book
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </article>
     `;
   }).join('');
 }
 
-window.resetFilters = function() {
-  activeCategory = 'all';
-  searchQuery = '';
-  const searchInput = document.getElementById('search-packages');
-  if (searchInput) searchInput.value = '';
-  document.querySelectorAll('.filter-tab').forEach(btn => {
-    btn.classList.toggle('bg-amber-500', btn.dataset.category === 'all');
-    btn.classList.toggle('text-slate-950', btn.dataset.category === 'all');
-    btn.classList.toggle('bg-white/5', btn.dataset.category !== 'all');
-    btn.classList.toggle('text-slate-300', btn.dataset.category !== 'all');
-  });
-  renderPackages();
-};
-
-function initSearchAndFilter() {
-  const filterTabs = document.querySelectorAll('.filter-tab');
-  filterTabs.forEach(tab => {
+function initFilterAndSearch() {
+  document.querySelectorAll('.filter-chip').forEach((tab) => {
     tab.addEventListener('click', () => {
-      filterTabs.forEach(t => {
-        t.classList.remove('bg-amber-500', 'text-slate-950');
-        t.classList.add('bg-white/5', 'text-slate-300');
-      });
-      tab.classList.remove('bg-white/5', 'text-slate-300');
-      tab.classList.add('bg-amber-500', 'text-slate-950');
-
-      activeCategory = tab.dataset.category;
-      renderPackages();
+      document.querySelectorAll('.filter-chip').forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeCategory = tab.dataset.category || 'all';
+      renderExpeditionCatalog();
     });
   });
 
   const searchInput = document.getElementById('search-packages');
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value;
-      renderPackages();
+      packageSearchQuery = e.target.value.trim();
+      renderExpeditionCatalog();
     });
   }
 }
 
+window.resetFilters = function () {
+  activeCategory = 'all';
+  packageSearchQuery = '';
+  const searchInput = document.getElementById('search-packages');
+  if (searchInput) searchInput.value = '';
+  document.querySelectorAll('.filter-chip').forEach((t) => {
+    t.classList.toggle('active', t.dataset.category === 'all');
+  });
+  renderExpeditionCatalog();
+};
+
 function initCurrencySelector() {
-  const currencySelects = document.querySelectorAll('.currency-select');
-  currencySelects.forEach(select => {
-    select.addEventListener('change', (e) => {
-      const selected = e.target.value;
-      if (CURRENCIES[selected]) {
-        currentCurrency = selected;
-        currencySelects.forEach(s => s.value = currentCurrency);
-        renderPackages();
-        recalculateBookingPrice();
+  document.querySelectorAll('.currency-select').forEach((sel) => {
+    sel.addEventListener('change', (e) => {
+      if (CURRENCIES[e.target.value]) {
+        currentCurrency = e.target.value;
+        document.querySelectorAll('.currency-select').forEach((s) => s.value = currentCurrency);
+        renderExpeditionCatalog();
+        updateModalPricing();
       }
     });
   });
 }
 
-// --- 8. BOOKING MODAL & ENGINE ---
+// ═══════════════════════════════════════════════════════════════════
+// 15. BOOKING ENGINE & DIGITAL BOARDING PASS
+// ═══════════════════════════════════════════════════════════════════
 function initBookingModal() {
-  const modal = document.getElementById('booking-modal');
-  const closeBtn = document.getElementById('close-booking-modal');
-  const overlay = document.getElementById('modal-backdrop');
-  const packageSelect = document.getElementById('modal-package-select');
-
-  if (packageSelect) {
-    packageSelect.innerHTML = PACKAGES_DATA.map(p => `
+  const pkgDropdown = document.getElementById('b-pkg-dropdown');
+  if (pkgDropdown) {
+    pkgDropdown.innerHTML = EXPEDITIONS_DATA.map((p) => `
       <option value="${p.id}">${p.title} (${p.location})</option>
     `).join('');
 
-    packageSelect.addEventListener('change', (e) => {
-      const found = PACKAGES_DATA.find(p => p.id === e.target.value);
-      if (found) {
-        selectedPackage = found;
+    pkgDropdown.addEventListener('change', (e) => {
+      const selected = EXPEDITIONS_DATA.find((p) => p.id === e.target.value);
+      if (selected) {
+        activeExpedition = selected;
         updateModalPreview();
-        recalculateBookingPrice();
+        updateModalPricing();
       }
     });
   }
 
   const today = new Date();
   const departDate = new Date(today);
-  departDate.setDate(today.getDate() + 14);
+  departDate.setDate(today.getDate() + 21);
   const returnDate = new Date(today);
-  returnDate.setDate(today.getDate() + 21);
+  returnDate.setDate(today.getDate() + 29);
 
-  const departInput = document.getElementById('book-depart-date');
-  const returnInput = document.getElementById('book-return-date');
-  if (departInput && returnInput) {
-    departInput.value = departDate.toISOString().split('T')[0];
-    returnInput.value = returnDate.toISOString().split('T')[0];
-    departInput.min = today.toISOString().split('T')[0];
-    returnInput.min = departInput.value;
+  const depInput = document.getElementById('b-departure-date');
+  const retInput = document.getElementById('b-return-date');
+  if (depInput) {
+    depInput.value = departDate.toISOString().split('T')[0];
+    depInput.min = today.toISOString().split('T')[0];
+  }
+  if (retInput) {
+    retInput.value = returnDate.toISOString().split('T')[0];
   }
 
-  if (closeBtn) closeBtn.addEventListener('click', closeBookingModal);
-  if (overlay) overlay.addEventListener('click', closeBookingModal);
-
-  ['book-adults', 'book-children'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('change', recalculateBookingPrice);
+  ['b-adults', 'b-children'].forEach((id) => {
+    document.getElementById(id)?.addEventListener('change', updateModalPricing);
+  });
+  document.querySelectorAll('input[name="b-cabin-class"]').forEach((radio) => {
+    radio.addEventListener('change', updateModalPricing);
+  });
+  ['b-addon-chauffeur', 'b-addon-caviar', 'b-addon-spa', 'b-addon-drone'].forEach((id) => {
+    document.getElementById(id)?.addEventListener('change', updateModalPricing);
   });
 
-  document.querySelectorAll('input[name="flight-class"]').forEach(radio => {
-    radio.addEventListener('change', recalculateBookingPrice);
+  document.getElementById('booking-main-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    generateDigitalBoardingPass();
   });
 
-  ['addon-chauffeur', 'addon-champagne', 'addon-spa', 'addon-drone'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('change', recalculateBookingPrice);
-  });
-
-  const bookingForm = document.getElementById('booking-form');
-  if (bookingForm) {
-    bookingForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      handleBookingSubmission();
-    });
-  }
+  document.getElementById('close-booking-modal-btn')?.addEventListener('click', closeBookingModal);
+  document.getElementById('booking-modal-overlay')?.addEventListener('click', closeBookingModal);
 }
 
-window.openBookingModal = function(packageId) {
-  if (typeof packageId === 'string' && packageId.trim()) {
-    const found = PACKAGES_DATA.find(p => p.id === packageId);
-    if (found) selectedPackage = found;
+window.openBookingModal = function (expeditionId) {
+  if (expeditionId) {
+    const found = EXPEDITIONS_DATA.find((p) => p.id === expeditionId);
+    if (found) activeExpedition = found;
   }
-  if (!selectedPackage) {
-    selectedPackage = PACKAGES_DATA[0];
-  }
+  if (!activeExpedition) activeExpedition = EXPEDITIONS_DATA[0];
 
-  const packageSelect = document.getElementById('modal-package-select');
-  if (packageSelect) {
-    packageSelect.value = selectedPackage.id;
-  }
+  const sel = document.getElementById('b-pkg-dropdown');
+  if (sel) sel.value = activeExpedition.id;
 
   updateModalPreview();
-  recalculateBookingPrice();
+  updateModalPricing();
 
   const modal = document.getElementById('booking-modal');
   if (modal) {
-    modal.classList.remove('modal-hidden');
+    modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
   }
 };
 
-window.closeBookingModal = function() {
+window.closeBookingModal = function () {
   const modal = document.getElementById('booking-modal');
   if (modal) {
-    modal.classList.add('modal-hidden');
+    modal.classList.add('hidden');
     document.body.style.overflow = '';
   }
 };
 
 function updateModalPreview() {
-  if (!selectedPackage) selectedPackage = PACKAGES_DATA[0];
+  if (!activeExpedition) activeExpedition = EXPEDITIONS_DATA[0];
+  const img = document.getElementById('modal-pkg-img');
+  const title = document.getElementById('modal-pkg-title');
+  const loc = document.getElementById('modal-pkg-loc');
+  const flight = document.getElementById('modal-pkg-flight');
+  const weather = document.getElementById('modal-pkg-weather');
 
-  const previewImg = document.getElementById('modal-pkg-img');
-  const previewTitle = document.getElementById('modal-pkg-title');
-  const previewLoc = document.getElementById('modal-pkg-location');
-  const previewFlight = document.getElementById('modal-pkg-flight');
-
-  if (previewImg) previewImg.src = selectedPackage.image;
-  if (previewTitle) previewTitle.textContent = selectedPackage.title;
-  if (previewLoc) previewLoc.textContent = selectedPackage.location;
-  if (previewFlight) previewFlight.textContent = `Included Flight: ${selectedPackage.flightPartner}`;
+  if (img) img.src = activeExpedition.image;
+  if (title) title.textContent = activeExpedition.title;
+  if (loc) loc.textContent = activeExpedition.location;
+  if (flight) flight.textContent = `✈ ${activeExpedition.flightPartner}`;
+  if (weather) weather.textContent = `☀️ ${activeExpedition.weather}`;
 }
 
-function recalculateBookingPrice() {
-  if (!selectedPackage) selectedPackage = PACKAGES_DATA[0];
+function updateModalPricing() {
+  if (!activeExpedition) activeExpedition = EXPEDITIONS_DATA[0];
+  const adults = parseInt(document.getElementById('b-adults')?.value || '2', 10);
+  const children = parseInt(document.getElementById('b-children')?.value || '0', 10);
 
-  const adults = parseInt(document.getElementById('book-adults')?.value || '2', 10) || 2;
-  const children = parseInt(document.getElementById('book-children')?.value || '0', 10) || 0;
-  
-  const checkedFlightRadio = document.querySelector('input[name="flight-class"]:checked');
-  const flightClass = checkedFlightRadio ? checkedFlightRadio.value : 'economy';
+  const cabinClass = document.querySelector('input[name="b-cabin-class"]:checked')?.value || 'standard';
+  const cabinUpgrades = { standard: 0, premium: 380, business: 980, first: 1950 };
+  const cabinCostPerPerson = cabinUpgrades[cabinClass] || 0;
 
-  const addChauffeur = document.getElementById('addon-chauffeur')?.checked ? 180 : 0;
-  const addChampagne = document.getElementById('addon-champagne')?.checked ? 120 : 0;
-  const addSpa = document.getElementById('addon-spa')?.checked ? 250 * adults : 0;
-  const addDrone = document.getElementById('addon-drone')?.checked ? 390 : 0;
+  const chauffeurCost = document.getElementById('b-addon-chauffeur')?.checked ? 190 : 0;
+  const caviarCost = document.getElementById('b-addon-caviar')?.checked ? 140 : 0;
+  const spaCost = document.getElementById('b-addon-spa')?.checked ? 280 * adults : 0;
+  const droneCost = document.getElementById('b-addon-drone')?.checked ? 420 : 0;
+  const totalAddons = chauffeurCost + caviarCost + spaCost + droneCost;
 
-  const totalTravelers = adults + children;
-  let flightUpgradePerPerson = 0;
-  if (flightClass === 'premium') flightUpgradePerPerson = 350;
-  if (flightClass === 'business') flightUpgradePerPerson = 950;
-  if (flightClass === 'first') flightUpgradePerPerson = 1850;
+  const basePerAdult = activeExpedition.basePriceUSD;
+  const basePerChild = Math.round(basePerAdult * 0.75);
 
-  const basePriceUSD = (typeof selectedPackage.basePriceUSD === 'number' && !isNaN(selectedPackage.basePriceUSD)) ? selectedPackage.basePriceUSD : 2890;
-  const childPriceUSD = Math.round(basePriceUSD * 0.75);
+  const totalUSD =
+    adults * (basePerAdult + cabinCostPerPerson) +
+    children * (basePerChild + cabinCostPerPerson) +
+    totalAddons;
 
-  const totalBaseUSD = (adults * basePriceUSD) + (children * childPriceUSD);
-  const totalFlightUpgradeUSD = totalTravelers * flightUpgradePerPerson;
-  const totalAddonsUSD = addChauffeur + addChampagne + addSpa + addDrone;
-  const grandTotalUSD = totalBaseUSD + totalFlightUpgradeUSD + totalAddonsUSD;
+  const c = CURRENCIES[currentCurrency];
+  const convertedTotal = Math.round(totalUSD * c.rate);
+  const totalDisplay = document.getElementById('modal-total-display');
+  if (totalDisplay) totalDisplay.textContent = `${c.symbol}${convertedTotal.toLocaleString()}`;
 
-  const curr = CURRENCIES[currentCurrency] || CURRENCIES.USD;
-  const grandTotalConverted = Math.round(grandTotalUSD * curr.rate);
-  const formattedTotal = `${curr.symbol}${grandTotalConverted.toLocaleString()}`;
-
-  const displayTotal = document.getElementById('modal-total-price');
-  const displayBreakdown = document.getElementById('modal-price-breakdown');
-
-  if (displayTotal) {
-    displayTotal.textContent = formattedTotal;
-  }
-
-  if (displayBreakdown) {
-    displayBreakdown.innerHTML = `
-      <div class="flex justify-between text-xs text-slate-300 py-1">
-        <span>Travelers (${adults} Adults${children > 0 ? `, ${children} Children` : ''})</span>
-        <span>${curr.symbol}${Math.round(totalBaseUSD * curr.rate).toLocaleString()}</span>
+  const breakdownDisplay = document.getElementById('modal-breakdown-display');
+  if (breakdownDisplay) {
+    breakdownDisplay.innerHTML = `
+      <div class="flex justify-between">
+        <span>${adults} Adults + ${children} Children Base</span>
+        <span>${c.symbol}${Math.round((adults * basePerAdult + children * basePerChild) * c.rate).toLocaleString()}</span>
       </div>
-      ${totalFlightUpgradeUSD > 0 ? `
-      <div class="flex justify-between text-xs text-slate-300 py-1">
-        <span>Flight Class Upgrade (${flightClass.toUpperCase()})</span>
-        <span>${curr.symbol}${Math.round(totalFlightUpgradeUSD * curr.rate).toLocaleString()}</span>
-      </div>` : ''}
-      ${totalAddonsUSD > 0 ? `
-      <div class="flex justify-between text-xs text-slate-300 py-1">
-        <span>Selected VIP Concierge Add-ons</span>
-        <span>${curr.symbol}${Math.round(totalAddonsUSD * curr.rate).toLocaleString()}</span>
-      </div>` : ''}
-      <div class="flex justify-between text-xs text-emerald-400 py-1 border-t border-white/10 mt-1 font-semibold">
-        <span>Taxes, Private Transfers & Resort Inclusions</span>
-        <span>100% Included</span>
+      ${cabinCostPerPerson > 0 ? `
+        <div class="flex justify-between text-cyan-300">
+          <span>${cabinClass.toUpperCase()} Cabin Upgrade (${adults + children} pax)</span>
+          <span>+${c.symbol}${Math.round((adults + children) * cabinCostPerPerson * c.rate).toLocaleString()}</span>
+        </div>
+      ` : ''}
+      ${totalAddons > 0 ? `
+        <div class="flex justify-between text-amber-300">
+          <span>VIP Concierge Add-ons</span>
+          <span>+${c.symbol}${Math.round(totalAddons * c.rate).toLocaleString()}</span>
+        </div>
+      ` : ''}
+      <div class="flex justify-between text-emerald-400 font-bold border-t border-white/10 pt-1 mt-1">
+        <span>All Airport Taxes & Resort Levies</span>
+        <span>Included (100% Guaranteed)</span>
       </div>
     `;
   }
 }
 
-// --- 9. OFFICIAL BOARDING PASS & PRINT RECEIPT ---
-function handleBookingSubmission() {
-  const name = document.getElementById('book-name')?.value || 'Valued Traveler';
-  const email = document.getElementById('book-email')?.value || 'traveler@luxury.com';
-  const phone = document.getElementById('book-phone')?.value || '+1 (555) 019-2834';
-  const depart = document.getElementById('book-depart-date')?.value || '2026-11-15';
-  const returnD = document.getElementById('book-return-date')?.value || '2026-11-22';
-  const adults = document.getElementById('book-adults')?.value || '2';
-  const children = document.getElementById('book-children')?.value || '0';
-  
-  const checkedFlightRadio = document.querySelector('input[name="flight-class"]:checked');
-  const flightClass = checkedFlightRadio ? checkedFlightRadio.value.toUpperCase() : 'STANDARD LUXURY';
-  const totalFormatted = document.getElementById('modal-total-price')?.textContent || '$5,780';
-
+function generateDigitalBoardingPass() {
+  const leadName = document.getElementById('b-lead-name')?.value || 'Alexander Wright';
+  const email = document.getElementById('b-email')?.value || 'alex@luxury.com';
+  const depDate = document.getElementById('b-departure-date')?.value || '2026-11-20';
+  const retDate = document.getElementById('b-return-date')?.value || '2026-11-28';
+  const adults = document.getElementById('b-adults')?.value || '2';
+  const cabin = document.querySelector('input[name="b-cabin-class"]:checked')?.value?.toUpperCase() || 'FIRST SUITE';
+  const totalText = document.getElementById('modal-total-display')?.textContent || '$6,800';
   const refCode = 'AUR-' + Math.floor(100000 + Math.random() * 900000);
-  const issueDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
   const modalBody = document.getElementById('booking-modal-body');
-  if (modalBody) {
-    modalBody.innerHTML = `
-      <div class="py-4 px-2">
-        <div class="no-print flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 p-4 rounded-2xl bg-amber-500/15 border border-amber-500/35">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xl">
-              ✓
-            </div>
-            <div>
-              <h4 class="text-white font-bold text-base">Booking Confirmed & Locked!</h4>
-              <p class="text-xs text-slate-300">Confirmation emailed to <span class="text-amber-400 underline">${email}</span></p>
-            </div>
-          </div>
+  if (!modalBody) return;
 
-          <div class="flex items-center gap-3 w-full sm:w-auto">
-            <button onclick="window.print()" class="btn-luxury-vibrant px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg w-full sm:w-auto">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
-              <span>Print Official Voucher</span>
-            </button>
-            <button onclick="closeBookingModal(); location.reload();" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold transition">
-              Done
-            </button>
+  modalBody.innerHTML = `
+    <div class="py-6 px-2">
+      <div class="no-print p-6 rounded-3xl mb-8 flex flex-col sm:flex-row items-center justify-between gap-4" style="background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(0,242,254,0.15));border:1px solid rgba(16,185,129,0.4)">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl font-bold" style="background:linear-gradient(135deg,#10b981,#00f2fe)">
+            ✓
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-white font-serif">Expedition Confirmed & Locked!</h3>
+            <p class="text-xs text-slate-300 mt-1">Official travel docket dispatched to <strong class="text-amber-400">${email}</strong></p>
           </div>
         </div>
-
-        <div id="printable-voucher" class="boarding-pass-card max-w-2xl mx-auto p-8 border border-slate-200">
-          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-slate-900 pb-5 mb-6">
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xl">✈️</span>
-                <span class="font-serif text-2xl font-black tracking-wider text-slate-900">AURA VOYAGES</span>
-              </div>
-              <p class="text-[11px] uppercase tracking-widest text-slate-500 font-bold">Bespoke Expeditions & Luxury Travel Carriage</p>
-            </div>
-            <div class="mt-3 sm:mt-0 text-left sm:text-right">
-              <span class="inline-block px-3 py-1 bg-amber-100 text-amber-900 rounded-full font-mono text-xs font-bold border border-amber-300">
-                REF: ${refCode}
-              </span>
-              <p class="text-[10px] text-slate-500 mt-1">Issued: ${issueDate}</p>
-            </div>
-          </div>
-
-          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 mb-6">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-              <div>
-                <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Expedition Package</span>
-                <h3 class="text-xl font-serif font-black text-slate-900">${selectedPackage.title}</h3>
-                <p class="text-xs text-slate-600 mt-0.5">Destination: <span class="font-bold text-slate-900">${selectedPackage.location}</span></p>
-              </div>
-              <div class="text-left sm:text-right">
-                <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Flight Routing</span>
-                <p class="text-sm font-bold text-amber-700">${selectedPackage.flightPartner}</p>
-                <p class="text-xs text-slate-500 font-mono">${selectedPackage.flightRoute}</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 py-4 border-t border-b border-slate-200 text-xs mb-6">
-            <div>
-              <span class="text-[10px] uppercase text-slate-400 font-bold block">Lead Guest</span>
-              <span class="font-bold text-slate-900 text-sm">${name}</span>
-              <span class="text-[10px] text-slate-500 block">${phone}</span>
-            </div>
-
-            <div>
-              <span class="text-[10px] uppercase text-slate-400 font-bold block">Travel Dates</span>
-              <span class="font-bold text-slate-900">${depart}</span>
-              <span class="text-[10px] text-slate-500 block">to ${returnD}</span>
-            </div>
-
-            <div>
-              <span class="text-[10px] uppercase text-slate-400 font-bold block">Travelers</span>
-              <span class="font-bold text-slate-900">${adults} Adults</span>
-              ${children > 0 ? `<span class="text-[10px] text-slate-500 block">+ ${children} Children</span>` : ''}
-            </div>
-
-            <div>
-              <span class="text-[10px] uppercase text-slate-400 font-bold block">Cabin Class</span>
-              <span class="font-bold text-amber-600">${flightClass}</span>
-              <span class="text-[10px] text-slate-500 block">Luggage: 2x 32kg</span>
-            </div>
-          </div>
-
-          <div class="mb-6">
-            <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500 block mb-2">5-Star Accommodation & Inclusions</span>
-            <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 text-xs space-y-1.5">
-              <p class="font-bold text-slate-900 text-sm">🏨 ${selectedPackage.hotelName}</p>
-              <p class="text-slate-600">✓ VIP Airport Fast-Track & Private Arrival Chauffeur</p>
-              <p class="text-slate-600">✓ Daily Gourmet Champagne Breakfast & Private Dining Allocation</p>
-              <p class="text-slate-600">✓ Dedicated 24/7 Personal Concierge & Guide</p>
-            </div>
-          </div>
-
-          <div class="border-t-2 border-dashed border-slate-300 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div>
-              <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 block">Payment Status</span>
-              <div class="flex items-center gap-2">
-                <span class="text-emerald-700 font-black text-sm">● PAID IN FULL</span>
-                <span class="text-xs text-slate-500">(${totalFormatted})</span>
-              </div>
-              <p class="text-[10px] text-slate-400 mt-1">All taxes, resort surcharges & air carriage fees included.</p>
-            </div>
-
-            <div class="flex items-center gap-4">
-              <div class="text-right hidden sm:block">
-                <span class="text-[9px] uppercase tracking-widest text-slate-400 block font-mono">IATA AGENT #91-2-4820</span>
-                <span class="text-[10px] text-slate-700 font-serif font-bold">Aura Travel Guild Certified</span>
-              </div>
-              
-              <svg class="w-32 h-10" viewBox="0 0 140 40">
-                <rect x="0" y="0" width="3" height="40" fill="#0f172a" />
-                <rect x="5" y="0" width="1" height="40" fill="#0f172a" />
-                <rect x="8" y="0" width="4" height="40" fill="#0f172a" />
-                <rect x="15" y="0" width="2" height="40" fill="#0f172a" />
-                <rect x="19" y="0" width="1" height="40" fill="#0f172a" />
-                <rect x="23" y="0" width="5" height="40" fill="#0f172a" />
-                <rect x="30" y="0" width="2" height="40" fill="#0f172a" />
-                <rect x="35" y="0" width="3" height="40" fill="#0f172a" />
-                <rect x="42" y="0" width="1" height="40" fill="#0f172a" />
-                <rect x="45" y="0" width="4" height="40" fill="#0f172a" />
-                <rect x="52" y="0" width="3" height="40" fill="#0f172a" />
-                <rect x="58" y="0" width="1" height="40" fill="#0f172a" />
-                <rect x="62" y="0" width="4" height="40" fill="#0f172a" />
-                <rect x="68" y="0" width="2" height="40" fill="#0f172a" />
-                <rect x="73" y="0" width="5" height="40" fill="#0f172a" />
-                <rect x="81" y="0" width="2" height="40" fill="#0f172a" />
-                <rect x="86" y="0" width="3" height="40" fill="#0f172a" />
-                <rect x="92" y="0" width="1" height="40" fill="#0f172a" />
-                <rect x="95" y="0" width="4" height="40" fill="#0f172a" />
-                <rect x="102" y="0" width="2" height="40" fill="#0f172a" />
-                <rect x="106" y="0" width="4" height="40" fill="#0f172a" />
-                <rect x="113" y="0" width="1" height="40" fill="#0f172a" />
-                <rect x="116" y="0" width="3" height="40" fill="#0f172a" />
-                <rect x="122" y="0" width="4" height="40" fill="#0f172a" />
-                <rect x="128" y="0" width="2" height="40" fill="#0f172a" />
-                <rect x="133" y="0" width="4" height="40" fill="#0f172a" />
-              </svg>
-            </div>
-          </div>
-
-          <div class="mt-6 pt-4 border-t border-slate-100 text-[10px] text-slate-400 text-center">
-            24/7 Global VIP Concierge Hotline: <strong class="text-slate-700">+1 (800) 428-AURA</strong> • Geneva • New York • Dubai • Singapore
-          </div>
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <button onclick="window.print()" class="btn-vibrant-primary text-xs py-3 px-6 flex-1 sm:flex-initial">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            Print Boarding Voucher
+          </button>
+          <button onclick="closeBookingModal();location.reload()" class="btn-glass text-xs py-3 px-5">
+            Done
+          </button>
         </div>
       </div>
-    `;
-  }
+
+      <div id="printable-boarding-pass" class="boarding-pass-ticket max-w-2xl mx-auto p-8 border-2 border-slate-900">
+        <div class="flex items-center justify-between border-b-2 border-slate-900 pb-5 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl" style="background:#03010f;color:#ffd200">✈</div>
+            <div>
+              <div class="font-cinzel text-xl font-black tracking-widest text-slate-950">AURA VOYAGES</div>
+              <div class="text-[9px] uppercase tracking-[0.25em] text-slate-500 font-bold">Ultra-Luxury Expeditions · IATA #91-2-4820</div>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="px-3 py-1 bg-amber-100 text-amber-950 border border-amber-300 font-mono text-xs font-black rounded-lg">
+              PNR: ${refCode}
+            </span>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 rounded-2xl p-5 mb-6 border border-slate-200">
+          <div class="text-[10px] uppercase font-bold tracking-widest text-slate-400">Curated Journey</div>
+          <h2 class="text-xl font-bold font-serif text-slate-950 mt-1">${activeExpedition.title}</h2>
+          <div class="text-sm font-semibold text-slate-700 mt-1">📍 ${activeExpedition.location} · 5★ ${activeExpedition.hotelName}</div>
+          <div class="text-xs font-mono font-bold text-cyan-800 mt-2 bg-cyan-50 px-3 py-1.5 rounded-lg border border-cyan-200 inline-block">
+            ✈ ${activeExpedition.flightPartner} · Class: ${cabin}
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-6 border-b-2 border-slate-900 text-xs">
+          <div>
+            <div class="text-[9px] uppercase font-bold tracking-wider text-slate-400">Lead Passenger</div>
+            <div class="font-bold text-slate-950 text-sm mt-0.5">${leadName}</div>
+          </div>
+          <div>
+            <div class="text-[9px] uppercase font-bold tracking-wider text-slate-400">Travel Party</div>
+            <div class="font-bold text-slate-950 text-sm mt-0.5">${adults} Travelers</div>
+          </div>
+          <div>
+            <div class="text-[9px] uppercase font-bold tracking-wider text-slate-400">Departure Date</div>
+            <div class="font-bold text-slate-950 text-sm mt-0.5">${depDate}</div>
+          </div>
+          <div>
+            <div class="text-[9px] uppercase font-bold tracking-wider text-slate-400">Return Date</div>
+            <div class="font-bold text-slate-950 text-sm mt-0.5">${retDate}</div>
+          </div>
+        </div>
+
+        <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <div class="text-[9px] uppercase font-bold tracking-wider text-slate-400">Payment Status</div>
+            <div class="text-lg font-black text-emerald-700">● PAID IN FULL — ${totalText}</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">Includes Private Aviation, 5★ Sanctuary, Butler & VIP Concierge</div>
+          </div>
+          <div class="text-right">
+            <div class="font-mono text-2xl tracking-widest text-slate-800 select-none">||| | |||| || ||| |||| | |||</div>
+            <div class="text-[9px] font-mono text-slate-400 tracking-wider uppercase mt-1">E-TICKET VERIFIED</div>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-200 text-center text-[10px] text-slate-400">
+          24/7 Dedicated Concierge: <strong class="text-slate-800">+1 (800) 428-AURA</strong> · Geneva · New York · Dubai · Singapore
+        </div>
+      </div>
+    </div>
+  `;
 }
 
-// --- 10. CANVAS PARTICLES ---
-function initParticleCanvas() {
-  const canvas = document.getElementById('particles-canvas');
-  if (!canvas) return;
+// ═══════════════════════════════════════════════════════════════════
+// 16. 360° VIRTUAL HORIZON PANORAMA VIEWER
+// ═══════════════════════════════════════════════════════════════════
+let panoScene, panoCamera, panoRenderer, panoMesh;
+let isPanningPano = false, panoStartX = 0, panoStartY = 0;
+let panoLon = 0, panoLat = 0, panoTargetLon = 0, panoTargetLat = 0;
 
-  const ctx = canvas.getContext('2d');
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
-
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
-
-  const particles = [];
-  const PARTICLE_COUNT = 45;
-
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    particles.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      size: Math.random() * 2.2 + 0.8,
-      speedX: (Math.random() - 0.5) * 0.4 + 0.25,
-      speedY: (Math.random() - 0.5) * 0.3 - 0.1,
-      opacity: Math.random() * 0.6 + 0.2
-    });
-  }
-
-  function renderParticles() {
-    ctx.clearRect(0, 0, width, height);
-
-    particles.forEach(p => {
-      p.x += p.speedX;
-      p.y += p.speedY;
-
-      if (p.x < 0) p.x = width;
-      if (p.x > width) p.x = 0;
-      if (p.y < 0) p.y = height;
-      if (p.y > height) p.y = 0;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = 'rgba(245, 158, 11, 0.4)';
-      ctx.fill();
-    });
-
-    requestAnimationFrame(renderParticles);
-  }
-
-  renderParticles();
+function init360PanoramaViewer() {
+  document.getElementById('close-pano-btn')?.addEventListener('click', close360Panorama);
 }
 
-// --- 11. WEB AUDIO API SOUNDSCAPE ---
-let audioCtx = null;
-let isAudioPlaying = false;
-let ambientNodes = [];
+window.open360Panorama = function (expeditionId) {
+  const modal = document.getElementById('pano-modal');
+  if (!modal) return;
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
 
-function initAudioSynthesizer() {
-  const soundToggleBtn = document.getElementById('soundscape-toggle');
-  const soundText = document.getElementById('soundscape-text');
+  const pkg = EXPEDITIONS_DATA.find((p) => p.id === expeditionId) || EXPEDITIONS_DATA[0];
+  const titleEl = document.getElementById('pano-title');
+  if (titleEl) titleEl.textContent = `360° Horizon View: ${pkg.title} (${pkg.location})`;
 
-  if (!soundToggleBtn) return;
+  const container = document.getElementById('pano-viewport');
+  const canvas = document.getElementById('pano-canvas');
+  if (!container || !canvas || typeof THREE === 'undefined') return;
 
-  soundToggleBtn.addEventListener('click', () => {
-    if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const w = container.clientWidth;
+  const h = container.clientHeight;
+
+  if (!panoScene) {
+    panoScene = new THREE.Scene();
+    panoCamera = new THREE.PerspectiveCamera(75, w / h, 1, 1100);
+    panoCamera.target = new THREE.Vector3(0, 0, 0);
+
+    panoRenderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+    panoRenderer.setSize(w, h);
+    panoRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const sphereGeo = new THREE.SphereGeometry(500, 60, 40);
+    sphereGeo.scale(-1, 1, 1);
+
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.load(pkg.image, (texture) => {
+      const sphereMat = new THREE.MeshBasicMaterial({ map: texture });
+      if (panoMesh) panoScene.remove(panoMesh);
+      panoMesh = new THREE.Mesh(sphereGeo, sphereMat);
+      panoScene.add(panoMesh);
+    });
+
+    container.addEventListener('mousedown', (e) => {
+      isPanningPano = true;
+      panoStartX = e.clientX;
+      panoStartY = e.clientY;
+    });
+    window.addEventListener('mouseup', () => { isPanningPano = false; });
+    container.addEventListener('mousemove', (e) => {
+      if (!isPanningPano) return;
+      panoTargetLon += (panoStartX - e.clientX) * 0.18;
+      panoTargetLat += (e.clientY - panoStartY) * 0.18;
+      panoTargetLat = Math.max(-85, Math.min(85, panoTargetLat));
+      panoStartX = e.clientX;
+      panoStartY = e.clientY;
+    });
+
+    function loopPano() {
+      requestAnimationFrame(loopPano);
+      if (!modal.classList.contains('hidden')) {
+        panoLon += (panoTargetLon - panoLon) * 0.1;
+        panoLat += (panoTargetLat - panoLat) * 0.1;
+
+        const phi = THREE.MathUtils.degToRad(90 - panoLat);
+        const theta = THREE.MathUtils.degToRad(panoLon);
+
+        panoCamera.target.x = 500 * Math.sin(phi) * Math.cos(theta);
+        panoCamera.target.y = 500 * Math.cos(phi);
+        panoCamera.target.z = 500 * Math.sin(phi) * Math.sin(theta);
+
+        panoCamera.lookAt(panoCamera.target);
+        panoRenderer.render(panoScene, panoCamera);
+      }
+    }
+    loopPano();
+  } else {
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.load(pkg.image, (texture) => {
+      if (panoMesh) panoMesh.material.map = texture;
+      panoMesh.material.needsUpdate = true;
+    });
+  }
+};
+
+window.close360Panorama = function () {
+  const modal = document.getElementById('pano-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// 17. NATIVE WEB AUDIO SYNTHESIZER
+// ═══════════════════════════════════════════════════════════════════
+let audioContext = null;
+let isAudioActive = false;
+let audioGainNode = null;
+let noiseBufferSource = null;
+
+function initSynthesizerAudio() {
+  const toggleBtn = document.getElementById('soundscape-btn');
+  const toggleText = document.getElementById('soundscape-label');
+  const eqVisualizer = document.getElementById('eq-visualizer');
+  if (!toggleBtn) return;
+
+  toggleBtn.addEventListener('click', () => {
+    if (!audioContext) {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioContext.state === 'suspended') {
+      audioContext.resume();
     }
 
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-
-    if (!isAudioPlaying) {
-      startAmbientSoundscape();
-      isAudioPlaying = true;
-      if (soundText) soundText.textContent = 'Audio: On';
-      soundToggleBtn.classList.add('border-amber-400', 'text-amber-400');
+    if (!isAudioActive) {
+      startAmbientSound();
+      isAudioActive = true;
+      if (toggleText) toggleText.textContent = 'Atmosphere: On';
+      if (eqVisualizer) eqVisualizer.classList.remove('eq-paused');
+      toggleBtn.style.borderColor = '#00f2fe';
+      toggleBtn.style.color = '#38bdf8';
     } else {
-      stopAmbientSoundscape();
-      isAudioPlaying = false;
-      if (soundText) soundText.textContent = 'Audio: Off';
-      soundToggleBtn.classList.remove('border-amber-400', 'text-amber-400');
+      stopAmbientSound();
+      isAudioActive = false;
+      if (toggleText) toggleText.textContent = 'Atmosphere';
+      if (eqVisualizer) eqVisualizer.classList.add('eq-paused');
+      toggleBtn.style.borderColor = '';
+      toggleBtn.style.color = '';
     }
   });
 }
 
-function startAmbientSoundscape() {
-  if (!audioCtx) return;
-
-  const bufferSize = audioCtx.sampleRate * 2;
-  const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+function startAmbientSound() {
+  if (!audioContext) return;
+  const sampleRate = audioContext.sampleRate;
+  const bufferSize = sampleRate * 2;
+  const noiseBuffer = audioContext.createBuffer(1, bufferSize, sampleRate);
   const output = noiseBuffer.getChannelData(0);
-  let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
 
+  let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
   for (let i = 0; i < bufferSize; i++) {
     const white = Math.random() * 2 - 1;
     b0 = 0.99886 * b0 + white * 0.0555179;
@@ -1089,97 +1607,95 @@ function startAmbientSoundscape() {
     b3 = 0.86650 * b3 + white * 0.3104856;
     b4 = 0.55000 * b4 + white * 0.5329522;
     b5 = -0.7616 * b5 - white * 0.0168980;
-    output[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.035;
+    output[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.02;
     b6 = white * 0.115926;
   }
 
-  const whiteNoise = audioCtx.createBufferSource();
-  whiteNoise.buffer = noiseBuffer;
-  whiteNoise.loop = true;
+  noiseBufferSource = audioContext.createBufferSource();
+  noiseBufferSource.buffer = noiseBuffer;
+  noiseBufferSource.loop = true;
 
-  const filter = audioCtx.createBiquadFilter();
-  filter.type = 'lowpass';
-  filter.frequency.value = 400;
+  const lowpassFilter = audioContext.createBiquadFilter();
+  lowpassFilter.type = 'lowpass';
+  lowpassFilter.frequency.setValueAtTime(360, audioContext.currentTime);
 
-  const gainNode = audioCtx.createGain();
-  gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime);
-  gainNode.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime + 1.5);
+  audioGainNode = audioContext.createGain();
+  audioGainNode.gain.setValueAtTime(0.01, audioContext.currentTime);
+  audioGainNode.gain.exponentialRampToValueAtTime(0.2, audioContext.currentTime + 1.5);
 
-  whiteNoise.connect(filter);
-  filter.connect(gainNode);
-  gainNode.connect(audioCtx.destination);
+  noiseBufferSource.connect(lowpassFilter);
+  lowpassFilter.connect(audioGainNode);
+  audioGainNode.connect(audioContext.destination);
 
-  whiteNoise.start();
-  ambientNodes = [whiteNoise, filter, gainNode];
+  noiseBufferSource.start();
 }
 
-function stopAmbientSoundscape() {
-  if (ambientNodes.length > 0) {
-    const [source, , gain] = ambientNodes;
-    if (gain && audioCtx) {
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
-      setTimeout(() => {
-        try { source.stop(); } catch(e) {}
-      }, 800);
-    }
+function stopAmbientSound() {
+  if (audioGainNode && audioContext) {
+    audioGainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.6);
+    setTimeout(() => {
+      try { noiseBufferSource.stop(); } catch (e) {}
+    }, 650);
   }
 }
 
-// --- 12. 3D CARD TILT ON MOUSE HOVER ---
-function initInteractive3DTilt() {
-  document.addEventListener('mousemove', (e) => {
-    const cards = document.querySelectorAll('.tilt-interactive');
-    cards.forEach(card => {
-      const rect = card.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight && rect.bottom > 0;
-      if (!inView) return;
-
-      const isHovered = e.clientX >= rect.left && e.clientX <= rect.right &&
-                        e.clientY >= rect.top && e.clientY <= rect.bottom;
-
-      if (isHovered) {
-        const xVal = (e.clientX - rect.left) / rect.width;
-        const yVal = (e.clientY - rect.top) / rect.height;
-        const rotateY = (xVal - 0.5) * 16;
-        const rotateX = (0.5 - yVal) * 16;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-      } else {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-      }
-    });
-  });
-}
-
-// --- 13. MOBILE MENU ---
-function initMobileMenu() {
-  const toggleBtn = document.getElementById('mobile-menu-btn');
+// ═══════════════════════════════════════════════════════════════════
+// 18. MOBILE MENU DRAWER
+// ═══════════════════════════════════════════════════════════════════
+function initMobileDrawer() {
+  const openBtn = document.getElementById('mobile-menu-btn');
   const closeBtn = document.getElementById('mobile-menu-close');
-  const menu = document.getElementById('mobile-menu');
-  const overlay = document.getElementById('mobile-menu-overlay');
+  const drawer = document.getElementById('mobile-drawer');
+  const overlay = document.getElementById('mobile-overlay');
 
-  function openMenu() {
-    if (menu) {
-      menu.classList.remove('translate-x-full');
-      menu.classList.add('translate-x-0');
-    }
-    if (overlay) overlay.classList.remove('hidden');
+  const openDrawer = () => {
+    drawer?.classList.remove('translate-x-full');
+    overlay?.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
-  }
-
-  function closeMenu() {
-    if (menu) {
-      menu.classList.remove('translate-x-0');
-      menu.classList.add('translate-x-full');
-    }
-    if (overlay) overlay.classList.add('hidden');
+  };
+  const closeDrawer = () => {
+    drawer?.classList.add('translate-x-full');
+    overlay?.classList.add('hidden');
     document.body.style.overflow = '';
-  }
+  };
 
-  if (toggleBtn) toggleBtn.addEventListener('click', openMenu);
-  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-  if (overlay) overlay.addEventListener('click', closeMenu);
+  openBtn?.addEventListener('click', openDrawer);
+  closeBtn?.addEventListener('click', closeDrawer);
+  overlay?.addEventListener('click', closeDrawer);
 
-  document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', closeMenu);
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', closeDrawer);
   });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// 19. COUNTER STATS
+// ═══════════════════════════════════════════════════════════════════
+function initCounterStats() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseFloat(el.dataset.count);
+      const isDecimal = target % 1 !== 0;
+      let current = 0;
+      const duration = 1600;
+      const steps = 30;
+      const increment = target / steps;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          el.textContent = (isDecimal ? target.toFixed(1) : Math.round(target)) + (target >= 50 ? '+' : '');
+          clearInterval(timer);
+        } else {
+          el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + (target >= 50 ? '+' : '');
+        }
+      }, duration / steps);
+
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-count]').forEach((el) => observer.observe(el));
 }

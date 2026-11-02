@@ -1,69 +1,80 @@
-# Aura Voyages — 3D Parallax Luxury Travel Agency Website
+# AURA VOYAGES — Ultra-Luxury 3D Parallax & Kinetic Web Experience 2026
 
-An ultra-modern, high-performance **3D Parallax Scrolling Website** designed for a premier luxury travel agency offering all-inclusive travel packages (flights + 5-star stays + guided expeditions).
+An award-winning, ultra-vibrant **3D Parallax & WebGL Experience** designed for premier luxury travel agencies, offering all-inclusive expeditions (private aviation & seaplanes + 5-star retreats + private guided safaris).
+
+Inspired by cutting-edge interactive websites such as **Henrietta Said (Awwwards / FWA)**, featuring physics-based floating object repulsion, an interactive Three.js 3D Earth Globe, kinetic marquee typography, and saturated color design.
 
 ---
 
-## ✨ Features & Highlights
+## ✨ Key Features & Interactive Systems
 
-1. **Multi-Layer 3D Parallax Hero**:
-   - **Sky & Atmospheric Stratosphere**: Deep twilight celestial horizon.
-   - **Snow-Capped Alpine Mountain Summits**: Realistic elevation depth.
-   - **Volumetric Cloud Layers (Back & Front)**: Dual-layer cloud drift creating realistic depth.
-   - **3D Commercial Jet Airliner**: Vector jetliner cruising through clouds with animated contrail vapor trail, 3D mouse gyro banking, and scroll velocity responsiveness.
-   - **Floating Dust & Mist Particle Canvas**: Interactive ambient particles.
+1. **Henrietta-Style Multi-Layer Physics Repulsion Engine (`[data-parallax="scene"]`)**:
+   - Floating travel artifacts (golden navigational compass, hot air balloon, luxury boarding pass, alpine ice crystal, monstera fronds, celestial stars) with varying depth layers (`data-layer="0.2"` to `1.0`).
+   - Natural harmonic sine-wave floating and breathing.
+   - Real-time cursor repulsion physics (`repulseRadius`, `repulseStrength`): objects react dynamically to cursor proximity by pushing away with elastic damping and springing back naturally!
 
-2. **The 4 Elemental Biome Realims**:
-   - 🏔️ **Mountains Realm**: Zermatt & Swiss Alps, Matterhorn ski chalets, helicopter transfers.
-   - 🏜️ **Sand & Desert Realm**: Sahara dunes & Dubai reserve, royal stargazing pavilions, 4x4 safari.
-   - 🌊 **Azure Sea Realm**: Maldives & Bora Bora overwater villas, seaplane transfers, coral reefs.
-   - 🌲 **Emerald Forest Realm**: Costa Rica rainforest canopies, Kyoto bamboo groves & private onsens.
+2. **Multi-Layer 3D Parallax Stratosphere Hero**:
+   - Cosmic sunset stratosphere mesh with animated radial aurora flow.
+   - Perspective coordinate grid with horizon alpine ridge.
+   - Dual-layer drifting clouds with realistic depth.
+   - 3D Commercial Airliner with glowing jet engines, animated contrails, and dynamic 3D banking/pitching linked to cursor coordinates.
+   - Real-time flight telemetry HUD (`Mach 0.85 · Alt 38,000 FT`).
 
-3. **Curated Travel & Stay Packages**:
-   - Live filtering by realm category (Mountains, Sand, Sea, Forest).
-   - Instant search by destination or feature.
-   - Detailed package cards with inclusions, flight details, duration, reviews, and dynamic pricing.
+3. **Infinite Kinetic Marquee Ribbons**:
+   - Continuously scrolling marquee typography with glowing separators, displaying inclusions, VIP accolades, and certifications.
 
-4. **Multi-Currency Live Switcher**:
-   - Supports USD ($), EUR (€), GBP (£), INR (₹), and AED (د.إ) with automatic price conversion.
+4. **The 4 Elemental Biome Realms**:
+   - 🌊 **Turquoise Azure Sea**: Saturated turquoise lagoon, caustic shimmer, speedboat slicing through the water with wake foam trail, and paraglider drifting in sky.
+   - 🏜️ **Sahara Golden Dunes**: Golden sand dunes with setting sun, heat shimmer, camel caravan traversing the dune ridge with drifting sand motes.
+   - 🏔️ **Alpine Matterhorn Summits**: Snow-capped peaks bathed in pink-gold alpenglow, charter helicopter with searchlight beam, Northern Lights aurora curtain, and falling crystalline snowflakes.
+   - 🌲 **Emerald Ancient Rainforest**: Misty tropical canopy with sunbeam God rays, bioluminescent floating spores, and eco-certified canopy villa.
 
-5. **Interactive Booking Engine & Digital Boarding Pass**:
+5. **Interactive Three.js 3D Earth Globe & Orbital Flight Radar**:
+   - Real-time 3D Earth Globe with glowing atmospheric halo and digital wireframe grid.
+   - 3D curved Bezier flight trajectories with animated light sparks travelling along flight corridors.
+   - Clickable destination beacons (Maldives, Bora Bora, Sahara, Abu Dhabi, Swiss Alps, Patagonia, Costa Rica, Kyoto) with instant smooth camera orbital tracking.
+   - Full drag-to-rotate support with inertia.
+   - Live telemetry card with destination weather, flight partner, and instant booking trigger.
+
+6. **Curated Expeditions Catalog**:
+   - 8 fully detailed luxury packages with high-resolution imagery, verified reviews, durations, and hotel/flight partner pairings.
+   - Interactive realm category filter tabs (All, Azure Sea, Golden Dunes, Alpine Summits, Rainforest).
+   - Real-time search bar.
+   - 3D Tilt Cards with dynamic cursor glare hotspots.
+
+7. **360° Virtual Horizon Panorama Viewer**:
+   - Interactive equirectangular spherical panorama modal allowing travelers to pan in full 360° to view destination vistas!
+
+8. **Live Multi-Currency Converter**:
+   - Supports USD ($), EUR (€), GBP (£), INR (₹), AED (د.إ), and JPY (¥) with real-time recalculation across package cards and booking forms.
+
+9. **Bespoke Booking Engine & Printable Luxury Boarding Pass**:
    - Multi-step booking drawer:
-     - Package selection & auto-fill
-     - Travel calendar date picker (departure & return)
-     - Guest counts (adults & children with automated discounts)
-     - Flight cabin class upgrade (Standard / Premium Economy / Business / First Class Suite)
-     - VIP Concierge add-ons (Airport chauffeur, champagne on arrival, spa pass, drone videographer)
-     - Real-time transparent price calculation
-   - Instant booking confirmation ticket with unique reference ID (`AUR-XXXXXX`) and one-click printable voucher!
+     - Date range pickers (departure & return)
+     - Adult & child counters (with automatic 25% child discount)
+     - Flight cabin class upgrades (Standard Luxury, Premium Economy, Business Flatbed Suite, First Class Private Suite)
+     - VIP Concierge Add-ons (Mercedes Chauffeur, Dom Pérignon & Caviar, Daily Thermal Spa, 4K Drone Videographer)
+     - Live itemized cost calculation
+   - Instant Digital Boarding Pass voucher with unique PNR reference (`AUR-XXXXXX`), barcode, passenger details, and one-click Printable receipt!
 
-6. **Web Audio API Ambient Flight Soundscape**:
-   - Toggle button in navigation bar that generates subtle high-altitude cabin breeze & ocean resonance natively in browser without relying on external audio files.
+10. **Native Web Audio API Synthesizer**:
+    - High-altitude cabin air and ocean resonance synthesized directly in the browser with an interactive equalizer visualizer in the top navigation bar.
 
 ---
 
-## 🚀 How to Run & Preview
+## 🚀 Running the Project
 
-You can run this project instantly with either Vite or Python:
-
-### Option 1: Python HTTP Server (Zero Setup)
+### Option 1: Python Server
 ```bash
+cd /home/nilesh-pithiya/FRAPPE-BENCHES/website
 python3 -m http.server 3000
 ```
-Open your browser at: [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000](http://localhost:3000)
 
 ### Option 2: Vite Dev Server
 ```bash
+cd /home/nilesh-pithiya/FRAPPE-BENCHES/website
 npm run dev
 # or
-npx vite --port 3000
+npm run build && npm run preview
 ```
-
----
-
-## 📁 File Structure
-
-- `index.html` — Complete semantic HTML5 structure with 3D parallax hero, biome sections, packages grid, and interactive booking modal.
-- `styles.css` — Custom 3D perspective, parallax layer transitions, glassmorphism, responsive styles, and custom scrollbar.
-- `main.js` — Parallax scroll engine, mouse-move 3D perspective, interactive booking engine, currency converter, particle system, and ambient audio generator.
-- `package.json` — Scripts for running and previewing the site.
