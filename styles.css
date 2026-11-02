@@ -917,11 +917,14 @@ body {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(30px);
+}
+#pano-modal:not(.hidden) {
+  display: flex;
 }
 #pano-viewport {
   width: 90vw;

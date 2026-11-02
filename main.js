@@ -410,6 +410,23 @@ function initLenisSmoothScroll() {
     }
     requestAnimationFrame(raf);
   }
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const href = anchor.getAttribute('href');
+      if (href && href.length > 1) {
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          if (lenisInstance) {
+            lenisInstance.scrollTo(target, { offset: -60, duration: 1.2 });
+          } else {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
+    });
+  });
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -1062,7 +1079,7 @@ function renderExpeditionCatalog() {
       <article class="pkg-card-vibrant tilt-card" style="--accent-color:${p.accentColor};--accent-glow:${p.accentGlow}">
         <div class="tilt-glare"></div>
         <div class="pkg-img-frame">
-          <img src="${p.image}" alt="${p.title}" loading="lazy">
+          <img src="${p.image}" alt="${p.title}" loading="eager">
           <div class="pkg-img-overlay"></div>
           
           ${isUltraPopular ? `
@@ -1168,6 +1185,31 @@ window.resetFilters = function () {
     t.classList.toggle('active', t.dataset.category === 'all');
   });
   renderExpeditionCatalog();
+};
+
+window.filterByRealm = function (realmId) {
+  activeCategory = realmId || 'all';
+  document.querySelectorAll('.filter-chip').forEach((t) => {
+    t.classList.toggle('active', t.dataset.category === activeCategory);
+  });
+  renderExpeditionCatalog();
+  const pkgSection = document.getElementById('packages-section');
+  if (pkgSection) {
+    if (lenisInstance) {
+      lenisInstance.scrollTo(pkgSection, { offset: -50, duration: 1.2 });
+    } else {
+      pkgSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+};
+
+window.scrollToExpeditions = function () {
+  const realmSelect = document.getElementById('hero-realm-select');
+  if (realmSelect && realmSelect.value && realmSelect.value !== 'all') {
+    window.filterByRealm(realmSelect.value);
+  } else {
+    window.filterByRealm('all');
+  }
 };
 
 function initCurrencySelector() {
