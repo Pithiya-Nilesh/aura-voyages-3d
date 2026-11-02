@@ -43,6 +43,36 @@
     </div>
     <div id="preloader-percent" class="text-[11px] font-mono text-cyan-400 font-bold mt-2">0%</div>
   </div>
+  <script>
+    (function() {
+      var p = document.getElementById('site-preloader');
+      var b = document.getElementById('preloader-bar');
+      var t = document.getElementById('preloader-percent');
+      var pct = 0;
+      var timer = setInterval(function() {
+        pct += 25;
+        if (b) b.style.width = pct + '%';
+        if (t) t.textContent = pct + '%';
+        if (pct >= 100) {
+          clearInterval(timer);
+          setTimeout(function() {
+            if (p) {
+              p.classList.add('loaded');
+              p.style.opacity = '0';
+              p.style.pointerEvents = 'none';
+              setTimeout(function() { p.style.display = 'none'; }, 400);
+            }
+          }, 150);
+        }
+      }, 60);
+      setTimeout(function() {
+        if (p) {
+          p.classList.add('loaded');
+          p.style.display = 'none';
+        }
+      }, 800);
+    })();
+  </script>
 
   <!-- ╔══════════════════════════════════════════════════════╗
        ║  DYNAMIC CURSOR SPOTLIGHT
@@ -1088,6 +1118,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script type="module" src="main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

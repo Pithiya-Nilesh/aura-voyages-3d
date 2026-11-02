@@ -226,56 +226,39 @@ function formatPrice(usd) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// 3. LIFECYCLE INITIALIZATION
+// 3. LIFECYCLE INITIALIZATION (FAIL-SAFE)
 // ═══════════════════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', () => {
-  initPreloader();
-  initLenisSmoothScroll();
-  initCursorSpotlight();
-  initAtmosphereParticles();
-  initHenriettaParallaxScenes();
-  initMouse3DParallax();
-  init3DTiltCards();
-  initGSAPParallaxScroll();
-  initThreeJSGlobe();
-  initFlightTelemetryHUD();
-  renderExpeditionCatalog();
-  initFilterAndSearch();
-  initCurrencySelector();
-  initBookingModal();
-  init360PanoramaViewer();
-  initSynthesizerAudio();
-  initMobileDrawer();
-  initCounterStats();
-});
-
-// ═══════════════════════════════════════════════════════════════════
-// 4. PRELOADER ENGINE
-// ═══════════════════════════════════════════════════════════════════
-function initPreloader() {
+function initSite() {
   const preloader = document.getElementById('site-preloader');
-  const bar = document.getElementById('preloader-bar');
-  const percentText = document.getElementById('preloader-percent');
-  if (!preloader) return;
+  if (preloader) {
+    preloader.classList.add('loaded');
+    preloader.style.display = 'none';
+  }
+  document.body.style.overflow = '';
 
-  let progress = 0;
-  const interval = setInterval(() => {
-    progress += Math.floor(Math.random() * 18) + 8;
-    if (progress >= 100) {
-      progress = 100;
-      clearInterval(interval);
-      if (bar) bar.style.width = '100%';
-      if (percentText) percentText.textContent = '100%';
+  try { initLenisSmoothScroll(); } catch (e) { console.warn('Lenis:', e); }
+  try { initCursorSpotlight(); } catch (e) { console.warn('Cursor:', e); }
+  try { initAtmosphereParticles(); } catch (e) { console.warn('Particles:', e); }
+  try { initHenriettaParallaxScenes(); } catch (e) { console.warn('Physics:', e); }
+  try { initMouse3DParallax(); } catch (e) { console.warn('Mouse3D:', e); }
+  try { init3DTiltCards(); } catch (e) { console.warn('Tilt:', e); }
+  try { initGSAPParallaxScroll(); } catch (e) { console.warn('GSAP:', e); }
+  try { initThreeJSGlobe(); } catch (e) { console.warn('Globe:', e); }
+  try { initFlightTelemetryHUD(); } catch (e) { console.warn('Telemetry:', e); }
+  try { renderExpeditionCatalog(); } catch (e) { console.warn('Catalog:', e); }
+  try { initFilterAndSearch(); } catch (e) { console.warn('Filter:', e); }
+  try { initCurrencySelector(); } catch (e) { console.warn('Currency:', e); }
+  try { initBookingModal(); } catch (e) { console.warn('Booking:', e); }
+  try { init360PanoramaViewer(); } catch (e) { console.warn('Pano:', e); }
+  try { initSynthesizerAudio(); } catch (e) { console.warn('Audio:', e); }
+  try { initMobileDrawer(); } catch (e) { console.warn('Mobile:', e); }
+  try { initCounterStats(); } catch (e) { console.warn('Counters:', e); }
+}
 
-      setTimeout(() => {
-        preloader.classList.add('loaded');
-        document.body.style.overflow = '';
-      }, 400);
-    } else {
-      if (bar) bar.style.width = `${progress}%`;
-      if (percentText) percentText.textContent = `${progress}%`;
-    }
-  }, 45);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSite);
+} else {
+  initSite();
 }
 
 // ═══════════════════════════════════════════════════════════════════

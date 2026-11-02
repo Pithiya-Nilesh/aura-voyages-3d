@@ -4,7 +4,7 @@
   "description": "Luxury 3D Parallax Scrolling Website for Travel Agency with Packages & Booking Engine",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && cp main.js dist/main.js",
     "preview": "vite preview",
     "serve": "python3 -m http.server 3000"
   },
