@@ -82,42 +82,41 @@
   <!-- ╔══════════════════════════════════════════════════════╗
        ║  FLOATING CAPSULE NAVBAR
        ╚══════════════════════════════════════════════════════╝ -->
-  <header id="site-header" class="fixed top-4 sm:top-6 left-0 right-0 z-50 px-4 sm:px-6 transition-all duration-500">
-    <div class="max-w-7xl mx-auto site-navbar px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4">
+  <header id="site-header" class="fixed top-3 sm:top-5 left-0 right-0 z-50 px-3 sm:px-6 transition-all duration-500">
+    <div class="max-w-[1380px] mx-auto site-navbar px-3.5 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between gap-2 sm:gap-4">
       
       <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-3.5 flex-shrink-0 group">
-        <div class="relative w-10 h-10 flex-shrink-0">
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3 flex-shrink-0 group">
+        <div class="relative w-8 h-8 sm:w-9 sm:h-9 flex-shrink-0">
           <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-pink-500 via-amber-400 to-cyan-400 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-pink-500/40"></div>
-          <svg class="absolute inset-0 w-full h-full p-2.5 text-slate-950 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="absolute inset-0 w-full h-full p-2 text-slate-950 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
           </svg>
         </div>
         <div class="leading-none">
-          <div class="font-cinzel text-lg sm:text-xl font-black tracking-[0.2em] text-white group-hover:text-amber-300 transition-colors">AURA</div>
-          <div class="text-[8px] uppercase tracking-[0.35em] text-cyan-400 font-extrabold -mt-0.5">Voyages 2026</div>
+          <div class="font-cinzel text-base sm:text-lg font-black tracking-[0.2em] text-white group-hover:text-amber-300 transition-colors">AURA</div>
+          <div class="text-[7.5px] uppercase tracking-[0.3em] text-cyan-400 font-extrabold -mt-0.5 hidden xs:block">Voyages 2026</div>
         </div>
       </a>
 
-      <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-7">
-        <a href="#hero-stage" class="nav-item">✈️ Stratosphere</a>
-        <a href="#biome-sea" class="nav-item">🌊 Azure Sea</a>
-        <a href="#biome-sand" class="nav-item">🏜️ Golden Dunes</a>
-        <a href="#biome-mountains" class="nav-item">🏔️ Alpine Peaks</a>
-        <a href="#biome-forest" class="nav-item">🌲 Rainforest</a>
-        <a href="#radar-section" class="nav-item text-cyan-300 font-extrabold">🌐 3D Radar</a>
+      <!-- Desktop Navigation Links (Compact & Fully Responsive) -->
+      <nav class="hidden lg:flex items-center gap-3 xl:gap-5 flex-shrink-1">
+        <a href="#biome-sea" class="nav-item">Sea</a>
+        <a href="#biome-sand" class="nav-item">Dunes</a>
+        <a href="#biome-mountains" class="nav-item">Peaks</a>
+        <a href="#biome-forest" class="nav-item">Rainforest</a>
+        <a href="#radar-section" class="nav-item text-cyan-300 font-extrabold">3D Radar</a>
         <a href="#packages-section" class="nav-item text-pink-400 font-black">
-          ✨ Expeditions
-          <span class="ml-1.5 text-[9px] px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30 font-mono">2026</span>
+          Expeditions
+          <span class="ml-1 text-[9px] px-1.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30 font-mono">2026</span>
         </a>
       </nav>
 
       <!-- Actions: Soundscape, Currency, Booking CTA -->
-      <div class="flex items-center gap-2.5 sm:gap-3 flex-shrink-0">
+      <div class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
         
-        <!-- Ambient Soundscape Generator -->
-        <button id="soundscape-btn" class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-bold bg-white/6 hover:bg-white/12 border border-white/15 text-slate-300 transition-all duration-300" title="Toggle Native Spatial Soundscape">
+        <!-- Ambient Soundscape Generator (Ultra-Wide Only) -->
+        <button id="soundscape-btn" class="hidden 2xl:flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-bold bg-white/6 hover:bg-white/12 border border-white/15 text-slate-300 transition-all duration-300 flex-shrink-0" title="Toggle Native Spatial Soundscape">
           <div id="eq-visualizer" class="flex items-center gap-0.5 eq-paused h-3.5">
             <span class="eq-bar"></span>
             <span class="eq-bar"></span>
@@ -128,7 +127,7 @@
         </button>
 
         <!-- Multi-Currency Selector -->
-        <select class="currency-select bg-slate-900/90 text-[11px] font-bold text-slate-200 px-3 py-1.5 rounded-full border border-white/15 focus:outline-none focus:border-cyan-400 cursor-pointer" aria-label="Currency">
+        <select class="currency-select hidden sm:inline-block bg-slate-900/90 text-[11px] font-bold text-slate-200 px-2.5 py-1.5 rounded-full border border-white/15 focus:outline-none focus:border-cyan-400 cursor-pointer flex-shrink-0" aria-label="Currency">
           <option value="USD">USD ($)</option>
           <option value="EUR">EUR (€)</option>
           <option value="GBP">GBP (£)</option>
@@ -137,14 +136,15 @@
           <option value="JPY">JPY (¥)</option>
         </select>
 
-        <!-- Book Journey CTA -->
-        <button onclick="openBookingModal()" class="btn-vibrant-primary hidden sm:flex text-xs py-2 px-5">
-          <span>Book Journey</span>
+        <!-- Book Journey CTA (Never Overflows) -->
+        <button onclick="openBookingModal()" class="btn-vibrant-primary text-xs py-1.5 sm:py-2 px-3 sm:px-4 whitespace-nowrap flex-shrink-0">
+          <span class="hidden sm:inline">Book Journey</span>
+          <span class="sm:hidden">Book</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
         </button>
 
         <!-- Mobile Drawer Hamburger -->
-        <button id="mobile-menu-btn" class="lg:hidden p-2.5 rounded-full bg-white/8 hover:bg-white/15 border border-white/12 text-white transition" aria-label="Open Menu">
+        <button id="mobile-menu-btn" class="lg:hidden p-2 sm:p-2.5 rounded-full bg-white/8 hover:bg-white/15 border border-white/12 text-white transition flex-shrink-0" aria-label="Open Menu">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </div>
