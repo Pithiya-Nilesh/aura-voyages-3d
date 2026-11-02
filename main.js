@@ -398,6 +398,7 @@ function initLenisSmoothScroll() {
     smoothWheel: true,
     touchMultiplier: 1.5
   });
+  window.lenis = lenisInstance;
 
   if (typeof ScrollTrigger !== 'undefined' && typeof gsap !== 'undefined') {
     lenisInstance.on('scroll', ScrollTrigger.update);
@@ -575,7 +576,7 @@ function initAtmosphereParticles() {
 // 9. MOUSE 3D AIRPLANE BANKING
 // ═══════════════════════════════════════════════════════════════════
 function initMouse3DParallax() {
-  const planeWrap = document.getElementById('hero-plane-wrap');
+  const planeImg = document.getElementById('hero-plane-img');
   let targetX = 0, targetY = 0;
   let currentX = 0, currentY = 0;
 
@@ -588,14 +589,14 @@ function initMouse3DParallax() {
     currentX += (targetX - currentX) * 0.06;
     currentY += (targetY - currentY) * 0.06;
 
-    if (planeWrap && window.scrollY < window.innerHeight * 1.2) {
-      const rotateY = currentX * 22;
-      const rotateX = -currentY * 18;
-      const rotateZ = currentX * 12;
-      const translateX = currentX * 35;
-      const translateY = currentY * 25;
+    if (planeImg && window.scrollY < window.innerHeight * 1.2) {
+      const rotateY = currentX * 18;
+      const rotateX = -currentY * 14;
+      const rotateZ = currentX * 10;
+      const translateX = currentX * 25;
+      const translateY = currentY * 18;
 
-      planeWrap.style.transform = `translate(-50%, -50%) translate3d(${translateX}px, ${translateY}px, 0) perspective(1200px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) rotateZ(${rotateZ}deg)`;
+      planeImg.style.transform = `perspective(1000px) translate3d(${translateX}px, ${translateY}px, 0) rotateY(${rotateY}deg) rotateX(${rotateX}deg) rotateZ(${rotateZ}deg)`;
     }
 
     requestAnimationFrame(tickMouse3D);
@@ -648,86 +649,192 @@ function initGSAPParallaxScroll() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
-  // Hero Parallax Timeline
-  const heroTL = gsap.timeline({
+  // 1. HERO TIMELINE: Plane ascends and flies forward across clouds
+  gsap.to('#hero-plane-wrap', {
     scrollTrigger: {
       trigger: '#hero-stage',
       start: 'top top',
       end: 'bottom top',
-      scrub: 1.2
-    }
+      scrub: 1
+    },
+    y: '-25vh',
+    x: '20vw',
+    scale: 1.35,
+    rotation: 6,
+    ease: 'power1.out'
   });
 
-  heroTL
-    .to('.hero-mtn-ridge', { y: 120, scale: 1.05, ease: 'none' }, 0)
-    .to('.hero-clouds-back', { x: -160, y: -40, ease: 'none' }, 0)
-    .to('.hero-clouds-front', { x: 200, scale: 1.3, ease: 'none' }, 0)
-    .to('#hero-plane-wrap', { y: '35vh', x: '18vw', scale: 1.35, rotateZ: 8, ease: 'power1.inOut' }, 0)
-    .to('#hero-main-content', { y: -80, opacity: 0.2, ease: 'none' }, 0);
+  gsap.to('.hero-mtn-ridge', {
+    scrollTrigger: {
+      trigger: '#hero-stage',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1
+    },
+    y: 140,
+    ease: 'none'
+  });
 
-  // Sea Realm
-  const seaTL = gsap.timeline({
+  gsap.to('.hero-clouds-front', {
+    scrollTrigger: {
+      trigger: '#hero-stage',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1
+    },
+    x: 220,
+    scale: 1.5,
+    ease: 'none'
+  });
+
+  gsap.to('#hero-main-content', {
+    scrollTrigger: {
+      trigger: '#hero-stage',
+      start: 'top top',
+      end: 'center top',
+      scrub: 1
+    },
+    y: -80,
+    opacity: 0.15,
+    ease: 'none'
+  });
+
+  // 2. SEA REALM: Speedboat sails across turquoise waters, Paraglider soars overhead
+  gsap.fromTo('#sea-boat',
+    { x: '-15vw', y: 30 },
+    {
+      x: '65vw',
+      y: -20,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#biome-sea',
+        start: 'top 85%',
+        end: 'bottom 15%',
+        scrub: 1
+      }
+    }
+  );
+
+  gsap.fromTo('#sea-paraglider',
+    { x: '10vw', y: '-8vh', scale: 0.9, rotation: -5 },
+    {
+      x: '-60vw',
+      y: '22vh',
+      scale: 1.25,
+      rotation: 6,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#biome-sea',
+        start: 'top 85%',
+        end: 'bottom 15%',
+        scrub: 1
+      }
+    }
+  );
+
+  gsap.to('#sea-bg-layer', {
+    y: 80,
+    scale: 1.15,
+    ease: 'none',
     scrollTrigger: {
       trigger: '#biome-sea',
-      start: 'top top',
-      end: '+=180%',
-      pin: true,
-      scrub: 1.2,
-      anticipatePin: 1
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1
     }
   });
-  seaTL
-    .to('#sea-bg-layer', { scale: 1.25, y: 70, ease: 'none' }, 0)
-    .fromTo('#sea-boat', { x: '-35vw', y: 40 }, { x: '75vw', y: -25, ease: 'power1.inOut' }, 0)
-    .fromTo('#sea-paraglider', { x: '15vw', y: '-5vh', scale: 0.85, rotation: -6 }, { x: '-70vw', y: '28vh', scale: 1.35, rotation: 8, ease: 'power1.inOut' }, 0)
-    .fromTo('#sea-hud-panel', { opacity: 0.5, y: 50, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, ease: 'power2.out' }, 0.05);
 
-  // Sand Realm
-  const sandTL = gsap.timeline({
+  // 3. SAND REALM: Camel caravan walks across golden dunes
+  gsap.fromTo('#sand-camel',
+    { x: '-15vw', y: 20 },
+    {
+      x: '60vw',
+      y: -20,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#biome-sand',
+        start: 'top 85%',
+        end: 'bottom 15%',
+        scrub: 1
+      }
+    }
+  );
+
+  gsap.to('#sand-bg-layer', {
+    y: 80,
+    scale: 1.15,
+    ease: 'none',
     scrollTrigger: {
       trigger: '#biome-sand',
-      start: 'top top',
-      end: '+=180%',
-      pin: true,
-      scrub: 1.2,
-      anticipatePin: 1
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1
     }
   });
-  sandTL
-    .to('#sand-bg-layer', { scale: 1.28, y: 80, ease: 'none' }, 0)
-    .fromTo('#sand-camel', { x: '-30vw', y: 25 }, { x: '70vw', y: -30, ease: 'power1.inOut' }, 0)
-    .fromTo('#sand-hud-panel', { opacity: 0.5, y: 50, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, ease: 'power2.out' }, 0.05);
 
-  // Mountain Realm
-  const mtnTL = gsap.timeline({
+  // 4. MOUNTAINS REALM: Helicopter cuts through alpine pass
+  gsap.fromTo('#mtn-heli',
+    { x: '15vw', y: '-5vh', scale: 0.85, rotation: 10 },
+    {
+      x: '-70vw',
+      y: '25vh',
+      scale: 1.35,
+      rotation: -6,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#biome-mountains',
+        start: 'top 85%',
+        end: 'bottom 15%',
+        scrub: 1
+      }
+    }
+  );
+
+  gsap.to('#mtn-bg-layer', {
+    y: 80,
+    scale: 1.15,
+    ease: 'none',
     scrollTrigger: {
       trigger: '#biome-mountains',
-      start: 'top top',
-      end: '+=180%',
-      pin: true,
-      scrub: 1.2,
-      anticipatePin: 1
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1
     }
   });
-  mtnTL
-    .to('#mtn-bg-layer', { scale: 1.28, y: 80, ease: 'none' }, 0)
-    .fromTo('#mtn-heli', { x: '25vw', y: '-8vh', scale: 0.75, rotation: 12 }, { x: '-85vw', y: '32vh', scale: 1.45, rotation: -8, ease: 'power1.inOut' }, 0)
-    .fromTo('#mtn-hud-panel', { opacity: 0.5, y: 50, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, ease: 'power2.out' }, 0.05);
 
-  // Forest Realm
-  const fstTL = gsap.timeline({
+  // 5. FOREST REALM: Canopy mist and light shift
+  gsap.to('#fst-bg-layer', {
+    y: 80,
+    scale: 1.15,
+    ease: 'none',
     scrollTrigger: {
       trigger: '#biome-forest',
-      start: 'top top',
-      end: '+=170%',
-      pin: true,
-      scrub: 1.2,
-      anticipatePin: 1
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1
     }
   });
-  fstTL
-    .to('#fst-bg-layer', { scale: 1.3, y: 70, ease: 'none' }, 0)
-    .fromTo('#fst-hud-panel', { opacity: 0.5, y: 50, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, ease: 'power2.out' }, 0.05);
+
+  // HUD Glass Cards float up with smooth entry
+  ['#sea-hud-panel', '#sand-hud-panel', '#mtn-hud-panel', '#fst-hud-panel'].forEach((id) => {
+    const el = document.querySelector(id);
+    if (el) {
+      gsap.fromTo(el,
+        { y: 50, opacity: 0.7 },
+        {
+          y: 0,
+          opacity: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 92%',
+            end: 'top 45%',
+            scrub: 1
+          }
+        }
+      );
+    }
+  });
 
   // Stagger reveal on packages
   ScrollTrigger.create({
@@ -738,12 +845,17 @@ function initGSAPParallaxScroll() {
       gsap.from('.pkg-card-vibrant', {
         y: 80,
         opacity: 0,
-        stagger: 0.12,
-        duration: 0.9,
+        stagger: 0.1,
+        duration: 0.8,
         ease: 'power3.out'
       });
     }
   });
+
+  // Trigger refresh after DOM and images settle
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 300);
 }
 
 // ═══════════════════════════════════════════════════════════════════
